@@ -10,6 +10,8 @@ export default defineConfig({
   },
   assetsInclude: "**/*.hbs",
   plugins: [handlebars({
-    partialDirectory: resolve(__dirname, 'src/partials'),
+    // Конструкция через resolve не регистрирует эти папки
+    // resolve(__dirname, 'src/partials', 'src/layouts', 'src/pages')
+    partialDirectory: ['src/partials', 'src/layouts', 'src/pages'],
   })],
 })
