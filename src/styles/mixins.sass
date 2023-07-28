@@ -1,0 +1,11 @@
+@use 'variables'
+
+@mixin text-shared($size, $height, $color: variables.$text-color)
+  font-family: variables.$font-family
+  font-size: $size
+  font-style: normal
+  font-weight: 500
+  color: $color
+
+@mixin text-field($color)
+  @include text-shared(13px, 13px)
