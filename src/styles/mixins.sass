@@ -5,7 +5,8 @@
   font-size: $size
   font-style: normal
   font-weight: 500
+  line-height: $height
   color: $color
 
-@mixin text-field($color)
+@mixin text-field($color: variables.$text-color)
   @include text-shared(13px, 13px)
