@@ -16,6 +16,7 @@ export default defineConfig({
         authorization: resolve(__dirname, 'src/authorization.html'),
         registration: resolve(__dirname, 'src/registration.html'),
         profile: resolve(__dirname, 'src/profile.html'),
+        profileEdit: resolve(__dirname, 'src/profile-edit.html'),
       }
     }
   },
