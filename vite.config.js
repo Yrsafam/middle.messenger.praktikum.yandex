@@ -17,6 +17,7 @@ export default defineConfig({
         registration: resolve(__dirname, 'src/registration.html'),
         profile: resolve(__dirname, 'src/profile.html'),
         profileEdit: resolve(__dirname, 'src/profile-edit.html'),
+        changePassword: resolve(__dirname, 'src/change-password.html'),
       }
     }
   },
