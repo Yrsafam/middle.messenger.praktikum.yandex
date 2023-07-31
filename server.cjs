@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.sendFile(resolve(__dirname, 'dist/index.html'));
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(resolve(__dirname, 'dist/404.html'));
+});
+
 app.listen(PORT, function () {
   console.log(`App listening on port ${PORT}!`);
 });
