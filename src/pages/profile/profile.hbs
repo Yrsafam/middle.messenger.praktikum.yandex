@@ -1,5 +1,23 @@
 {{#> root title="Профиль" className="profile"}}
     {{#> sidebar className="profile__sidebar" href="/"}}
-        {{> "AvatarProfile/avatarProfile"}}
+        <section class="profile__content">
+            <div class="profile__header">
+                {{> "AvatarProfile/avatarProfile"}}
+                <h4 class="profile__title">Иван</h4>
+            </div>
+            <div class="profile__body">
+                {{> "InformationRow/informationRow" name="Почта" value="pochta@yandex.ru"}}
+                {{> "InformationRow/informationRow" name="Логин" value="ivanivanov"}}
+                {{> "InformationRow/informationRow" name="Имя" value="Иван"}}
+                {{> "InformationRow/informationRow" name="Фамилия" value="Иванов"}}
+                {{> "InformationRow/informationRow" name="Имя в чате" value="Иван"}}
+                {{> "InformationRow/informationRow" name="Телефон" value="+7 (909) 967 30 30"}}
+            </div>
+            <div class="profile__footer">
+                {{> "ButtonText/button" title="Изменить данные" className="profile__button-change"}}
+                {{> "ButtonText/button" title="Изменить пароль" className="profile__button-change"}}
+                {{> "ButtonText/button" title="Выйти" className="profile__button-change profile__button-change_warning"}}
+            </div>
+        </section>
     {{/sidebar}}
 {{/root}}
