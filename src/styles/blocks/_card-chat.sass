@@ -11,6 +11,32 @@
   border-bottom: $border
   padding: 12px 0
   cursor: pointer
+  position: relative
+
+  &:before
+    $padding-outer: 20px
+    $padding-inner: 4px
+
+    content: ''
+    position: absolute
+    width: calc(100% + #{$padding-outer})
+    height: calc(100% - #{$padding-inner})
+    background-color: white
+    left: -$padding-outer / 2
+    top: $padding-inner / 2
+    z-index: -1
+    -webkit-transition: background-color variables.$transition-animation
+    -moz-transition: background-color variables.$transition-animation
+    -ms-transition: background-color variables.$transition-animation
+    -o-transition: background-color variables.$transition-animation
+    transition: background-color variables.$transition-animation
+
+  &:hover
+    &:before
+      $background-color: #E4EDFD
+
+      background-color: $background-color
+
 
   &__avatar-circle
     $size: 47px
