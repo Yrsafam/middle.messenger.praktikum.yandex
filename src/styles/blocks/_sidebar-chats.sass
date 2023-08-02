@@ -3,14 +3,22 @@
 
 .sidebar-chats
   $width: 310px
+  $max-height: 100vh
 
   width: $width
-  padding: 21px 10px
+  max-height: $max-height
+  overflow-y: auto
+  padding: 0 10px 21px
+  border-right: 1px variables.$border-light-color solid
 
   &__head
     display: flex
     flex-direction: column
     align-items: flex-end
+    position: sticky
+    top: 0
+    background-color: white
+    padding-top: 21px
 
   &__link-profile
     @include mixins.text-shared(12px, 12px, variables.$text-light-color)
