@@ -1,3 +1,4 @@
+@use "sass:math"
 @use "src/styles/variables"
 @use "src/styles/mixins"
 
@@ -22,8 +23,8 @@
     width: calc(100% + #{$padding-outer})
     height: calc(100% - #{$padding-inner})
     background-color: white
-    left: -$padding-outer / 2
-    top: $padding-inner / 2
+    left: math.div(-$padding-outer, 2)
+    top: math.div($padding-inner, 2)
     z-index: -1
     -webkit-transition: background-color variables.$transition-animation
     -moz-transition: background-color variables.$transition-animation
