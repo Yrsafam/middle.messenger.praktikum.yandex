@@ -2,7 +2,7 @@ import {resolve} from 'path';
 import { defineConfig } from 'vite'
 import handlebars from "vite-plugin-handlebars";
 
-import {chats} from "./public/mock.js";
+import {chats, messages} from "./public/mock.js";
 
 export default defineConfig({
   root: resolve(__dirname, 'src'),
@@ -29,7 +29,8 @@ export default defineConfig({
     // resolve(__dirname, 'src/partials', 'src/layouts', 'src/pages')
     partialDirectory: ['src/partials', 'src/layouts', 'src/pages'],
     context: {
-      chats: chats
+      chats: chats,
+      messages: messages,
     }
   })],
 })
