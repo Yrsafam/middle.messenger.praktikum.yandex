@@ -57,4 +57,4 @@ npm run server
 
 ## Netlify
 
-- [Ссылка]()
+- [Ссылка](https://bejewelled-mermaid-8640f0.netlify.app/)
