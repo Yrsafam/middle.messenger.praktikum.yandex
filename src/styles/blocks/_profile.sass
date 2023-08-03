@@ -1,0 +1,46 @@
+@use "src/styles/variables"
+@use "src/styles/mixins"
+
+.profile
+  $max-width-content: 510px
+
+  &__content
+    padding: 60px 0
+    width: 100%
+
+  &__header
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    margin-bottom: 60px
+
+  &__title
+    @include mixins.text-shared(16px, 16px)
+    font-weight: 600
+    text-align: center
+    margin: 21px 0 0
+
+  &__body
+    max-width: $max-width-content
+    margin: 0 auto
+
+  &__footer
+    display: flex
+    flex-direction: column
+    max-width: $max-width-content
+    margin: 50px auto 0
+
+  &__button-change
+    position: relative
+    padding: 10px 0
+
+    &:after
+      @include mixins.border-row-absolute
+
+    &:last-child
+      &:after
+        display: none
+
+    &_warning
+      color: variables.$error-color

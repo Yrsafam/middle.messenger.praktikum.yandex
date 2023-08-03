@@ -1,0 +1,15 @@
+{{#> root title="Авторизация" className="authorization" }}
+    <form class="authorization__form">
+        <h3 class="authorization__title">Вход</h3>
+
+        <fieldset class="authorization__form-group">
+            {{> "Input/input" name="login" label="Логин" type="text" className="authorization__input" }}
+            {{> "Input/input" name="password" label="Пароль" type="password" className="authorization__input" }}
+        </fieldset>
+
+        <div class="authorization__buttons">
+            {{> "Button/button" title="Войти" type="submit" className="authorization__submit" }}
+            {{> "ButtonText/button" title="Нет аккаунта?" href="./registration.html" className="authorization__registration-button" }}
+        </div>
+    </form>
+{{/root}}
