@@ -6,10 +6,14 @@
         </div>
         {{> "main/context-menu"}}
     </div>
-    <div class="chat-messages__footer">
+    <div class="chat-messages__body">
         <p class="chat-messages__date-separator">19 июня</p>
-        <ul>
-
+        <ul class="chat-messages__list">
+            {{#each messages}}
+                <li>
+                    {{> "main/message" this }}
+                </li>
+            {{/each}}
         </ul>
     </div>
 </div>
