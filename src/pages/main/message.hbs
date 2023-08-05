@@ -1,0 +1,27 @@
+{{#*inline "message-photo"}}
+    <img src="{{photo}}" alt="Картинка в сообщении" class="chat-message__view-image">
+    <time class="chat-message__time chat-message__time_view-image">{{time}}</time>
+{{/inline}}
+
+<article class="chat-message">
+    {{#if isMe}}
+            <span class="chat-message__content">
+                {{#if photo}}
+                    {{> "message-photo"}}
+                {{else}}
+                    {{message}}
+                    <time class="chat-message__time ">{{time}}</time>
+            </span>
+        {{/if}}
+        {{else}}
+        <span class="chat-message__content chat-message__content_not-me">
+            {{#if photo}}
+                {{> "message-photo"}}
+            {{else}}
+                {{message}}
+                <time class="chat-message__time chat-message__time_not-me">{{time}}</time>
+            {{/if}}
+        </span>
+
+    {{/if}}
+</article>

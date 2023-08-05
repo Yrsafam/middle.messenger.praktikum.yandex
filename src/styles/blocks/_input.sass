@@ -1,0 +1,58 @@
+@use "src/styles/variables"
+@use "src/styles/mixins"
+
+.input
+  position: relative
+  display: flex
+  flex-direction: column
+
+  &__label
+    @include mixins.text-shared(9px, 9px, variables.$text-light-color)
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    position: absolute
+    top: 0
+    left: 0
+    -webkit-transform: translateY(-50%)
+    -moz-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    -o-transform: translateY(-50%)
+    transform: translateY(-50%)
+    -webkit-transition: top variables.$transition-animation, font-size variables.$transition-animation, line-height variables.$transition-animation
+    -moz-transition: top variables.$transition-animation, font-size variables.$transition-animation, line-height variables.$transition-animation
+    -ms-transition: top variables.$transition-animation, font-size variables.$transition-animation, line-height variables.$transition-animation
+    -o-transition: top variables.$transition-animation, font-size variables.$transition-animation, line-height variables.$transition-animation
+    transition: top variables.$transition-animation, font-size variables.$transition-animation, line-height variables.$transition-animation
+
+  &__field
+    $border-bottom: 1px solid variables.$accent-color
+    @mixin border
+      border-style: none
+      border-bottom: $border-bottom
+
+    @include border
+    @include mixins.text-field
+    outline: none
+    padding: 8px 0 6px
+    margin: 0
+
+    &:placeholder-shown
+      & + span
+        top: 50%
+        @include mixins.text-shared(13px, 13px, variables.$text-light-color)
+
+    &:focus
+      @include border
+
+      & + span
+        top: 0
+        @include mixins.text-shared(9px, 9px, variables.$text-light-color)
+
+  &__error-text
+    @include mixins.text-shared(8px, 8px, variables.$error-color)
+    position: absolute
+    bottom: -15px
+    left: 0
+

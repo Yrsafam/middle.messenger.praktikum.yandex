@@ -1,0 +1,22 @@
+<div class="chat-messages">
+    <div class="chat-messages__head">
+        <div class="chat-messages__head-left">
+            <div class="chat-messages__avatar"></div>
+            <p class="chat-messages__name">Вадим</p>
+        </div>
+        {{> "main/context-menu"}}
+    </div>
+    <div class="chat-messages__body">
+        <p class="chat-messages__date-separator">19 июня</p>
+        <ul class="chat-messages__list">
+            {{#each messages}}
+                <li>
+                    {{> "main/message" this }}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="chat-messages__footer">
+        {{> "main/handle-chat"}}
+    </div>
+</div>
