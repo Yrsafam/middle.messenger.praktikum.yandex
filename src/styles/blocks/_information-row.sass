@@ -1,5 +1,5 @@
-@use "src/styles/mixins"
-@use "src/styles/variables"
+@import "src/styles/mixins"
+@import "src/styles/variables"
 
 .information-row
 
@@ -10,14 +10,14 @@
   padding: 10px 0
 
   &:after
-    @include mixins.border-row-absolute
+    @include border-row-absolute
 
   &:last-child
     &:after
       display: none
 
   &__name, &__value
-    @include mixins.text-field()
+    @include text-field()
 
   &__value
-    color: variables.$text-light-color
+    color: $text-light-color

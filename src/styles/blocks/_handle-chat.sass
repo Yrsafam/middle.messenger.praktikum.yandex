@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .handle-chat
   display: flex
@@ -23,7 +23,7 @@
   &__field
     width: 100%
     padding: 10px 20px
-    background-color: variables.$background-light-color
+    background-color: $background-light-color
     outline: none
     border: none
     -webkit-border-radius: 30px
@@ -31,4 +31,4 @@
     border-radius: 30px
 
     &::placeholder
-      @include mixins.text-shared(12px, 12px, variables.$text-light-color)
+      @include text-shared(12px, 12px, $text-light-color)

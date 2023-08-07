@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .authorization
   $border-radius: 12px
@@ -10,16 +10,16 @@
   height: 100vh
 
   &__title
-    @include mixins.text-shared(20px, 20px)
+    @include text-shared(20px, 20px)
     text-align: center
     margin: 0 0 40px
 
   &__form
     width: 340px
     padding: 50px 30px 30px
-    -webkit-box-shadow: variables.$shadow-main
-    -moz-box-shadow: variables.$shadow-main
-    box-shadow: variables.$shadow-main
+    -webkit-box-shadow: $shadow-main
+    -moz-box-shadow: $shadow-main
+    box-shadow: $shadow-main
     -webkit-border-radius: $border-radius
     -moz-border-radius: $border-radius
     border-radius: $border-radius

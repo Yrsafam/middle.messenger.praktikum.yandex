@@ -1,14 +1,14 @@
-@use 'variables'
+@import 'variables'
 
-@mixin text-shared($size, $height, $color: variables.$text-color)
-  font-family: variables.$font-family
+@mixin text-shared($size, $height, $color: $text-color)
+  font-family: $font-family
   font-size: $size
   font-style: normal
   font-weight: 500
   line-height: $height
   color: $color
 
-@mixin text-field($color: variables.$text-color)
+@mixin text-field($color: $text-color)
   @include text-shared(13px, 13px)
 
 @mixin title-big()

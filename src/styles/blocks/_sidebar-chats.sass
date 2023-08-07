@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .sidebar-chats
   $width: 310px
@@ -10,7 +10,7 @@
   max-height: $max-height
   overflow-y: auto
   padding: 0 0 21px
-  border-right: 1px variables.$border-light-color solid
+  border-right: 1px $border-light-color solid
 
   &__head
     display: flex
@@ -23,16 +23,16 @@
     padding: 21px 10px 0
 
   &__link-profile
-    @include mixins.text-shared(12px, 12px, variables.$text-light-color)
+    @include text-shared(12px, 12px, $text-light-color)
     text-decoration: none
-    -webkit-transition: opacity variables.$transition-animation
-    -moz-transition: opacity variables.$transition-animation
-    -ms-transition: opacity variables.$transition-animation
-    -o-transition: opacity variables.$transition-animation
-    transition: opacity variables.$transition-animation
+    -webkit-transition: opacity $transition-animation
+    -moz-transition: opacity $transition-animation
+    -ms-transition: opacity $transition-animation
+    -o-transition: opacity $transition-animation
+    transition: opacity $transition-animation
 
     &:hover
-      opacity: variables.$hover-opacity
+      opacity: $hover-opacity
 
   &__input
     position: relative
@@ -49,7 +49,7 @@
     width: 100%
     border: none
     outline: none
-    background-color: variables.$background-light-color
+    background-color: $background-light-color
     border-radius: 5px
     height: 32px
     padding-left: 34px
@@ -85,19 +85,19 @@
     align-items: center
     gap: 0 4px
     will-change: auto
-    -webkit-transition: transform variables.$transition-animation
-    -moz-transition: transform variables.$transition-animation
-    -ms-transition: transform variables.$transition-animation
-    -o-transition: transform variables.$transition-animation
-    transition: transform variables.$transition-animation
+    -webkit-transition: transform $transition-animation
+    -moz-transition: transform $transition-animation
+    -ms-transition: transform $transition-animation
+    -o-transition: transform $transition-animation
+    transition: transform $transition-animation
 
   &__input-placeholder-text
-    @include mixins.text-shared(12px, 12px, variables.$text-light-color)
-    -webkit-transition: opacity variables.$transition-animation
-    -moz-transition: opacity variables.$transition-animation
-    -ms-transition: opacity variables.$transition-animation
-    -o-transition: opacity variables.$transition-animation
-    transition: opacity variables.$transition-animation
+    @include text-shared(12px, 12px, $text-light-color)
+    -webkit-transition: opacity $transition-animation
+    -moz-transition: opacity $transition-animation
+    -ms-transition: opacity $transition-animation
+    -o-transition: opacity $transition-animation
+    transition: opacity $transition-animation
 
   &__list
     margin: 0

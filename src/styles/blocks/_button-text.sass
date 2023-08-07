@@ -1,6 +1,6 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .button-text
-  @include mixins.text-shared(11px, 11px, variables.$accent-color)
+  @include text-shared(11px, 11px, $accent-color)
   text-decoration: none

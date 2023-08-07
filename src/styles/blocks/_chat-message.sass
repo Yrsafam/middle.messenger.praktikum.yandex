@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .chat-message
   $border-radius: 12px
@@ -10,7 +10,7 @@
     $max-width: 402px
     $border-radius: 12px 12px 0 12px
 
-    @include mixins.text-shared(12px, 15px)
+    @include text-shared(12px, 15px)
     -webkit-border-radius: $border-radius
     -moz-border-radius: $border-radius
     border-radius: $border-radius
@@ -37,7 +37,7 @@
       background-color: transparent
 
   &__time
-    @include mixins.text-shared(9px, 9px, variables.$accent-color)
+    @include text-shared(9px, 9px, $accent-color)
     -webkit-border-radius: 30px
     -moz-border-radius: 30px
     border-radius: 30px
@@ -48,7 +48,7 @@
     background-color: transparent
 
     &_not-me
-      color: variables.$text-color
+      color: $text-color
 
     &_view-image
       background-color: #52525280

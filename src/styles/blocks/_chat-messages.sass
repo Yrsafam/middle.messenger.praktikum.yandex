@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .chat-messages
   padding: 0 20px
@@ -13,7 +13,7 @@
     justify-content: space-between
     align-items: center
     width: 100%
-    border-bottom: 1px variables.$border-light-color solid
+    border-bottom: 1px $border-light-color solid
 
   &__head-left
     display: flex
@@ -28,16 +28,16 @@
     -webkit-border-radius: 50%
     -moz-border-radius: 50%
     border-radius: 50%
-    background-color: variables.$background-light-color
+    background-color: $background-light-color
 
   &__name
-    @include mixins.text-field()
+    @include text-field()
 
   &__body
     padding: 48px 0 30px
 
   &__date-separator
-    @include mixins.text-shared(12px, 12px, variables.$text-light-color)
+    @include text-shared(12px, 12px, $text-light-color)
     text-align: center
     margin: 0 30px
 
@@ -55,6 +55,6 @@
     position: absolute
     bottom: 0
     left: $left
-    border-top: 1px solid variables.$border-light-color
+    border-top: 1px solid $border-light-color
     padding: 10px 0
     width: calc(100% - #{$left * 2})

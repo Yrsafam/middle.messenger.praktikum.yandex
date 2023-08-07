@@ -1,4 +1,4 @@
-@use "src/styles/mixins"
+@import "src/styles/mixins"
 
 .error-block
   display: flex
@@ -6,11 +6,11 @@
   align-items: center
 
   &__title
-    @include mixins.text-shared(40px, 40px)
+    @include text-shared(40px, 40px)
     margin: 0
     text-align: center
   &__description
-    @include mixins.title-big
+    @include title-big
     margin: 20px 0 59px
   &__link
     text-align: center

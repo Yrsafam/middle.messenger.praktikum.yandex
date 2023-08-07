@@ -1,9 +1,9 @@
 @use "sass:math"
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .card-chat
-  $border: 1px solid variables.$border-light-color
+  $border: 1px solid $border-light-color
 
   list-style-type: none
   display: flex
@@ -26,11 +26,11 @@
     left: math.div(-$padding-outer, 2)
     top: math.div($padding-inner, 2)
     z-index: -1
-    -webkit-transition: background-color variables.$transition-animation
-    -moz-transition: background-color variables.$transition-animation
-    -ms-transition: background-color variables.$transition-animation
-    -o-transition: background-color variables.$transition-animation
-    transition: background-color variables.$transition-animation
+    -webkit-transition: background-color $transition-animation
+    -moz-transition: background-color $transition-animation
+    -ms-transition: background-color $transition-animation
+    -o-transition: background-color $transition-animation
+    transition: background-color $transition-animation
 
   &:hover
     &:before
@@ -46,7 +46,7 @@
     min-width: $size
     height: $size
     border-radius: 50%
-    background-color: variables.$background-light-color
+    background-color: $background-light-color
 
   &__content
     display: flex
@@ -59,7 +59,7 @@
     margin: 0 0 4px
 
   &__name
-    @include mixins.text-shared(13px, 13px)
+    @include text-shared(13px, 13px)
     margin: 0
     max-width: 173px
     overflow: hidden
@@ -73,10 +73,10 @@
     line-clamp: 2
     overflow: hidden
     max-width: 193px
-    @include mixins.text-shared(12px, 15px, variables.$text-light-color)
+    @include text-shared(12px, 15px, $text-light-color)
 
     &_accent
-      color: variables.$text-color
+      color: $text-color
 
   &__second-information
     display: flex
@@ -84,16 +84,16 @@
     align-items: flex-end
 
   &__last-time
-    @include mixins.text-shared(9px, 13px, variables.$text-light-color)
+    @include text-shared(9px, 13px, $text-light-color)
 
   &__count-message
     $size: 20px
 
-    @include mixins.text-shared(11px, 12px, white)
+    @include text-shared(11px, 12px, white)
     width: $size
     height: $size
     border-radius: 50%
-    background-color: variables.$accent-color
+    background-color: $accent-color
     display: flex
     align-items: center
     justify-content: center

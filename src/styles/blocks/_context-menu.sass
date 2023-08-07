@@ -1,5 +1,5 @@
-@use "src/styles/variables"
-@use "src/styles/mixins"
+@import "src/styles/variables"
+@import "src/styles/mixins"
 
 .context-menu
   $size: 25px
@@ -24,13 +24,13 @@
   cursor: pointer
 
   &:focus
-    background-color: variables.$background-light-color
+    background-color: $background-light-color
 
     .context-menu__dots
-      background-color: variables.$accent-color
+      background-color: $accent-color
 
       &:before, &:after
-        background-color: variables.$accent-color
+        background-color: $accent-color
     .context-menu__droplist
       opacity: 1
       visibility: visible
@@ -44,7 +44,7 @@
       display: block
       width: $size-dot
       height: $size-dot
-      background-color: variables.$background-dark-color
+      background-color: $background-dark-color
       -webkit-border-radius: 50%
       -moz-border-radius: 50%
       border-radius: 50%
@@ -73,19 +73,19 @@
     position: absolute
     right: 0
     top: $size * 2
-    -webkit-box-shadow: inset variables.$shadow-main
-    -moz-box-shadow: inset variables.$shadow-main
-    box-shadow: inset variables.$shadow-main
+    -webkit-box-shadow: inset $shadow-main
+    -moz-box-shadow: inset $shadow-main
+    box-shadow: inset $shadow-main
     border-radius: $border-radius
     width: $width
     display: flex
     flex-direction: column
     gap: 16px 0
     padding: 15px
-    z-index: variables.$zIndexDroplist
+    z-index: $zIndexDroplist
 
   &__droplist-item
-    @include mixins.text-shared(12px, 14px)
+    @include text-shared(12px, 14px)
     display: flex
     align-items: center
     gap: 0 15px
