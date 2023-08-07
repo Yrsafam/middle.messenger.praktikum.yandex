@@ -1,0 +1,109 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+.sidebar-chats {
+  $width: 310px;
+  $max-height: 100vh;
+
+  width: $width;
+  min-width: $width;
+  max-height: $max-height;
+  overflow-y: auto;
+  padding: 0 0 21px;
+  border-right: 1px $border-light-color solid;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    padding: 21px 10px 0;
+}
+  &__link-profile {
+    @include text-shared(12px, 12px, $text-light-color);
+    text-decoration: none;
+    -webkit-transition: opacity $transition-animation;
+    -moz-transition: opacity $transition-animation;
+    -ms-transition: opacity $transition-animation;
+    -o-transition: opacity $transition-animation;
+    transition: opacity $transition-animation;
+
+    &:hover {
+      opacity: $hover-opacity;
+  }
+}
+  &__input {
+    position: relative;
+    margin: 23px 0 14px;
+    width: 100%;
+
+    &:focus {
+      .sidebar-chats__input-field {
+        background-color: red;
+    }
+  }
+}
+  &__input-field {
+    $padding-left: 34px;
+
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: $background-light-color;
+    border-radius: 5px;
+    height: 32px;
+    padding-left: 34px;
+
+    &:focus {
+      & + span {
+        $translate: translate(calc(-200% - 14px), -50%);
+
+        -webkit-transform: $translate;
+        -moz-transform: $translate;
+        -ms-transform: $translate;
+        -o-transform: $translate;
+        transform: $translate;
+    }
+      & + span > span {
+        opacity: 0;
+    }
+  }
+}
+  &__input-placeholder {
+    $translate: translate(-50% , -50%);
+
+    cursor: text;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: $translate;
+    -moz-transform: $translate;
+    -ms-transform: $translate;
+    -o-transform: $translate;
+    transform: $translate;
+    display: flex;
+    align-items: center;
+    gap: 0 4px;
+    will-change: auto;
+    -webkit-transition: transform $transition-animation;
+    -moz-transition: transform $transition-animation;
+    -ms-transition: transform $transition-animation;
+    -o-transition: transform $transition-animation;
+    transition: transform $transition-animation;
+}
+  &__input-placeholder-text {
+    @include text-shared(12px, 12px, $text-light-color);
+    -webkit-transition: opacity $transition-animation;
+    -moz-transition: opacity $transition-animation;
+    -ms-transition: opacity $transition-animation;
+    -o-transition: opacity $transition-animation;
+    transition: opacity $transition-animation;
+}
+  &__list {
+    margin: 0;
+    padding: 0 10px 0;
+}
+}

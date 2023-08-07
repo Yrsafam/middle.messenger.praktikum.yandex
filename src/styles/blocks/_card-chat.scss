@@ -1,0 +1,102 @@
+@use "sass:math";
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+.card-chat {
+  $border: 1px solid $border-light-color;
+
+  list-style-type: none;
+  display: flex;
+  gap: 0 10px;
+  border-top: $border;
+  border-bottom: $border;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+
+  &:before {
+    $padding-outer: 20px;
+    $padding-inner: 4px;
+
+    content: '';
+    position: absolute;
+    width: calc(100% + #{$padding-outer});
+    height: calc(100% - #{$padding-inner});
+    background-color: white;
+    left: math.div(-$padding-outer, 2);
+    top: math.div($padding-inner, 2);
+    z-index: -1;
+    -webkit-transition: background-color $transition-animation;
+    -moz-transition: background-color $transition-animation;
+    -ms-transition: background-color $transition-animation;
+    -o-transition: background-color $transition-animation;
+    transition: background-color $transition-animation;
+  }
+  &:hover {
+    &:before {
+      $background-color: #E4EDFD;
+
+      background-color: $background-color;
+    }
+  }
+  &__avatar-circle {
+    $size: 47px;
+
+    width: $size;
+    min-width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: $background-light-color;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  &__main-information {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 4px;
+  }
+  &__name {
+    @include text-shared(13px, 13px);
+    margin: 0;
+    max-width: 173px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__message {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    max-width: 193px;
+    @include text-shared(12px, 15px, $text-light-color);
+
+    &_accent {
+      color: $text-color;
+    }
+  }
+  &__second-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__last-time {
+    @include text-shared(9px, 13px, $text-light-color);
+  }
+  &__count-message {
+    $size: 20px;
+
+    @include text-shared(11px, 12px, white);
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: $accent-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,19 @@
+@import "src/styles/variables";
+
+.sidebar {
+  $background-color: #FBFBFB;
+  $border-color: #EAEAEA;
+
+  display: flex;
+
+  &__button {
+    width: 64px;
+    height: 100vh;
+    background-color: $background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-right: 1px solid $border-color;
+}
+}

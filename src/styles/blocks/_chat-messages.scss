@@ -1,0 +1,62 @@
+@import "src/styles/variables";
+@import "src/styles/mixins";
+
+.chat-messages {
+  padding: 0 20px;
+  background-color: white;
+  width: 100%;
+  position: relative;
+
+  &__head {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px $border-light-color solid;
+  }
+  &__head-left {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+  }
+  &__avatar {
+    $size: 34px;
+
+    width: $size;
+    height: $size;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: $background-light-color;
+  }
+  &__name {
+    @include text-field();
+  }
+  &__body {
+    padding: 48px 0 30px;
+  }
+  &__date-separator {
+    @include text-shared(12px, 12px, $text-light-color);
+    text-align: center;
+    margin: 0 30px;
+  }
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+  &__footer {
+    $left: 20px;
+
+    position: absolute;
+    bottom: 0;
+    left: $left;
+    border-top: 1px solid $border-light-color;
+    padding: 10px 0;
+    width: calc(100% - #{$left * 2});
+  }
+}
