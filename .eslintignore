@@ -1,6 +1,5 @@
 /build
 /dist
-**/*.min.js
 /node_modules
 
 .idea
