@@ -25,10 +25,6 @@
   &__link-profile {
     @include text-shared(12px, 12px, $text-light-color);
     text-decoration: none;
-    -webkit-transition: opacity $transition-animation;
-    -moz-transition: opacity $transition-animation;
-    -ms-transition: opacity $transition-animation;
-    -o-transition: opacity $transition-animation;
     transition: opacity $transition-animation;
 
     &:hover {
@@ -61,10 +57,6 @@
       & + span {
         $translate: translate(calc(-200% - 14px), -50%);
 
-        -webkit-transform: $translate;
-        -moz-transform: $translate;
-        -ms-transform: $translate;
-        -o-transform: $translate;
         transform: $translate;
     }
       & + span > span {
@@ -79,27 +71,15 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: $translate;
-    -moz-transform: $translate;
-    -ms-transform: $translate;
-    -o-transform: $translate;
     transform: $translate;
     display: flex;
     align-items: center;
     gap: 0 4px;
     will-change: auto;
-    -webkit-transition: transform $transition-animation;
-    -moz-transition: transform $transition-animation;
-    -ms-transition: transform $transition-animation;
-    -o-transition: transform $transition-animation;
     transition: transform $transition-animation;
 }
   &__input-placeholder-text {
     @include text-shared(12px, 12px, $text-light-color);
-    -webkit-transition: opacity $transition-animation;
-    -moz-transition: opacity $transition-animation;
-    -ms-transition: opacity $transition-animation;
-    -o-transition: opacity $transition-animation;
     transition: opacity $transition-animation;
 }
   &__list {

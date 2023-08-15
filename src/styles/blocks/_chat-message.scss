@@ -11,8 +11,6 @@
     $border-radius: 12px 12px 0 12px;
 
     @include text-shared(12px, 15px);
-    -webkit-border-radius: $border-radius;
-    -moz-border-radius: $border-radius;
     border-radius: $border-radius;
     background-color: $background-color-default;
     padding: 11px 50px 11px 11px;
@@ -29,8 +27,6 @@
       margin-right: auto;
       margin-left: initial;
       padding: 11px;
-      -webkit-border-radius: $border-radius;
-      -moz-border-radius: $border-radius;
       border-radius: $border-radius;
     }
     &_view-image {
@@ -39,8 +35,6 @@
   }
   &__time {
     @include text-shared(9px, 9px, $accent-color);
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
     border-radius: 30px;
     position: absolute;
     right: 11px;

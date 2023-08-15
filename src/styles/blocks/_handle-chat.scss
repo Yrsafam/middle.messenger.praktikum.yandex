@@ -12,8 +12,6 @@
     padding: 0;
     margin: 0;
     border: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
     outline: none;
     cursor: pointer;
@@ -27,8 +25,6 @@
     background-color: $background-light-color;
     outline: none;
     border: none;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
     border-radius: 30px;
 
     &::placeholder {

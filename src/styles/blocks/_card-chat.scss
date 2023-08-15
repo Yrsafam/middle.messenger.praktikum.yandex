@@ -26,10 +26,6 @@
     left: math.div(-$padding-outer, 2);
     top: math.div($padding-inner, 2);
     z-index: -1;
-    -webkit-transition: background-color $transition-animation;
-    -moz-transition: background-color $transition-animation;
-    -ms-transition: background-color $transition-animation;
-    -o-transition: background-color $transition-animation;
     transition: background-color $transition-animation;
   }
   &:hover {
