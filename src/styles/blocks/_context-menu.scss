@@ -87,7 +87,7 @@
     flex-direction: column;
     gap: 16px 0;
     padding: 15px;
-    z-index: $zIndexDroplist;
+    z-index: $z-index-droplist;
   }
 
   &__droplist-item {
