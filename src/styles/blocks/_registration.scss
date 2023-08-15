@@ -11,15 +11,18 @@
 
   &__title {
     @include title-big;
+
     text-align: center;
     margin: 0 0 40px;
   }
+
   &__form {
     width: 340px;
     padding: 50px 30px 30px;
     border-radius: 12px;
     box-shadow: $shadow-main;
   }
+
   &__form-group {
     padding: 0;
     margin: 0;
@@ -28,9 +31,11 @@
     flex-direction: column;
     gap: 22px 0;
   }
+
   &__buttons {
     margin-top: 62px;
   }
+
   &__authorization-button {
     margin-top: 14px;
     display: block;

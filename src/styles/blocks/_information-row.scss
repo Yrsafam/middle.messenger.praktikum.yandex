@@ -8,18 +8,21 @@
   position: relative;
   padding: 10px 0;
 
-  &:after {
+  &::after {
     @include border-row-absolute;
   }
+
   &:last-child {
-    &:after {
+    &::after {
       display: none;
     }
   }
+
   &__name,
   &__value {
-    @include text-field();
+    @include text-field;
   }
+
   &__value {
     color: $text-light-color;
   }

@@ -22,8 +22,10 @@
     background-color: white;
     padding: 21px 10px 0;
 }
+
   &__link-profile {
     @include text-shared(12px, 12px, $text-light-color);
+
     text-decoration: none;
     transition: opacity $transition-animation;
 
@@ -31,6 +33,7 @@
       opacity: $hover-opacity;
   }
 }
+
   &__input {
     position: relative;
     margin: 23px 0 14px;
@@ -42,6 +45,7 @@
     }
   }
 }
+
   &__input-field {
     $padding-left: 34px;
 
@@ -59,11 +63,13 @@
 
         transform: $translate;
     }
+
       & + span > span {
         opacity: 0;
     }
   }
 }
+
   &__input-placeholder {
     $translate: translate(-50% , -50%);
 
@@ -78,12 +84,15 @@
     will-change: auto;
     transition: transform $transition-animation;
 }
+
   &__input-placeholder-text {
     @include text-shared(12px, 12px, $text-light-color);
+
     transition: opacity $transition-animation;
 }
+
   &__list {
     margin: 0;
-    padding: 0 10px 0;
+    padding: 0 10px;
 }
 }

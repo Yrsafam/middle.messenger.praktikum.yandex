@@ -11,6 +11,7 @@
     $border-radius: 12px 12px 0 12px;
 
     @include text-shared(12px, 15px);
+
     border-radius: $border-radius;
     background-color: $background-color-default;
     padding: 11px 50px 11px 11px;
@@ -29,12 +30,15 @@
       padding: 11px;
       border-radius: $border-radius;
     }
+
     &_view-image {
       background-color: transparent;
     }
   }
+
   &__time {
     @include text-shared(9px, 9px, $accent-color);
+
     border-radius: 30px;
     position: absolute;
     right: 11px;
@@ -45,11 +49,13 @@
     &_not-me {
       color: $text-color;
     }
+
     &_view-image {
       background-color: #52525280;
       color: white;
     }
   }
+
   &__view-image {
     margin: -11px;
     object-fit: cover;

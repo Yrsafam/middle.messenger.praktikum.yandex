@@ -15,11 +15,13 @@
     width: 100%;
     border-bottom: 1px $border-light-color solid;
   }
+
   &__head-left {
     display: flex;
     align-items: center;
     gap: 0 10px;
   }
+
   &__avatar {
     $size: 34px;
 
@@ -28,17 +30,22 @@
     border-radius: 50%;
     background-color: $background-light-color;
   }
+
   &__name {
-    @include text-field();
+    @include text-field;
   }
+
   &__body {
     padding: 48px 0 30px;
   }
+
   &__date-separator {
     @include text-shared(12px, 12px, $text-light-color);
+
     text-align: center;
     margin: 0 30px;
   }
+
   &__list {
     list-style-type: none;
     margin: 0;
@@ -47,6 +54,7 @@
     flex-direction: column;
     gap: 10px 0;
   }
+
   &__footer {
     $left: 20px;
 

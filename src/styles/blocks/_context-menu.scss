@@ -25,16 +25,18 @@
     .context-menu__dots {
       background-color: $accent-color;
 
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         background-color: $accent-color;
       }
     }
+
     .context-menu__droplist {
       opacity: 1;
       visibility: visible;
     }
   }
+
   &__dots {
     $size-dot: 3px;
 
@@ -47,22 +49,27 @@
     }
 
     @include dot;
+
     position: relative;
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       content: '';
       position: absolute;
       left: 0;
+
       @include dot;
     }
-    &:before {
+
+    &::before {
       top: $size-dot * 2;
     }
-    &:after {
+
+    &::after {
       bottom: $size-dot * 2;
     }
   }
+
   &__droplist {
     $border-radius: 12px;
     $width: 210px;
@@ -82,12 +89,15 @@
     padding: 15px;
     z-index: $zIndexDroplist;
   }
+
   &__droplist-item {
     @include text-shared(12px, 14px);
+
     display: flex;
     align-items: center;
     gap: 0 15px;
   }
+
   &__icon_rotate {
     transform: rotateZ(45deg);
   }

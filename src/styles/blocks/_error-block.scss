@@ -7,13 +7,17 @@
 
   &__title {
     @include text-shared(40px, 40px);
+
     margin: 0;
     text-align: center;
   }
+
   &__description {
     @include title-big;
+
     margin: 20px 0 59px;
   }
+
   &__link {
     text-align: center;
   }

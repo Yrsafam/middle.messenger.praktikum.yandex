@@ -8,9 +8,11 @@
   line-height: $height;
   color: $color;
 }
+
 @mixin text-field($color: $text-color) {
   @include text-shared(13px, 13px);
 }
+
 @mixin title-big() {
   @include text-shared(20px, 20px);
 }
