@@ -88,10 +88,7 @@ export class HTTPTransport {
     },
     timeout = TIMEOUT,
   ) {
-    // Не понимаю почему eslint не видит xhr объект
-    // eslint-disable-next-line no-undef
     return new Promise<XMLHttpRequest>((resolve, reject) => {
-      // eslint-disable-next-line no-undef
       const xhr = new XMLHttpRequest();
       const { method = HTTPTransportMethods.Get, data, headers } = options;
 
