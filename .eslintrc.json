@@ -5,7 +5,7 @@
   "rules": {
     "max-len": [2, 100],
     "max-params": [2, 3],
-    "class-methods-use-this": "warn",
+    "class-methods-use-this": "off",
     "import/prefer-default-export": 0,
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
