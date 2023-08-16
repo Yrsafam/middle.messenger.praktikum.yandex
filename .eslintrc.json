@@ -4,7 +4,13 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "max-len": [2, 100],
-    "max-params": [2, 3]
+    "max-params": [2, 3],
+    "class-methods-use-this": "warn",
+    "import/prefer-default-export": 0,
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "parserOptions": {
     "ecmaVersion": 2020
