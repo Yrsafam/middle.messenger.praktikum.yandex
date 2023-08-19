@@ -1,4 +1,7 @@
-type EventBusCallback = (...args: Partial<Array<unknown>>) => void;
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
+type EventBusCallback<A extends unknown = any> = (
+  ...args: Partial<Array<A>>
+) => void;
 type EventBusListeners = Record<string, Array<EventBusCallback>>;
 type EventBusEvent = string;
 
