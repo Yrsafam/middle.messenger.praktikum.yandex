@@ -1,5 +1,4 @@
 import Handlebars, { HelperOptions } from "handlebars";
-import { v4 as makev4uuid } from "uuid";
 
 import { Block, BlockProps } from "./Block.ts";
 
@@ -14,7 +13,7 @@ export function registerComponent(Component: ConstructableComponent) {
     // eslint-disable-next-line prefer-arrow-callback
     function fnDelegate(this: unknown, { hash, data, fn }: HelperOptions) {
       const component = new Component(hash);
-      const dataAttribute = `data-component-hbs-id-${makev4uuid()}`;
+      const dataAttribute = `data-component-hbs-id="${component.id}"`;
 
       (data.root__children || data.root.__children || []).push({
         component,
