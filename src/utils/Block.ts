@@ -23,14 +23,22 @@ export abstract class Block<Props extends BlockProps> {
   protected props: Props;
 
   // eslint-disable-next-line no-use-before-define
-  private children: Block<BlockProps>[] = [];
+  private children: Block<BlockProps>;
 
   protected id = uuidv4();
 
   private eventBus: () => IEventBus;
 
-  constructor(props: Props, tagName = "div") {
+  protected constructor(propsAndChildren: Props, tagName = "div") {
     const eventBus = new EventBus();
+    const { children, props } = this._getChildren(
+      propsAndChildren,
+    ) as unknown as {
+      children: Block<BlockProps>;
+      props: Props;
+    };
+
+    this.children = children;
     this.meta = {
       tagName,
       props,
