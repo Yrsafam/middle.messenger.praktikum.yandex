@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Handlebars from "handlebars";
 import { EventBus, IEventBus } from "./EventBus.ts";
 
-type BlockProps = Record<string, unknown>;
+export type BlockProps = Record<string, unknown>;
 
 export abstract class Block<Props extends BlockProps> {
   static EVENTS = {
