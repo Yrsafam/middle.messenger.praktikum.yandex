@@ -139,10 +139,15 @@ export abstract class Block<Props extends BlockProps = any> {
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     const block = this.render();
+    const blockFirstElementChild = block?.firstElementChild;
 
-    if (block && this._element) {
-      this._element.innerHTML = "";
-      this._element.append(block);
+    if (blockFirstElementChild && this._element) {
+      this._removeEvents();
+
+      this._element.replaceWith(blockFirstElementChild);
+      this._element = blockFirstElementChild as HTMLElement;
+
+      this._addEvents();
     }
   }
 
