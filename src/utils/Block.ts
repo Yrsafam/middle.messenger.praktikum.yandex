@@ -25,7 +25,7 @@ export abstract class Block<Props extends BlockProps> {
   // eslint-disable-next-line no-use-before-define
   private children: Block<BlockProps>;
 
-  protected id = uuidv4();
+  public id = uuidv4();
 
   private eventBus: () => IEventBus;
 
