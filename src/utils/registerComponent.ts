@@ -14,8 +14,10 @@ export function registerComponent(Component: ConstructableComponent) {
     function fnDelegate(this: unknown, { hash, data, fn }: HelperOptions) {
       const component = new Component(hash);
       const dataAttribute = `data-component-hbs-id="${component.id}"`;
+      const children =
+        data.root__children || data.root.__children || data.root.children || [];
 
-      (data.root__children || data.root.__children || []).push({
+      children.push({
         component,
         embed(node: DocumentFragment) {
           const placeholder = node.querySelector(`[${dataAttribute}]`);
