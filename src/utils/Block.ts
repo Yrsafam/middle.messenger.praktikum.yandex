@@ -206,6 +206,36 @@ export abstract class Block<Props extends BlockProps> {
     return document.createElement(tagName);
   }
 
+  _addEvents() {
+    const { events = {} }: { events: Record<string, () => void> | undefined } =
+      this.props as any;
+
+    if (!events) {
+      return;
+    }
+
+    Object.keys(events).forEach((eventName) => {
+      if (this._element) {
+        this._element.addEventListener(eventName, events[eventName]);
+      }
+    });
+  }
+
+  _removeEvents() {
+    const { events = {} }: { events: Record<string, () => void> | undefined } =
+      this.props as any;
+
+    if (!events) {
+      return;
+    }
+
+    Object.keys(events).forEach((eventName) => {
+      if (this._element) {
+        this._element.addEventListener(eventName, events[eventName]);
+      }
+    });
+  }
+
   show() {
     const content = this.getContent();
 
