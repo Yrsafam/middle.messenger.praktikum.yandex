@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import Handlebars from "handlebars";
 import { EventBus, IEventBus } from "./EventBus.ts";
 
-export type BlockProps = Record<string, unknown>;
+export type BlockProps = object;
 
-export abstract class Block<Props extends BlockProps> {
+export abstract class Block<Props extends BlockProps = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
