@@ -29,7 +29,7 @@ export abstract class Block<Props extends BlockProps> {
 
   private eventBus: () => IEventBus;
 
-  protected constructor(propsAndChildren: Props, tagName = "div") {
+  constructor(propsAndChildren: Props, tagName = "div") {
     const eventBus = new EventBus();
     const { children, props } = this._getChildren(
       propsAndChildren,
