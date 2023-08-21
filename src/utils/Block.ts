@@ -126,6 +126,10 @@ export abstract class Block<Props extends BlockProps> {
   };
 
   get element() {
+    if (!this._element) {
+      return this.render();
+    }
+
     return this._element;
   }
 
