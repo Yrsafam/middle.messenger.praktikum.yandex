@@ -84,13 +84,15 @@ export abstract class Block<Props extends BlockProps> {
     const children: Record<string, unknown> = {};
     const props: Record<string, unknown> = {};
 
-    Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (value instanceof Block) {
-        children[key] = value;
-      } else {
-        props[key] = value;
-      }
-    });
+    if (propsAndChildren !== undefined) {
+      Object.entries(propsAndChildren).forEach(([key, value]) => {
+        if (value instanceof Block) {
+          children[key] = value;
+        } else {
+          props[key] = value;
+        }
+      });
+    }
 
     return { children, props };
   }
