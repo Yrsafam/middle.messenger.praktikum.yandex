@@ -1,5 +1,5 @@
 import { Block } from "../../../utils/Block.ts";
-import template from "./template.ts";
+import template from "./template.hbs";
 
 interface Props {}
 
