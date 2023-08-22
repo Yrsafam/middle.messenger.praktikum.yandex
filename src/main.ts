@@ -6,14 +6,16 @@ import { Sidebar } from "./pages/main/Sidebar";
 import { CardChat } from "./pages/main/CardChat";
 import { ContextMenu } from "./pages/main/ContextMenu";
 import { HandleChat } from "./pages/main/HandleChat";
+import { Message } from "./pages/main/Message";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
 registerComponent(HandleChat);
+registerComponent(Message);
 registerComponent(CardChat);
 registerComponent(Sidebar);
 registerComponent(Main);
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderDom(new Main({ someProp: "test" }));
+  renderDom(new Main());
 });
