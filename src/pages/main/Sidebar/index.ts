@@ -1,6 +1,6 @@
 import { Block } from "../../../utils/Block.ts";
 import { chats } from "../../../utils/mocks.ts";
-import template from "./template.ts";
+import template from "./template.hbs";
 
 interface Props {}
 
