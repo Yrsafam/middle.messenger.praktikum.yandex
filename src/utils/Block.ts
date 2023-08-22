@@ -1,9 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { v4 as uuidv4 } from "uuid";
-import Handlebars from "handlebars";
 import { EventBus, IEventBus } from "./EventBus.ts";
+import { ComponentChildren } from "./registerComponent.ts";
 
 export type BlockProps = object;
+// eslint-disable-next-line no-use-before-define
+export type BlockRefs = Record<string, Block>;
 
 export abstract class Block<Props extends BlockProps = any> {
   static EVENTS = {
@@ -15,36 +16,22 @@ export abstract class Block<Props extends BlockProps = any> {
 
   private _element: HTMLElement | null = null;
 
-  private readonly meta: {
-    tagName: string;
-    props: Props;
-  };
-
   protected props: Props;
 
   // eslint-disable-next-line no-use-before-define
-  private children: Block<BlockProps>;
+  private children: Record<string, Block> = {};
+
+  // eslint-disable-next-line no-use-before-define
+  protected refs: BlockRefs = {};
 
   public id = uuidv4();
 
   private eventBus: () => IEventBus;
 
-  constructor(propsAndChildren: Props, tagName = "div") {
+  constructor(props: Props) {
     const eventBus = new EventBus();
-    const { children, props } = this._getChildren(
-      propsAndChildren,
-    ) as unknown as {
-      children: Block<BlockProps>;
-      props: Props;
-    };
 
-    this.children = children;
-    this.meta = {
-      tagName,
-      props,
-    };
-
-    this.props = this.makePropsProxy(props);
+    this.props = this.makePropsProxy(props as Record<string, unknown>);
 
     this.eventBus = () => eventBus;
 
@@ -53,51 +40,35 @@ export abstract class Block<Props extends BlockProps = any> {
   }
 
   private registerEvents(eventBus: IEventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private createResources() {
-    const { tagName } = this.meta;
-    this._element = this._createDocumentElement(tagName);
-  }
-
-  init() {
-    this.createResources();
+  private _init() {
+    this.init();
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  protected init() {}
+
   private _componentDidMount() {
     this.componentDidMount();
+
+    Object.values(this.children).forEach((child) => {
+      child.dispatchComponentDidMount();
+    });
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _getChildren(propsAndChildren: Props) {
-    const children: Record<string, unknown> = {};
-    const props: Record<string, unknown> = {};
-
-    if (propsAndChildren !== undefined) {
-      Object.entries(propsAndChildren).forEach(([key, value]) => {
-        if (value instanceof Block) {
-          children[key] = value;
-        } else {
-          props[key] = value;
-        }
-      });
-    }
-
-    return { children, props };
-  }
-
-  _componentDidUpdate(oldProps: Props, newProps: Props) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -105,7 +76,7 @@ export abstract class Block<Props extends BlockProps = any> {
     this._render();
   }
 
-  componentDidUpdate(oldProps: Props, newProps: Props) {
+  protected componentDidUpdate(oldProps: Props, newProps: Props) {
     if (oldProps !== undefined && newProps !== undefined) {
       const newValues = Object.values(newProps);
       return Array.prototype.some.call(
@@ -117,7 +88,7 @@ export abstract class Block<Props extends BlockProps = any> {
     return false;
   }
 
-  setProps = (nextProps?: Props) => {
+  public setProps = (nextProps?: Props) => {
     if (!nextProps) {
       return;
     }
@@ -125,62 +96,61 @@ export abstract class Block<Props extends BlockProps = any> {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  public get element() {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     // Этот небезопасный метод для упрощения логики
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     const block = this.render();
     const blockFirstElementChild = block?.firstElementChild;
+    this._removeEvents();
 
-    if (blockFirstElementChild && this._element) {
-      this._removeEvents();
-
-      this._element.replaceWith(blockFirstElementChild);
-      this._element = blockFirstElementChild as HTMLElement;
-
-      this._addEvents();
+    if (this._element) {
+      this._element.replaceWith(blockFirstElementChild!);
     }
+    this._element = blockFirstElementChild as HTMLElement;
+    this._addEvents();
   }
 
-  render(): DocumentFragment | null {
+  protected render(): DocumentFragment | null {
     return null;
   }
 
-  compile(template: string, props: Props) {
-    const propsAndStubs: BlockProps = { ...props };
+  protected compile(
+    template: (context: unknown) => string,
+    context: { __children: ComponentChildren[] },
+  ) {
+    const propsAndStubs: BlockProps & {
+      __children: ComponentChildren[];
+      __refs: BlockRefs;
+    } = {
+      ...context,
+      __refs: this.refs,
+    };
 
-    Object.entries(this.children).forEach(([key, value]) => {
-      propsAndStubs[key] = `<div data-id="${value.id}"></div>`;
-    });
+    const html = template(propsAndStubs);
 
     const fragment = this._createDocumentElement(
       "template",
     ) as HTMLTemplateElement;
+    fragment.innerHTML = html;
 
-    fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
-
-    Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-      const childContent = child.getContent();
-
-      if (stub && childContent) {
-        stub.replaceWith(childContent);
-      }
+    propsAndStubs?.__children?.forEach((child: ComponentChildren) => {
+      child.embed(fragment.content);
     });
 
     return fragment.content;
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  makePropsProxy(props: Props) {
+  protected makePropsProxy(props: Record<string, unknown>): Props {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
@@ -189,7 +159,7 @@ export abstract class Block<Props extends BlockProps = any> {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target: BlockProps, prop: string, value: unknown) {
+      set(target, prop: string, value: unknown) {
         // eslint-disable-next-line no-param-reassign
         target[prop] = value;
 
@@ -199,15 +169,15 @@ export abstract class Block<Props extends BlockProps = any> {
       deleteProperty() {
         throw new Error("Нет доступа");
       },
-    });
+    }) as Props;
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} }: { events: Record<string, () => void> | undefined } =
       this.props as any;
 
@@ -222,7 +192,7 @@ export abstract class Block<Props extends BlockProps = any> {
     });
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const { events = {} }: { events: Record<string, () => void> | undefined } =
       this.props as any;
 
@@ -237,7 +207,7 @@ export abstract class Block<Props extends BlockProps = any> {
     });
   }
 
-  show() {
+  public show() {
     const content = this.getContent();
 
     if (content !== null) {
@@ -245,7 +215,7 @@ export abstract class Block<Props extends BlockProps = any> {
     }
   }
 
-  hide() {
+  public hide() {
     const content = this.getContent();
 
     if (content !== null) {
