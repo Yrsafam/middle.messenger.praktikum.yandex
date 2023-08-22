@@ -19,6 +19,12 @@ export function registerComponent(Component: ConstructableComponent) {
     function fnDelegate(this: unknown, { hash, data, fn }: HelperOptions) {
       const component = new Component(hash);
       const dataAttribute = `data-id="${component.id}"`;
+
+      if ("ref" in hash) {
+        // eslint-disable-next-line no-param-reassign
+        (data.root.__refs = data.root.__refs || {})[hash.ref] = component;
+      }
+
       // eslint-disable-next-line no-multi-assign,no-param-reassign
       const children = (data.root.__children = data.root.__children || []);
 
