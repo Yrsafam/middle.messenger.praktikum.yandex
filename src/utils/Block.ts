@@ -122,10 +122,10 @@ export abstract class Block<Props extends BlockProps = any> {
 
   protected compile(
     template: (context: unknown) => string,
-    context: { __children: ComponentChildren[] },
+    context: Props & { __children?: ComponentChildren[] },
   ) {
     const propsAndStubs: BlockProps & {
-      __children: ComponentChildren[];
+      __children?: ComponentChildren[];
       __refs: BlockRefs;
     } = {
       ...context,
