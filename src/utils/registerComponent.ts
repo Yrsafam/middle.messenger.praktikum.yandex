@@ -13,9 +13,9 @@ export function registerComponent(Component: ConstructableComponent) {
     // eslint-disable-next-line prefer-arrow-callback
     function fnDelegate(this: unknown, { hash, data, fn }: HelperOptions) {
       const component = new Component(hash);
-      const dataAttribute = `data-component-hbs-id="${component.id}"`;
-      const children =
-        data.root__children || data.root.__children || data.root.children || [];
+      const dataAttribute = `data-id="${component.id}"`;
+      // eslint-disable-next-line no-multi-assign,no-param-reassign
+      const children = (data.root.__children = data.root.__children || []);
 
       children.push({
         component,
