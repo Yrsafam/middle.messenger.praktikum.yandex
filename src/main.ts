@@ -7,11 +7,13 @@ import { CardChat } from "./pages/main/CardChat";
 import { ContextMenu } from "./pages/main/ContextMenu";
 import { HandleChat } from "./pages/main/HandleChat";
 import { Message } from "./pages/main/Message";
+import { Messages } from "./pages/main/Messages";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
 registerComponent(HandleChat);
 registerComponent(Message);
+registerComponent(Messages);
 registerComponent(CardChat);
 registerComponent(Sidebar);
 registerComponent(Main);
