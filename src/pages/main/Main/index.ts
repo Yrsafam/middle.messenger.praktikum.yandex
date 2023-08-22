@@ -1,10 +1,12 @@
 import { Block } from "../../../utils/Block.ts";
 import template from "./template.hbs";
 
-interface Props {}
-
-export class Main extends Block<Props> {
+export class Main extends Block {
   static componentName = "Main";
+
+  constructor() {
+    super({});
+  }
 
   render() {
     return this.compile(template, this.props);
