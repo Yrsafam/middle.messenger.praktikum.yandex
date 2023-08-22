@@ -7,6 +7,11 @@ type ConstructableComponent<Props extends BlockProps = any> = {
   componentName: string;
 };
 
+export type ComponentChildren = {
+  component: Block;
+  embed: (fragment: DocumentFragment) => void;
+};
+
 export function registerComponent(Component: ConstructableComponent) {
   Handlebars.registerHelper(
     Component.componentName,
