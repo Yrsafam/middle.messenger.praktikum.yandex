@@ -40,6 +40,13 @@
   &__button-change {
     position: relative;
     padding: 10px 0;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+    margin: 0;
+    text-align: left;
+    cursor: pointer;
 
     &::after {
       @include border-row-absolute;

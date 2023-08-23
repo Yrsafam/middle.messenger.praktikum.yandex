@@ -1,0 +1,23 @@
+<main class="profile">
+    {{# SidebarLayout className="profile__sidebar" href="/"}}
+        <section class="profile__content">
+            <div class="profile__header">
+                {{{AvatarProfile}}}
+                <h4 class="profile__title">Иван</h4>
+            </div>
+            <div class="profile__body">
+                {{{ InformationRow name="Почта" value="pochta@yandex.ru"}}}
+                {{{ InformationRow name="Логин" value="ivanivanov"}}}
+                {{{ InformationRow name="Имя" value="Иван"}}}
+                {{{ InformationRow name="Фамилия" value="Иванов"}}}
+                {{{ InformationRow name="Имя в чате" value="Иван"}}}
+                {{{ InformationRow name="Телефон" value="+7 (909) 967 30 30"}}}
+            </div>
+            <div class="profile__footer">
+                {{{ ButtonText title="Изменить данные" className="profile__button-change" href="profile-edit.html"}}}
+                {{{ ButtonText title="Изменить пароль" className="profile__button-change" href="change-password.html"}}}
+                {{{ ButtonText title="Выйти" className="profile__button-change profile__button-change_warning"}}}
+            </div>
+        </section>
+    {{/SidebarLayout}}
+</main>
