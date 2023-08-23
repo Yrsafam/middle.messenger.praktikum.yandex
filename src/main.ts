@@ -11,6 +11,7 @@ import { Messages } from "./pages/main/Messages";
 import { SidebarLayout } from "./layouts/SidebarLayout";
 import { ButtonText } from "./components/ButtonText";
 import { ErrorBlock } from "./components/ErrorBlock";
+import { AvatarProfile } from "./components/AvatarProfile";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -21,6 +22,7 @@ registerComponent(CardChat);
 registerComponent(Sidebar);
 registerComponent(ButtonText);
 registerComponent(ErrorBlock);
+registerComponent(AvatarProfile);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
