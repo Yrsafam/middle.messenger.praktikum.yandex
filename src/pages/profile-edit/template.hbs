@@ -1,0 +1,18 @@
+<main class="profile-edit">
+    {{# SidebarLayout className="profile__sidebar" href="profile.html"}}
+        <section class="profile-edit__content">
+            <div class="profile-edit__header">
+                {{{ AvatarProfile }}}
+            </div>
+            <form class="profile-edit__body">
+                {{{ Input name="email" label="Почта" type="email" className="profile-edit__input"}}}
+                {{{ Input name="login" label="Логин" type="text" className="profile-edit__input"}}}
+                {{{ Input name="first_name" label="Имя" type="text" className="profile-edit__input"}}}
+                {{{ Input name="second_name" label="Фамилия" type="text" className="profile-edit__input"}}}
+                {{{ Input name="display_name" label="Имя в чате" type="text" className="profile-edit__input"}}}
+                {{{ Input name="phone" label="Телефон" type="tel" className="profile-edit__input"}}}
+                {{{ Button title="Сохранить" className="profile-edit__button" type="button"}}}
+            </form>
+        </section>
+    {{/SidebarLayout}}
+</main>
