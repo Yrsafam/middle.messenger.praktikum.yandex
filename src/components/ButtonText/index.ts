@@ -1,5 +1,5 @@
 import { Block } from "../../utils/Block.ts";
-import template from "*.hbs";
+import template from "./template.hbs";
 
 interface Props {
   href: string;
