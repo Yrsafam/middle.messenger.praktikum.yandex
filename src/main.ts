@@ -8,6 +8,7 @@ import { ContextMenu } from "./pages/main/ContextMenu";
 import { HandleChat } from "./pages/main/HandleChat";
 import { Message } from "./pages/main/Message";
 import { Messages } from "./pages/main/Messages";
+import { SidebarLayout } from "./layouts/SidebarLayout";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -16,6 +17,7 @@ registerComponent(Message);
 registerComponent(Messages);
 registerComponent(CardChat);
 registerComponent(Sidebar);
+registerComponent(SidebarLayout);
 registerComponent(Main);
 
 document.addEventListener("DOMContentLoaded", () => {
