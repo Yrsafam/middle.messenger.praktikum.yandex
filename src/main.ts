@@ -10,6 +10,7 @@ import { Message } from "./pages/main/Message";
 import { Messages } from "./pages/main/Messages";
 import { SidebarLayout } from "./layouts/SidebarLayout";
 import { ButtonText } from "./components/ButtonText";
+import { ErrorBlock } from "./components/ErrorBlock";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -19,6 +20,7 @@ registerComponent(Messages);
 registerComponent(CardChat);
 registerComponent(Sidebar);
 registerComponent(ButtonText);
+registerComponent(ErrorBlock);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
