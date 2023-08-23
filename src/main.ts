@@ -32,5 +32,32 @@ registerComponent(SidebarLayout);
 registerComponent(Main);
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderDom(new Main());
+  const { pathname } = window.location;
+
+  switch (pathname) {
+    case "/":
+      renderDom("main");
+      break;
+    case "/registration":
+      renderDom("registration");
+      break;
+    case "/authorization":
+      renderDom("authorization");
+      break;
+    case "/profile":
+      renderDom("profile");
+      break;
+    case "/profile-edit":
+      renderDom("profile-edit");
+      break;
+    case "/change-password":
+      renderDom("change-password");
+      break;
+    case "/500":
+      renderDom("server-error");
+      break;
+    default:
+      renderDom("not-found");
+      break;
+  }
 });
