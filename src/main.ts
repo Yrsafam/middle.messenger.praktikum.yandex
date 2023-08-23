@@ -1,5 +1,6 @@
 import { registerComponent } from "./utils/registerComponent.ts";
 import { renderDom } from "./utils/renderDom.ts";
+
 import { Button } from "./components/Button";
 import { Main } from "./pages/main";
 import { Sidebar } from "./pages/main/Sidebar";
@@ -13,6 +14,7 @@ import { ButtonText } from "./components/ButtonText";
 import { ErrorBlock } from "./components/ErrorBlock";
 import { AvatarProfile } from "./components/AvatarProfile";
 import { InformationRow } from "./components/InformationRow";
+import { Input } from "./components/Input";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -25,6 +27,7 @@ registerComponent(ButtonText);
 registerComponent(ErrorBlock);
 registerComponent(AvatarProfile);
 registerComponent(InformationRow);
+registerComponent(Input);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
