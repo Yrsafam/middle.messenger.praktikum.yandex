@@ -9,6 +9,7 @@ import { HandleChat } from "./pages/main/HandleChat";
 import { Message } from "./pages/main/Message";
 import { Messages } from "./pages/main/Messages";
 import { SidebarLayout } from "./layouts/SidebarLayout";
+import { ButtonText } from "./components/ButtonText";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -17,6 +18,7 @@ registerComponent(Message);
 registerComponent(Messages);
 registerComponent(CardChat);
 registerComponent(Sidebar);
+registerComponent(ButtonText);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
