@@ -12,6 +12,7 @@ import { SidebarLayout } from "./layouts/SidebarLayout";
 import { ButtonText } from "./components/ButtonText";
 import { ErrorBlock } from "./components/ErrorBlock";
 import { AvatarProfile } from "./components/AvatarProfile";
+import { InformationRow } from "./components/InformationRow";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -23,6 +24,7 @@ registerComponent(Sidebar);
 registerComponent(ButtonText);
 registerComponent(ErrorBlock);
 registerComponent(AvatarProfile);
+registerComponent(InformationRow);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
