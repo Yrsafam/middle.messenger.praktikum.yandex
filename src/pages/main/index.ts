@@ -1,4 +1,4 @@
-import { Block } from "../../../utils/Block.ts";
+import { Block } from "../../utils/Block.ts";
 import template from "./template.hbs";
 
 export class Main extends Block {
