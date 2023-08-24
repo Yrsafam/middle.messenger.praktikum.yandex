@@ -15,9 +15,11 @@ import { ErrorBlock } from "./components/ErrorBlock";
 import { AvatarProfile } from "./components/AvatarProfile";
 import { InformationRow } from "./components/InformationRow";
 import { Input } from "./components/Input";
+import { ForwardRefForm } from "./components/ForwardRefForm";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
+registerComponent(ForwardRefForm);
 registerComponent(HandleChat);
 registerComponent(Message);
 registerComponent(Messages);
