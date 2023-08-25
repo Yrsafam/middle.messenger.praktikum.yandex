@@ -78,6 +78,14 @@ export class Validator {
         }
         break;
       }
+      case ValidatorRules.Phone: {
+        const { result, message } = this.validatePhone(input.value);
+
+        if (!result) {
+          errors.push(message);
+        }
+        break;
+      }
       case ValidatorRules.NewPassword:
       case ValidatorRules.RepeatPassword:
       case ValidatorRules.Password: {
@@ -148,6 +156,13 @@ export class Validator {
 
   private validateLogin(value: string): ValidatorValidateResult {
     const regexp = /^(?=[A-Za-z0-9-_])(?=.*\D)[A-Za-z0-9-_]{3,20}$/;
+    const ERROR_MESSAGE: string = "Неверный логин";
+
+    return this.validate(value, regexp, ERROR_MESSAGE);
+  }
+
+  private validatePhone(value: string): ValidatorValidateResult {
+    const regexp = /^(\+)?(\d){10,15}$/;
     const ERROR_MESSAGE: string = "Неверный логин";
 
     return this.validate(value, regexp, ERROR_MESSAGE);
