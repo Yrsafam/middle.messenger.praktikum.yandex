@@ -16,7 +16,7 @@ export abstract class Block<Props extends BlockProps = any> {
 
   private _element: HTMLElement | null = null;
 
-  protected props: Props;
+  public props: Props;
 
   // eslint-disable-next-line no-use-before-define
   private children: Record<string, Block> = {};
