@@ -36,6 +36,23 @@ export class Validator {
     return result;
   }
 
+  public checkField(name: string) {
+    let result: string = "";
+    const control = this.form.querySelector<HTMLInputElement>(
+      `input[name='${name}']`,
+    );
+
+    if (control) {
+      const errorMessage = this.check(control);
+
+      const [first] = errorMessage;
+
+      result = first ?? "";
+    }
+
+    return result;
+  }
+
   private check(input: HTMLInputElement) {
     let errors: string[] = [];
 
