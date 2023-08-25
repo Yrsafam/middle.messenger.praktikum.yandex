@@ -80,6 +80,15 @@ export class Validator {
         }
         break;
       }
+      case ValidatorRules.FirstName:
+      case ValidatorRules.SecondName: {
+        const { result, message } = this.validateName(input.value);
+
+        if (!result) {
+          errors.push(message);
+        }
+        break;
+      }
       default:
         errors = [];
         break;
@@ -118,6 +127,13 @@ export class Validator {
     const regexp = /^(?=.*[A-Z])(?=.*\d)[\d\D]{8,40}$/;
     const ERROR_MESSAGE: string =
       "Пароль от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.";
+
+    return this.validate(value, regexp, ERROR_MESSAGE);
+  }
+
+  private validateName(value: string): ValidatorValidateResult {
+    const regexp = /^(?=[A-ZА-Я])[A-Za-zА-Яа-я-]*$/;
+    const ERROR_MESSAGE: string = "Допустимы только буквы, цифры и дефис";
 
     return this.validate(value, regexp, ERROR_MESSAGE);
   }
