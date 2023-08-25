@@ -29,10 +29,8 @@ export class Validator {
     controls.forEach((control) => {
       const errorMessage = this.check(control);
 
-      if (errorMessage.length > 0) {
-        const [first] = errorMessage;
-        result[control.name] = first;
-      }
+      const [first] = errorMessage;
+      result[control.name] = first ?? "";
     });
 
     return result;
