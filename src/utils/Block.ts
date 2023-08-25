@@ -77,15 +77,7 @@ export abstract class Block<Props extends BlockProps = any> {
   }
 
   protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (oldProps !== undefined && newProps !== undefined) {
-      const newValues = Object.values(newProps);
-      return Array.prototype.some.call(
-        oldProps,
-        (x, index) => x !== newValues[index],
-      );
-    }
-
-    return false;
+    return oldProps !== undefined && newProps !== undefined;
   }
 
   public setProps = (nextProps?: Props) => {
