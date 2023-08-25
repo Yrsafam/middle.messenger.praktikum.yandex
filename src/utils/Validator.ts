@@ -98,4 +98,12 @@ export class Validator {
     const ERROR_MESSAGE: string = "Неверный email";
     return this.validate(value, regexp, ERROR_MESSAGE);
   }
+
+  private validatePassword(value: string): ValidatorValidateResult {
+    const regexp = /^(?=.*[A-Z])(?=.*\d)[\d\D]{8,40}$/;
+    const ERROR_MESSAGE: string =
+      "Пароль от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.";
+
+    return this.validate(value, regexp, ERROR_MESSAGE);
+  }
 }
