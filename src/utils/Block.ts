@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { EventBus, IEventBus } from "./EventBus.ts";
 import { ComponentChildren } from "./registerComponent.ts";
 
+export type BlockEvents = Record<string, (event: Event) => void>;
 export type BlockProps = object;
 // eslint-disable-next-line no-use-before-define
 export type BlockRefs = Record<string, Block>;
