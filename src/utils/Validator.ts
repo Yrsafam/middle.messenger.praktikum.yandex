@@ -23,21 +23,25 @@ export class Validator {
   }
 
   public checkForm() {
-    const result: Record<string, string> = {};
+    let result = false;
+    const errors: Record<string, string> = {};
     const controls = this.form.querySelectorAll<HTMLInputElement>("[name]");
 
     controls.forEach((control) => {
       const errorMessage = this.check(control);
 
       const [first] = errorMessage;
-      result[control.name] = first ?? "";
+      errors[control.name] = first ?? "";
     });
 
-    return result;
+    result = Object.values(errors).every((value) => value.length === 0);
+
+    return { result, errors };
   }
 
   public checkField(name: string) {
-    let result: string = "";
+    let error: string = "";
+    let result = false;
     const control = this.form.querySelector<HTMLInputElement>(
       `input[name='${name}']`,
     );
@@ -47,10 +51,11 @@ export class Validator {
 
       const [first] = errorMessage;
 
-      result = first ?? "";
+      error = first ?? "";
+      result = error.length === 0;
     }
 
-    return result;
+    return { result, error };
   }
 
   private check(input: HTMLInputElement) {
