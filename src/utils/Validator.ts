@@ -1,9 +1,11 @@
-enum ValidatorRules {
+export enum ValidatorRules {
   FirstName = "first_name",
   SecondName = "second_name ",
   Login = "login",
   Email = "email",
   Password = "password",
+  NewPassword = "new_password",
+  RepeatPassword = "repeat_password",
   Phone = "phone",
   Message = "message",
 }
