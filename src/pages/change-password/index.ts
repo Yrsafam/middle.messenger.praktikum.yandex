@@ -2,6 +2,11 @@ import { Block } from "../../utils/Block.ts";
 import template from "./template.hbs";
 import { Validator, ValidatorRules } from "../../utils/Validator.ts";
 import { ParseForm } from "../../utils/ParseForm.ts";
+import {
+  handleBlurField,
+  handleChangeField,
+  handleValidateForm,
+} from "../../utils/handlersForm.ts";
 
 interface Props {
   errorsValidation: Record<string, string>;
@@ -15,6 +20,12 @@ export class ChangePassword extends Block<Props> {
   static componentName = "ChangePassword";
 
   private validator: Validator;
+
+  private rulesValidation = [
+    ValidatorRules.Password,
+    ValidatorRules.NewPassword,
+    ValidatorRules.RepeatPassword,
+  ];
 
   constructor() {
     super({
@@ -60,42 +71,15 @@ export class ChangePassword extends Block<Props> {
   }
 
   private validateForm() {
-    const resultValidation = this.validator.checkForm();
-    this.refs[ValidatorRules.Password].setProps({
-      ...this.refs[ValidatorRules.Password].props,
-      errorText: resultValidation.errors[ValidatorRules.Password],
-    });
-    this.refs[ValidatorRules.NewPassword].setProps({
-      ...this.refs[ValidatorRules.NewPassword].props,
-      errorText: resultValidation.errors[ValidatorRules.NewPassword],
-    });
-    this.refs[ValidatorRules.RepeatPassword].setProps({
-      ...this.refs[ValidatorRules.RepeatPassword].props,
-      errorText: resultValidation.errors[ValidatorRules.RepeatPassword],
-    });
-
-    return resultValidation.result;
+    return handleValidateForm(this.validator, this.refs, this.rulesValidation);
   }
 
   private onChange(event: Event, field: string) {
-    const target = event.target as HTMLInputElement;
-    event.preventDefault();
-
-    this.refs[field].setProps({
-      ...this.refs[field].props,
-      value: target.value,
-    });
+    handleChangeField(event, field, this.refs);
   }
 
   private onBlur(event: Event, field: string) {
-    event.preventDefault();
-
-    const resultValidation = this.validator.checkField(field);
-
-    this.refs[field].setProps({
-      ...this.refs[field].props,
-      errorText: resultValidation.error,
-    });
+    handleBlurField(event, field, this.validator, this.refs);
   }
 
   private onBlurPassword(event: Event) {
