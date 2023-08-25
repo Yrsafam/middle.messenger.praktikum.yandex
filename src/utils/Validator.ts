@@ -65,6 +65,16 @@ export class Validator {
         }
         break;
       }
+      case ValidatorRules.NewPassword:
+      case ValidatorRules.RepeatPassword:
+      case ValidatorRules.Password: {
+        const { result, message } = this.validatePassword(input.value);
+
+        if (!result) {
+          errors.push(message);
+        }
+        break;
+      }
       default:
         errors = [];
         break;
