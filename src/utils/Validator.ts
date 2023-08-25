@@ -62,6 +62,14 @@ export class Validator {
     let errors: string[] = [];
 
     switch (input.name) {
+      case ValidatorRules.Login: {
+        const { result, message } = this.validateLogin(input.value);
+
+        if (!result) {
+          errors.push(message);
+        }
+        break;
+      }
       case ValidatorRules.Email: {
         const { result, message } = this.validateEmail(input.value);
 
@@ -134,6 +142,13 @@ export class Validator {
   private validateName(value: string): ValidatorValidateResult {
     const regexp = /^(?=[A-ZА-Я])[A-Za-zА-Яа-я-]*$/;
     const ERROR_MESSAGE: string = "Допустимы только буквы, цифры и дефис";
+
+    return this.validate(value, regexp, ERROR_MESSAGE);
+  }
+
+  private validateLogin(value: string): ValidatorValidateResult {
+    const regexp = /^(?=[A-Za-z0-9-_])(?=.*\D)[A-Za-z0-9-_]{3,20}$/;
+    const ERROR_MESSAGE: string = "Неверный логин";
 
     return this.validate(value, regexp, ERROR_MESSAGE);
   }
