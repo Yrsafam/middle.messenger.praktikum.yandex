@@ -135,6 +135,10 @@ export abstract class Block<Props extends BlockProps = any> {
       child.embed(fragment.content);
     });
 
+    if (propsAndStubs?.__refs) {
+      this.refs = propsAndStubs?.__refs;
+    }
+
     return fragment.content;
   }
 
