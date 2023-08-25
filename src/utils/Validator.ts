@@ -86,6 +86,14 @@ export class Validator {
         }
         break;
       }
+      case ValidatorRules.Message: {
+        const { result, message } = this.validateEmpty(input.value);
+
+        if (!result) {
+          errors.push(message);
+        }
+        break;
+      }
       case ValidatorRules.NewPassword:
       case ValidatorRules.RepeatPassword:
       case ValidatorRules.Password: {
@@ -164,6 +172,13 @@ export class Validator {
   private validatePhone(value: string): ValidatorValidateResult {
     const regexp = /^(\+)?(\d){10,15}$/;
     const ERROR_MESSAGE: string = "Неверный логин";
+
+    return this.validate(value, regexp, ERROR_MESSAGE);
+  }
+
+  private validateEmpty(value: string): ValidatorValidateResult {
+    const regexp = /^\w+$/;
+    const ERROR_MESSAGE: string = "Поле не должно быть пустым";
 
     return this.validate(value, regexp, ERROR_MESSAGE);
   }
