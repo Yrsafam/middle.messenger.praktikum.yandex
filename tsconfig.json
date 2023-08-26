@@ -16,7 +16,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true
   },
   "include": ["src", "vite-plugin-handlebars-precompile.ts"]
 }
