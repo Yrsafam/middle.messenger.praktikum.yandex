@@ -26,71 +26,53 @@ type HTTPTransportOptions<D> = {
   headers?: Headers;
 };
 
+type HTTPTransportMethod = <D = unknown>(
+  url: string,
+  options?: Partial<HTTPTransportOptions<D>>,
+) => Promise<XMLHttpRequest>;
+
 export class HTTPTransport {
   constructor() {
     this.request = this.request.bind(this);
   }
 
-  get<D>(
-    url: string,
-    options: Partial<HTTPTransportOptions<D>> = { timeout: TIMEOUT },
-  ) {
+  get: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) => {
     let urlWithSearchParams = url;
 
     if (options.data) {
       urlWithSearchParams += queryStringify(options.data);
     }
 
-    return this.request(
-      urlWithSearchParams,
-      { ...options, method: HTTPTransportMethods.Get },
-      options.timeout,
-    );
-  }
-
-  post<D>(
-    url: string,
-    options: Partial<HTTPTransportOptions<D>> = { timeout: TIMEOUT },
-  ) {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransportMethods.Post },
-      options.timeout,
-    );
-  }
-
-  put<D>(
-    url: string,
-    options: Partial<HTTPTransportOptions<D>> = { timeout: TIMEOUT },
-  ) {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransportMethods.Put },
-      options.timeout,
-    );
-  }
-
-  delete<D>(
-    url: string,
-    options: Partial<HTTPTransportOptions<D>> = { timeout: TIMEOUT },
-  ) {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransportMethods.Delete },
-      options.timeout,
-    );
-  }
-
-  request<D>(
-    url: string,
-    options: Partial<HTTPTransportOptions<D>> = {
+    return this.request(urlWithSearchParams, {
+      ...options,
       method: HTTPTransportMethods.Get,
+    });
+  };
+
+  post: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
+    this.request(url, { ...options, method: HTTPTransportMethods.Post });
+
+  put: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
+    this.request(url, { ...options, method: HTTPTransportMethods.Put });
+
+  delete: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
+    this.request(url, { ...options, method: HTTPTransportMethods.Delete });
+
+  request: HTTPTransportMethod = (
+    url,
+    options = {
+      method: HTTPTransportMethods.Get,
+      timeout: TIMEOUT,
     },
-    timeout = TIMEOUT,
-  ) {
-    return new Promise<XMLHttpRequest>((resolve, reject) => {
+  ) =>
+    new Promise<XMLHttpRequest>((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      const { method = HTTPTransportMethods.Get, data, headers } = options;
+      const {
+        method = HTTPTransportMethods.Get,
+        data,
+        headers,
+        timeout = TIMEOUT,
+      } = options;
 
       xhr.open(method, url);
 
@@ -115,5 +97,4 @@ export class HTTPTransport {
         xhr.send(JSON.stringify(data));
       }
     });
-  }
 }
