@@ -173,7 +173,7 @@ export class Validator {
 
   private validatePhone(value: string): ValidatorValidateResult {
     const regexp = /^(\+)?(\d){10,15}$/;
-    const ERROR_MESSAGE: string = "Неверный логин";
+    const ERROR_MESSAGE: string = "Неверный телефон";
 
     return this.validate(value, regexp, ERROR_MESSAGE);
   }
