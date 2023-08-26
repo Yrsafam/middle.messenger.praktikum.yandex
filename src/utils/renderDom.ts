@@ -22,7 +22,7 @@ export type RoutesKeys = keyof typeof ROUTES;
 
 export function renderDom(route: RoutesKeys) {
   const root = document.querySelector(".root");
-  const block = new ROUTES[route]();
+  const block = new ROUTES[route]({});
   const blockContent = block.getContent();
 
   if (root && blockContent) {
