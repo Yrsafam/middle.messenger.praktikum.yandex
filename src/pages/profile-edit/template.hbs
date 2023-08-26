@@ -4,15 +4,74 @@
             <div class="profile-edit__header">
                 {{{ AvatarProfile }}}
             </div>
-            <form class="profile-edit__body">
-                {{{ Input name="email" label="Почта" type="email" className="profile-edit__input"}}}
-                {{{ Input name="login" label="Логин" type="text" className="profile-edit__input"}}}
-                {{{ Input name="first_name" label="Имя" type="text" className="profile-edit__input"}}}
-                {{{ Input name="second_name" label="Фамилия" type="text" className="profile-edit__input"}}}
-                {{{ Input name="display_name" label="Имя в чате" type="text" className="profile-edit__input"}}}
-                {{{ Input name="phone" label="Телефон" type="tel" className="profile-edit__input"}}}
-                {{{ Button title="Сохранить" className="profile-edit__button" type="button"}}}
-            </form>
+            {{# ForwardRefForm ref="form" className="profile-edit__body"}}
+                {{{ Input
+                        name="email"
+                        ref="email"
+                        label="Почта"
+                        type="email"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.email
+                        value=values.email
+                        onChange=handlersChange.email
+                        onBlur=handlersBlur.email
+                }}}
+                {{{ Input
+                        name="login"
+                        ref="login"
+                        label="Логин"
+                        type="text"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.login
+                        value=values.login
+                        onChange=handlersChange.login
+                        onBlur=handlersBlur.login
+                }}}
+                {{{ Input
+                        name="first_name"
+                        ref="first_name"
+                        label="Имя"
+                        type="text"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.first_name
+                        value=values.first_name
+                        onChange=handlersChange.first_name
+                        onBlur=handlersBlur.first_name
+                }}}
+                {{{ Input
+                        name="second_name"
+                        ref="second_name"
+                        label="Фамилия"
+                        type="text"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.second_name
+                        value=values.second_name
+                        onChange=handlersChange.second_name
+                        onBlur=handlersBlur.second_name
+                }}}
+                {{{ Input
+                        name="display_name"
+                        ref="display_name"
+                        label="Имя в чате"
+                        type="text"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.display_name
+                        value=values.display_name
+                        onChange=handlersChange.display_name
+                        onBlur=handlersBlur.display_name
+                }}}
+                {{{ Input
+                        name="phone"
+                        label="Телефон"
+                        type="tel"
+                        className="profile-edit__input"
+                        errorText=errorsValidation.phone
+                        value=values.phone
+                        onChange=handlersChange.phone
+                        onBlur=handlersBlur.phone
+                }}}
+                {{{ Button title="Сохранить" className="profile-edit__button" type="button" onClick=onClick}}}
+            {{/ForwardRefForm}}
         </section>
     {{/SidebarLayout}}
 </main>
