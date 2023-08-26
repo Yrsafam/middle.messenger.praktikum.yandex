@@ -8,7 +8,8 @@
     "build": "vite build",
     "start": "vite build && vite preview --port 3000",
     "server": "node server.cjs",
-    "lint-styles": "npx stylelint \"**/*.scss\""
+    "lint": "npx eslint \"src/**\" && tsc --noEmit",
+    "lint:styles": "npx stylelint \"**/*.scss\""
   },
   "devDependencies": {
     "@types/uuid": "9.0.2",
