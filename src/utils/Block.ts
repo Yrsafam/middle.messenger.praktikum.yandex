@@ -32,7 +32,9 @@ export abstract class Block<Props extends BlockProps = any> {
   constructor(props: Props) {
     const eventBus = new EventBus();
 
-    this.props = this.makePropsProxy(props as Record<string, unknown>);
+    this.props = this.makePropsProxy(
+      props ? (props as Record<string, unknown>) : {},
+    );
 
     this.eventBus = () => eventBus;
 
