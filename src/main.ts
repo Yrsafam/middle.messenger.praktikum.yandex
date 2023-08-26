@@ -16,10 +16,14 @@ import { AvatarProfile } from "./components/AvatarProfile";
 import { InformationRow } from "./components/InformationRow";
 import { Input } from "./components/Input";
 import { ForwardRefForm } from "./components/ForwardRefForm";
+import { ButtonSubmit } from "./pages/main/ButtonSubmit";
+import { InputSubmit } from "./pages/main/InputSubmit";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
 registerComponent(ForwardRefForm);
+registerComponent(ButtonSubmit);
+registerComponent(InputSubmit);
 registerComponent(HandleChat);
 registerComponent(Message);
 registerComponent(Messages);
