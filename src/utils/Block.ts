@@ -199,7 +199,7 @@ export abstract class Block<Props extends BlockProps = any> {
 
     Object.keys(events).forEach((eventName) => {
       if (this._element) {
-        this._element.addEventListener(eventName, events[eventName]);
+        this._element.removeEventListener(eventName, events[eventName]);
       }
     });
   }
