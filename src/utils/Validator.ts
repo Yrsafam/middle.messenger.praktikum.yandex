@@ -1,6 +1,6 @@
 export enum ValidatorRules {
   FirstName = "first_name",
-  SecondName = "second_name ",
+  SecondName = "second_name",
   Login = "login",
   Email = "email",
   Password = "password",
