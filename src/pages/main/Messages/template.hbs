@@ -16,7 +16,10 @@
             {{/each}}
         </ul>
     </div>
-    <div class="chat-messages__footer">
-        {{{HandleChat}}}
-    </div>
+    {{# ForwardRefForm className="chat-messages__footer" ref="form"}}
+        {{# HandleChat}}
+            {{{InputSubmit value=value onChange=onChange ref="message"}}}
+            {{{ButtonSubmit disabled=disabledSubmit ref="submit"}}}
+        {{/HandleChat}}
+    {{/ForwardRefForm}}
 </div>
