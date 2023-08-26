@@ -7,6 +7,7 @@ export enum ValidatorRules {
   NewPassword = "new_password",
   RepeatPassword = "repeat_password",
   Phone = "phone",
+  DisplayName = "display_name",
   Message = "message",
 }
 
@@ -62,6 +63,7 @@ export class Validator {
     let errors: string[] = [];
 
     switch (input.name) {
+      case ValidatorRules.DisplayName:
       case ValidatorRules.Login: {
         const { result, message } = this.validateLogin(input.value);
 
