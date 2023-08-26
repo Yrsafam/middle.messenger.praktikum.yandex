@@ -1,16 +1,36 @@
 <main class="authorization">
-    <form class="authorization__form">
+    {{#ForwardRefForm className="authorization__form" ref="form"}}
         <h3 class="authorization__title">Вход</h3>
 
         <fieldset class="authorization__form-group">
-            {{{ Input name="login" label="Логин" type="text" className="authorization__input" }}}
-            {{{ Input name="password" label="Пароль" type="password" className="authorization__input" }}}
+            {{{ Input
+                    name="login"
+                    ref="login"
+                    label="Логин"
+                    type="text"
+                    className="authorization__input"
+                    errorText=errorsValidation.login
+                    value=values.login
+                    onChange=handlersChange.login
+                    onBlur=handlersBlur.login
+            }}}
+            {{{ Input
+                    name="password"
+                    ref="password"
+                    label="Пароль"
+                    type="password"
+                    className="authorization__input"
+                    errorText=errorsValidation.password
+                    value=values.password
+                    onChange=handlersChange.password
+                    onBlur=handlersBlur.password
+            }}}
         </fieldset>
 
         <div class="authorization__buttons">
-            {{{ Button title="Войти" type="submit" className="authorization__submit" }}}
-            {{{ ButtonText title="Нет аккаунта?" href="./registration.html"
+            {{{ Button title="Войти" type="submit" className="authorization__submit" onClick=onClick }}}
+            {{{ ButtonText title="Нет аккаунта?" href="/registration"
                            className="authorization__registration-button" }}}
         </div>
-    </form>
+    {{/ForwardRefForm}}
 </main>
