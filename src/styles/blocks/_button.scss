@@ -1,0 +1,15 @@
+@import "src/styles/variables";
+
+.button {
+  $border-radius: 8px;
+  $text-color: white;
+
+  background-color: $accent-color;
+  border-radius: $border-radius;
+  box-shadow: none;
+  padding: 12px;
+  min-width: 280px;
+  border: none;
+  color: $text-color;
+  cursor: pointer;
+}

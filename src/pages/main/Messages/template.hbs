@@ -1,0 +1,25 @@
+<div class="chat-messages">
+    <div class="chat-messages__head">
+        <div class="chat-messages__head-left">
+            <div class="chat-messages__avatar"></div>
+            <p class="chat-messages__name">Вадим</p>
+        </div>
+        {{{ContextMenu}}}
+    </div>
+    <div class="chat-messages__body">
+        <p class="chat-messages__date-separator">19 июня</p>
+        <ul class="chat-messages__list">
+            {{#each messages}}
+                <li>
+                    {{{Message isMe=this.isMe photo=this.photo message=this.message time=this.time}}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{# ForwardRefForm className="chat-messages__footer" ref="form"}}
+        {{# HandleChat}}
+            {{{InputSubmit value=value onChange=onChange ref="message"}}}
+            {{{ButtonSubmit disabled=disabledSubmit ref="submit"}}}
+        {{/HandleChat}}
+    {{/ForwardRefForm}}
+</div>

@@ -1,0 +1,91 @@
+<main class="registration">
+    {{# ForwardRefForm ref="form" className="registration__form"}}
+        <h3 class="registration__title">Регистрация</h3>
+
+        <fieldset class="registration__form-group">
+            {{{ Input
+                    name="email"
+                    ref="email"
+                    label="Почта"
+                    type="email"
+                    className="registration__input"
+                    errorText=errorsValidation.email
+                    value=values.email
+                    onChange=handlersChange.email
+                    onBlur=handlersBlur.email
+            }}}
+            {{{ Input
+                    name="login"
+                    ref="login"
+                    label="Логин"
+                    type="text"
+                    className="registration__input"
+                    errorText=errorsValidation.login
+                    value=values.login
+                    onChange=handlersChange.login
+                    onBlur=handlersBlur.login
+            }}}
+            {{{ Input
+                    name="first_name"
+                    ref="first_name"
+                    label="Имя"
+                    type="text"
+                    className="registration__input"
+                    errorText=errorsValidation.first_name
+                    value=values.first_name
+                    onChange=handlersChange.first_name
+                    onBlur=handlersBlur.first_name
+            }}}
+            {{{ Input
+                    name="second_name"
+                    ref="second_name"
+                    label="Фамилия"
+                    type="text"
+                    className="registration__input"
+                    errorText=errorsValidation.second_name
+                    value=values.second_name
+                    onChange=handlersChange.second_name
+                    onBlur=handlersBlur.second_name
+            }}}
+            {{{ Input
+                    name="phone"
+                    ref="phone"
+                    label="Телефон"
+                    type="tel"
+                    className="registration__input"
+                    errorText=errorsValidation.phone
+                    value=values.phone
+                    onChange=handlersChange.phone
+                    onBlur=handlersBlur.phone
+            }}}
+            {{{ Input
+                    name="password"
+                    ref="password"
+                    label="Пароль"
+                    type="password"
+                    className="registration__input"
+                    errorText=errorsValidation.password
+                    value=values.password
+                    onChange=handlersChange.password
+                    onBlur=handlersBlur.password
+            }}}
+            {{{ Input
+                    name="repeat_password"
+                    ref="repeat_password"
+                    label="Повторить пароль"
+                    type="password"
+                    className="registration__input"
+                    errorText=errorsValidation.repeat_password
+                    value=values.repeat_password
+                    onChange=handlersChange.repeat_password
+                    onBlur=handlersBlur.repeat_password
+            }}}
+        </fieldset>
+
+        <div class="registration__buttons">
+            {{{ Button title="Зарегистрироваться" type="submit" className="registration__submit" onClick=onClick }}}
+            {{{ ButtonText title="Есть аккаунт?" href="/authorization"
+                           className="registration__authorization-button" }}}
+        </div>
+    {{/ForwardRefForm}}
+</main>

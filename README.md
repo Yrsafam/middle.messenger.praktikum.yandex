@@ -44,17 +44,37 @@ npm run start
 npm run server
 ```
 
+Запуск `eslint` для проверки кода проекта:
+
+```shell
+npm run lint
+```
+
+Запуск `stylelint` для проверки стилей проекта:
+
+```shell
+npm run lint:styles
+```
+
 ## Страницы
 
 - [Главная(Список чатов)](http://localhost:3000/)
-- [Авторизация](http://localhost:3000/authorization.html)
-- [Регистрация](http://localhost:3000/registration.html)
-- [Профиль](http://localhost:3000/profile.html)
-- [Редактирование профиля](http://localhost:3000/profile-edit.html)
-- [Изменение пароля](http://localhost:3000/change-password.html)
-- [404](http://localhost:3000/404.html)
-- [500](http://localhost:3000/500.html)
+- [Авторизация](http://localhost:3000/authorization)
+- [Регистрация](http://localhost:3000/registration)
+- [Профиль](http://localhost:3000/profile)
+- [Редактирование профиля](http://localhost:3000/profile-edit)
+- [Изменение пароля](http://localhost:3000/change-password)
+- [404](http://localhost:3000/404)
+- [500](http://localhost:3000/500)
 
 ## Netlify
 
 - [Ссылка](https://bejewelled-mermaid-8640f0.netlify.app/)
+
+## Фичи версии 0.1.0
+
+- Валидация форм
+- Типизация
+- Компонентный подход
+- HTTP клиент
+- Линтинг
