@@ -15,7 +15,7 @@ export enum Routes {
 export function renderDom(query: string, block: Block) {
   const root = document.querySelector(query);
   const blockContent = block.getContent();
-  console.log(root, blockContent);
+
   if (root && blockContent) {
     root.appendChild(blockContent);
     block.dispatchComponentDidMount();
