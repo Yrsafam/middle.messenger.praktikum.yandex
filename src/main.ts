@@ -1,5 +1,6 @@
 import { registerComponent } from "./utils/registerComponent.ts";
-import { renderDom } from "./utils/renderDom.ts";
+import { Routes } from "./utils/renderDom.ts";
+import Router from "./utils/Router.ts";
 
 import { Button } from "./components/Button";
 import { Main } from "./pages/main";
@@ -18,6 +19,13 @@ import { Input } from "./components/Input";
 import { ForwardRefForm } from "./components/ForwardRefForm";
 import { ButtonSubmit } from "./pages/main/ButtonSubmit";
 import { InputSubmit } from "./pages/main/InputSubmit";
+import { Authorization } from "./pages/authorization";
+import { Registration } from "./pages/registration";
+import { ChangePassword } from "./pages/change-password";
+import { Profile } from "./pages/profile";
+import { ProfileEdit } from "./pages/profile-edit";
+import { NotFound } from "./pages/404";
+import { ServerError } from "./pages/500";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -40,30 +48,32 @@ registerComponent(Main);
 document.addEventListener("DOMContentLoaded", () => {
   const { pathname } = window.location;
 
+  Router.use(Routes.Main, Authorization)
+    .use(Routes.Registration, Registration)
+    .use(Routes.ChangePassword, ChangePassword)
+    .use(Routes.Profile, Profile)
+    .use(Routes.ProfileEdit, ProfileEdit)
+    .use(Routes.NotFound, NotFound)
+    .use(Routes.ServerError, ServerError)
+    .use(Routes.Messenger, Main);
+
+  let isProtectedRoute = true;
+
   switch (pathname) {
-    case "/":
-      renderDom("main");
-      break;
-    case "/registration":
-      renderDom("registration");
-      break;
-    case "/authorization":
-      renderDom("authorization");
-      break;
-    case "/profile":
-      renderDom("profile");
-      break;
-    case "/profile-edit":
-      renderDom("profile-edit");
-      break;
-    case "/change-password":
-      renderDom("change-password");
-      break;
-    case "/500":
-      renderDom("server-error");
+    case Routes.Main:
+    case Routes.Registration:
+    case Routes.NotFound:
+    case Routes.ServerError:
+      isProtectedRoute = false;
       break;
     default:
-      renderDom("not-found");
+      isProtectedRoute = true;
       break;
+  }
+
+  Router.start();
+
+  if (isProtectedRoute) {
+    Router.go(Routes.Main);
   }
 });
