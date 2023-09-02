@@ -1,3 +1,5 @@
+import { queryStringify } from "./queryStringify.ts";
+
 enum HTTPTransportMethods {
   Get = "GET",
   Put = "PUT",
@@ -6,38 +8,31 @@ enum HTTPTransportMethods {
 }
 const TIMEOUT = 5000;
 
-/**
- * Функцию реализовывать здесь необязательно, но может помочь не плодить логику у GET-метода
- * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
- * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
- */
-function queryStringify(data: Record<string, unknown>) {
-  const queriesString = Object.keys(data)
-    .map((key) => `${key}=${data[key]}`)
-    .join("&");
-
-  return `?${queriesString}`;
-}
-
 type HTTPTransportOptions<D> = {
   data: D;
   method: HTTPTransportMethods;
   timeout?: number;
   headers?: Headers;
+  withCredentials?: boolean;
 };
 
-type HTTPTransportMethod = <D = unknown>(
+type HTTPTransportMethod = <R, D = unknown>(
   url: string,
   options?: Partial<HTTPTransportOptions<D>>,
-) => Promise<XMLHttpRequest>;
+) => Promise<R>;
 
 export class HTTPTransport {
-  constructor() {
+  static BASE_URL = "https://ya-praktikum.tech/api/v2";
+
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
     this.request = this.request.bind(this);
+    this.endpoint = `${HTTPTransport.BASE_URL}${endpoint}`;
   }
 
-  get: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) => {
-    let urlWithSearchParams = url;
+  get: HTTPTransportMethod = (url = "/", options = { timeout: TIMEOUT }) => {
+    let urlWithSearchParams = this.endpoint + url;
 
     if (options.data) {
       urlWithSearchParams += queryStringify(options.data);
@@ -50,13 +45,22 @@ export class HTTPTransport {
   };
 
   post: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
-    this.request(url, { ...options, method: HTTPTransportMethods.Post });
+    this.request(this.endpoint + url, {
+      ...options,
+      method: HTTPTransportMethods.Post,
+    });
 
   put: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
-    this.request(url, { ...options, method: HTTPTransportMethods.Put });
+    this.request(this.endpoint + url, {
+      ...options,
+      method: HTTPTransportMethods.Put,
+    });
 
   delete: HTTPTransportMethod = (url, options = { timeout: TIMEOUT }) =>
-    this.request(url, { ...options, method: HTTPTransportMethods.Delete });
+    this.request(this.endpoint + url, {
+      ...options,
+      method: HTTPTransportMethods.Delete,
+    });
 
   request: HTTPTransportMethod = (
     url,
@@ -65,13 +69,14 @@ export class HTTPTransport {
       timeout: TIMEOUT,
     },
   ) =>
-    new Promise<XMLHttpRequest>((resolve, reject) => {
+    new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const {
         method = HTTPTransportMethods.Get,
         data,
         headers,
         timeout = TIMEOUT,
+        withCredentials = false,
       } = options;
 
       xhr.open(method, url);
@@ -83,17 +88,27 @@ export class HTTPTransport {
       }
 
       xhr.timeout = timeout;
+      xhr.withCredentials = withCredentials;
 
-      xhr.onload = function onload() {
-        resolve(xhr);
+      xhr.onreadystatechange = function onReadyStateChange() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
-      xhr.onabort = reject;
-      xhr.ontimeout = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject(new Error("abort"));
+      xhr.ontimeout = () => reject(new Error("timeout"));
+      xhr.onerror = () => reject(new Error("error"));
 
       if (method === HTTPTransportMethods.Get || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));
       }
     });
