@@ -6,6 +6,7 @@ import { Registration } from "../pages/registration";
 import { ServerError } from "../pages/500";
 import { ChangePassword } from "../pages/change-password";
 import { Profile } from "../pages/profile";
+import { Block } from "./Block.ts";
 
 const ROUTES = {
   main: Main,
@@ -20,9 +21,8 @@ const ROUTES = {
 
 export type RoutesKeys = keyof typeof ROUTES;
 
-export function renderDom(route: RoutesKeys) {
-  const root = document.querySelector(".root");
-  const block = new ROUTES[route]({});
+export function renderDom(query: string, block: Block) {
+  const root = document.querySelector(query);
   const blockContent = block.getContent();
 
   if (root && blockContent) {
