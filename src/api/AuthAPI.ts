@@ -58,3 +58,5 @@ export class AuthAPI extends BaseAPI {
 
   read = undefined;
 }
+
+export const authApi = new AuthAPI();
