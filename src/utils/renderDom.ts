@@ -17,6 +17,7 @@ export function renderDom(query: string, block: Block) {
   const blockContent = block.getContent();
 
   if (root && blockContent) {
+    root.innerHTML = "";
     root.appendChild(blockContent);
     block.dispatchComponentDidMount();
   }
