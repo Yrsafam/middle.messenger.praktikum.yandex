@@ -26,6 +26,7 @@ import { Profile } from "./pages/profile";
 import { ProfileEdit } from "./pages/profile-edit";
 import { NotFound } from "./pages/404";
 import { ServerError } from "./pages/500";
+import { authController } from "./controllers/AuthController.ts";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -45,7 +46,7 @@ registerComponent(Input);
 registerComponent(SidebarLayout);
 registerComponent(Main);
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const { pathname } = window.location;
 
   Router.use(Routes.Main, Authorization)
@@ -57,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .use(Routes.ServerError, ServerError)
     .use(Routes.Messenger, Main);
 
-  let isProtectedRoute = true;
+  let isProtectedRoute;
+  const isNotFoundRoute = !Object.values(Routes).includes(pathname as Routes);
 
   switch (pathname) {
     case Routes.Main:
@@ -71,9 +73,21 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
   }
 
+  if (isNotFoundRoute) {
+    Router.go(Routes.NotFound);
+  }
+
   Router.start();
 
-  if (isProtectedRoute) {
-    Router.go(Routes.Main);
+  try {
+    await authController.checkSignin();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Profile);
+    }
+  } catch (e) {
+    if (isProtectedRoute) {
+      Router.go(Routes.Main);
+    }
   }
 });
