@@ -46,7 +46,7 @@ export class AuthAPI extends BaseAPI {
     return this.httpClient.post("/logout");
   }
 
-  public checkSignin(): Promise<AuthUser> {
+  public read(): Promise<AuthUser> {
     return this.httpClient.get("/user");
   }
 
@@ -55,8 +55,6 @@ export class AuthAPI extends BaseAPI {
   update = undefined;
 
   delete = undefined;
-
-  read = undefined;
 }
 
 export const authApi = new AuthAPI();
