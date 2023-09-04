@@ -15,7 +15,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "max-classes-per-file": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2020
