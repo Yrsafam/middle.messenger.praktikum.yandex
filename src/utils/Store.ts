@@ -24,7 +24,7 @@ export class Store extends EventBus {
   }
 }
 
-const store = new Store();
+export const store = new Store();
 
 export type MapStateToProps = <SP>(state: StoreState) => SP;
 
