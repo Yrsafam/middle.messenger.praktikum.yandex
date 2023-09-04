@@ -2,6 +2,10 @@ import { HTTPTransport } from "../utils/HTTPTransport.ts";
 
 type BaseAPIIdentifier = string | number;
 
+export type ErrorValidationResponse = {
+  reason: string;
+};
+
 export abstract class BaseAPI {
   protected httpClient: HTTPTransport;
 
