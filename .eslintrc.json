@@ -16,7 +16,8 @@
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "max-classes-per-file": "off"
+    "max-classes-per-file": "off",
+    "no-alert": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2020
