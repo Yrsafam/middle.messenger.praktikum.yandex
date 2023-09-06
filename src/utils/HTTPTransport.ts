@@ -76,7 +76,7 @@ export class HTTPTransport {
         data,
         headers,
         timeout = TIMEOUT,
-        withCredentials = false,
+        withCredentials = true,
       } = options;
 
       xhr.open(method, url);
@@ -104,6 +104,7 @@ export class HTTPTransport {
       xhr.onerror = () => reject(new Error("error"));
 
       if (method === HTTPTransportMethods.Get || !data) {
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
       } else if (data instanceof FormData) {
         xhr.send(data);
