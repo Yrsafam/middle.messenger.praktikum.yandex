@@ -27,7 +27,7 @@ export class AuthController {
 
       router.go(Routes.Profile);
     } catch (e) {
-      console.log(e);
+      window.alert(`Ошибка регистрации: ${e}`);
     }
   }
 
@@ -38,7 +38,7 @@ export class AuthController {
 
       router.go(Routes.Profile);
     } catch (e) {
-      console.log(e);
+      window.alert(`Ошибка авторизации: ${e}`);
     }
   }
 
