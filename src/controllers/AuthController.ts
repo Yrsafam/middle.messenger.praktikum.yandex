@@ -50,7 +50,7 @@ export class AuthController {
 
       router.go(Routes.Main);
     } catch (e) {
-      console.log(e);
+      alert(`Извините, произошла ошибка`);
     }
   }
 }
