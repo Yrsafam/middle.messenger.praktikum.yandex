@@ -6,7 +6,7 @@ export enum Routes {
   Registration = "/sign-up",
   Settings = "/settings",
   Profile = "/profile",
-  ProfileEdit = "/profileEdit",
+  ProfileEdit = "/profile-edit",
   ChangePassword = "/change-password",
   NotFound = "/404",
   ServerError = "/500",
