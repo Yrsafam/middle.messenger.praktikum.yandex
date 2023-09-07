@@ -89,6 +89,7 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.withCredentials = withCredentials;
+      xhr.responseType = "json";
 
       xhr.onreadystatechange = function onReadyStateChange() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
