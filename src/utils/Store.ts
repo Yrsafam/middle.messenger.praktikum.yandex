@@ -16,7 +16,7 @@ export class Store extends EventBus {
   public set(path: string, newState: unknown) {
     set(this.state, path, newState);
 
-    this.on(StoreEvents.Updated, this.getState);
+    this.emit(StoreEvents.Updated, this.getState);
   }
 
   public getState() {
