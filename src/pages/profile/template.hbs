@@ -6,12 +6,12 @@
                 <h4 class="profile__title">Иван</h4>
             </div>
             <div class="profile__body">
-                {{{ InformationRow name="Почта" value="pochta@yandex.ru"}}}
-                {{{ InformationRow name="Логин" value="ivanivanov"}}}
-                {{{ InformationRow name="Имя" value="Иван"}}}
-                {{{ InformationRow name="Фамилия" value="Иванов"}}}
-                {{{ InformationRow name="Имя в чате" value="Иван"}}}
-                {{{ InformationRow name="Телефон" value="+7 (909) 967 30 30"}}}
+                {{{ InformationRow name="Почта" value=user.email}}}
+                {{{ InformationRow name="Логин" value=user.login}}}
+                {{{ InformationRow name="Имя" value=user.first_name}}}
+                {{{ InformationRow name="Фамилия" value=user.second_name}}}
+                {{{ InformationRow name="Имя в чате" value=user.display_name}}}
+                {{{ InformationRow name="Телефон" value=user.phone}}}
             </div>
             <div class="profile__footer">
                 {{{ ButtonText title="Изменить данные" className="profile__button-change" href="/profile-edit"}}}
