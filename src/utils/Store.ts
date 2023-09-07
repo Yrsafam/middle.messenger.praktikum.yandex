@@ -26,20 +26,20 @@ export class Store extends EventBus {
 
 export const store = new Store();
 
-export type MapStateToProps = <SP>(state: StoreState) => SP;
+export type MapStateToProps<SP> = (state: StoreState) => SP;
 
 export function withStore<SP extends BlockProps>(
-  mapStateToProps: MapStateToProps,
+  mapStateToProps: MapStateToProps<SP>,
 ) {
   return function wrapper<P>(Component: typeof Block<SP & P>) {
     return class WithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
-        let previousState = mapStateToProps<SP>(store.getState());
+        let previousState = mapStateToProps(store.getState());
 
         super({ ...(props as P), ...previousState });
 
         store.on(StoreEvents.Updated, () => {
-          const stateProps = mapStateToProps<SP>(store.getState());
+          const stateProps = mapStateToProps(store.getState());
 
           previousState = stateProps;
 
