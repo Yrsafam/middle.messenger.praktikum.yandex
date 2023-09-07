@@ -25,7 +25,7 @@ export class AuthController {
       await this.api.signup(data);
       await this.fetchUser();
 
-      router.go(Routes.Profile);
+      router.go(Routes.Settings);
     } catch (e) {
       window.alert(`Ошибка регистрации: ${e}`);
     }
@@ -36,7 +36,7 @@ export class AuthController {
       await this.api.signin(data);
       await this.fetchUser();
 
-      router.go(Routes.Profile);
+      router.go(Routes.Settings);
     } catch (e) {
       window.alert(`Ошибка авторизации: ${e}`);
     }

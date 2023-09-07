@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Router.use(Routes.Main, Authorization)
     .use(Routes.Registration, Registration)
     .use(Routes.ChangePassword, ChangePassword)
-    .use(Routes.Profile, Profile)
+    .use(Routes.Settings, Profile)
     .use(Routes.ProfileEdit, ProfileEdit)
     .use(Routes.NotFound, NotFound)
     .use(Routes.ServerError, ServerError)
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await authController.checkSignin();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      Router.go(Routes.Settings);
     }
   } catch (e) {
     if (isProtectedRoute) {
