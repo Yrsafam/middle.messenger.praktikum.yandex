@@ -6,6 +6,12 @@ export type ErrorValidationResponse = {
   reason: string;
 };
 
+export function isErrorValidation(
+  error: unknown,
+): error is ErrorValidationResponse {
+  return (error as ErrorValidationResponse).reason !== undefined;
+}
+
 export abstract class BaseAPI {
   protected httpClient: HTTPTransport;
 
