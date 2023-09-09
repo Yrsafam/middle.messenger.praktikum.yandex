@@ -1,14 +1,14 @@
 import { set } from "./set.ts";
 import { EventBus } from "./EventBus.ts";
 import { Block, BlockProps } from "./Block.ts";
-import { AuthUser } from "../api/AuthAPI.ts";
+import { User } from "../api/AuthAPI.ts";
 
 export enum StoreEvents {
   Updated = "updated",
 }
 
 export interface StoreState {
-  user: AuthUser;
+  user: User;
 }
 
 const INITIAL_STATE: StoreState = {

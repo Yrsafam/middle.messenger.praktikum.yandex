@@ -9,10 +9,10 @@ import {
 import { ParseForm } from "../../utils/ParseForm.ts";
 import { PropsForm } from "../../shared-kernel/types.ts";
 import { withStore } from "../../utils/Store.ts";
-import { AuthUser } from "../../api/AuthAPI.ts";
+import { User } from "../../api/AuthAPI.ts";
 
 interface Props extends Omit<PropsForm, "values"> {
-  values: Omit<AuthUser, "avatar" | "id">;
+  values: Omit<User, "avatar" | "id">;
 }
 
 class ProfileEditBlock extends Block<Props> {

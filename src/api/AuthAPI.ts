@@ -18,7 +18,7 @@ export type SigninData = {
   password: string;
 };
 
-export type AuthUser = {
+export type User = {
   id: number;
   first_name: string;
   second_name: string;
@@ -46,7 +46,7 @@ export class AuthAPI extends BaseAPI {
     return this.httpClient.post("/logout");
   }
 
-  public read(): Promise<AuthUser> {
+  public read(): Promise<User> {
     return this.httpClient.get("/user");
   }
 
