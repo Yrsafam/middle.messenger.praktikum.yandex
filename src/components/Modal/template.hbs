@@ -1,0 +1,17 @@
+<div class="modal-add">
+    <div class="modal-add__overlay">
+        <h3>{{title}}</h3>
+
+        {{{ Input
+                name="name"
+                ref="name"
+                label=label
+                type="text"
+                className="modal-add__input"
+                value=value
+                onChange=onChange
+        }}}
+
+        {{{ Button title=titleButton type="submit" className="modal-add__submit" onClick=onClick }}}
+    </div>
+</div>

@@ -27,6 +27,7 @@ import { ProfileEdit } from "./pages/profile-edit";
 import { NotFound } from "./pages/404";
 import { ServerError } from "./pages/500";
 import { authController } from "./controllers/AuthController.ts";
+import { Modal } from "./components/Modal";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -44,7 +45,7 @@ registerComponent(AvatarProfile);
 registerComponent(InformationRow);
 registerComponent(Input);
 registerComponent(SidebarLayout);
-registerComponent(Main);
+registerComponent(Modal);
 
 document.addEventListener("DOMContentLoaded", async () => {
   const { pathname } = window.location;
