@@ -2,7 +2,7 @@
     {{# SidebarLayout className="profile__sidebar" href="/settings"}}
         <section class="profile-edit__content">
             <div class="profile-edit__header">
-                {{{ AvatarProfile }}}
+                {{{ AvatarProfile avatar=avatar onChange=onChangeAvatar }}}
             </div>
             {{# ForwardRefForm ref="form" className="profile-edit__body"}}
                 {{{ Input

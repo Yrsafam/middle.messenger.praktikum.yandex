@@ -13,6 +13,8 @@ import { userController } from "../../controllers/UserController.ts";
 
 interface Props extends Omit<PropsForm, "values"> {
   values: Omit<User, "avatar" | "id">;
+  avatar: string;
+  onChangeAvatar(event: Event): void;
 }
 
 class ProfileEditBlock extends Block<Props> {
@@ -90,6 +92,8 @@ class ProfileEditBlock extends Block<Props> {
       onClick: (event) => {
         this.onSubmit(event);
       },
+      avatar: "",
+      onChangeAvatar: (event) => this.onChangeAvatar(event),
     });
 
     this.validator = new Validator(this.refs.form.element!);
@@ -156,6 +160,17 @@ class ProfileEditBlock extends Block<Props> {
     this.onChange(event, ValidatorRules.DisplayName);
   }
 
+  private async onChangeAvatar(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files!;
+    const formData = new FormData();
+    const file = files[0];
+
+    formData.append("avatar", file);
+
+    await userController.updateAvatar(formData);
+  }
+
   private async onSubmit(event: Event) {
     event.preventDefault();
     this.validator = new Validator(this.refs.form.element!);
@@ -185,6 +200,7 @@ const withValues = withStore((state) => ({
     login: state.user.login,
     email: state.user.email,
   },
+  avatar: state.user.avatar,
 }));
 
 export const ProfileEdit = withValues(ProfileEditBlock);
