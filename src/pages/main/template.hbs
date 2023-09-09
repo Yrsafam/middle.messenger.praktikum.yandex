@@ -1,4 +1,12 @@
 <main class="main">
-    {{{Sidebar}}}
+    {{{Sidebar chats=chats onClickAddChat=onShowModalAddChat }}}
     {{{Messages}}}
+
+    {{{Modal
+            visible=visibleChatAdd
+            label="Название чата"
+            title="Добавить чат"
+            titleButton="Добавить"
+            onClose=onHideModalAddChat
+    }}}
 </main>
