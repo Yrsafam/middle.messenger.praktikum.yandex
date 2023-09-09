@@ -1,9 +1,12 @@
 <aside class="sidebar-chats">
     <div class="sidebar-chats__head">
-        <a href="/profile" class="sidebar-chats__link-profile">
-            Профиль
-            <img src="/images/arrow-profile.svg" alt="Иконка перехода в профиль">
-        </a>
+        <div class="sidebar-chats__head-left">
+            <a href="/profile" class="sidebar-chats__link-profile">
+                Профиль
+                <img src="/images/arrow-profile.svg" alt="Иконка перехода в профиль">
+            </a>
+            {{{Button title="Добавить чат" onClick=onClickAddChat ref="buttonAdd"}}}
+        </div>
         <label class="sidebar-chats__input">
             <input type="text" class="sidebar-chats__input-field">
             <span class="sidebar-chats__input-placeholder">
@@ -16,8 +19,12 @@
         </label>
     </div>
     <ul class="sidebar-chats__list">
-        {{#each chats}}
-            {{{CardChat name=name message=message lastTime=lastTime count=count isMe=isMe }}}
-        {{/each}}
+        {{#if chats.length}}
+            {{#each chats}}
+                {{{CardChat name=name message=message lastTime=lastTime count=count isMe=isMe }}}
+            {{/each}}
+        {{else}}
+            <span class="sidebar-chats__empty-list">Список чатов пуст</span>
+        {{/if}}
     </ul>
 </aside>
