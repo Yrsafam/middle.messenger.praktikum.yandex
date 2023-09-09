@@ -5,14 +5,16 @@ interface Props {
   avatar?: string;
   onChange?(event: Event): void;
   events?: BlockEvents;
+  canChange?: boolean;
 }
 
 export class AvatarProfile extends Block {
   static componentName = "AvatarProfile";
 
-  constructor({ avatar = "", onChange = () => {} }: Props) {
+  constructor({ avatar = "", onChange = () => {}, canChange = true }: Props) {
     super({
       avatar,
+      canChange,
       events: {
         change: onChange,
       },
