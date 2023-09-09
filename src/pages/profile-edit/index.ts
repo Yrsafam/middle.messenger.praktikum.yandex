@@ -9,6 +9,7 @@ import {
 import { ParseForm } from "../../utils/ParseForm.ts";
 import { PropsForm, User } from "../../shared-kernel/types.ts";
 import { withStore } from "../../utils/Store.ts";
+import { userController } from "../../controllers/UserController.ts";
 
 interface Props extends Omit<PropsForm, "values"> {
   values: Omit<User, "avatar" | "id">;
@@ -155,7 +156,7 @@ class ProfileEditBlock extends Block<Props> {
     this.onChange(event, ValidatorRules.DisplayName);
   }
 
-  private onSubmit(event: Event) {
+  private async onSubmit(event: Event) {
     event.preventDefault();
     this.validator = new Validator(this.refs.form.element!);
 
@@ -163,7 +164,10 @@ class ProfileEditBlock extends Block<Props> {
 
     if (isValid) {
       const parseForm = new ParseForm(this.refs.form.element!);
-      parseForm.printValues();
+
+      await userController.updateProfile(
+        parseForm.getData() as Omit<User, "id" | "avatar">,
+      );
     }
   }
 
