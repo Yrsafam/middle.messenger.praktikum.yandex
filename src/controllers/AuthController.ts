@@ -4,6 +4,7 @@ import router from "../utils/Router.ts";
 import { Routes } from "../utils/renderDom.ts";
 import { getFormattedUser } from "../utils/services.ts";
 import { isErrorValidation } from "../api/BaseAPI.ts";
+import { messagesController } from "./MessagesController.ts";
 
 export class AuthController {
   private api: AuthAPI;
@@ -51,7 +52,7 @@ export class AuthController {
 
   public async logout() {
     try {
-      // @TODO добавить закрытие сокет соединений
+      messagesController.closeAll();
 
       await this.api.logout();
 
