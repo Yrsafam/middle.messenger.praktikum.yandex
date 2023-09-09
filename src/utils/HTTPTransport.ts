@@ -24,6 +24,8 @@ type HTTPTransportMethod = <R, D = unknown>(
 export class HTTPTransport {
   static BASE_URL = "https://ya-praktikum.tech/api/v2";
 
+  static RESOURCE_URL = `${HTTPTransport.BASE_URL}/resources`;
+
   protected endpoint: string;
 
   constructor(endpoint: string) {
