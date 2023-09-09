@@ -19,7 +19,6 @@ export class Modal extends Block<Props> {
   constructor(props: Props) {
     super({
       ...props,
-      visible: false,
       events: {
         click: (event) => this.onClose(event),
       },
