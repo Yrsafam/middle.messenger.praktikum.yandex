@@ -25,9 +25,9 @@ export class AuthController {
   public async signup(data: SignupData) {
     try {
       await this.api.signup(data);
-      await this.fetchUser();
-
       router.go(Routes.Settings);
+
+      await this.fetchUser();
     } catch (e) {
       if (isErrorValidation(e)) {
         window.alert(`Ошибка регистрации: ${e.reason}`);
@@ -38,9 +38,10 @@ export class AuthController {
   public async signin(data: SigninData) {
     try {
       await this.api.signin(data);
-      await this.fetchUser();
 
       router.go(Routes.Settings);
+
+      await this.fetchUser();
     } catch (e) {
       if (isErrorValidation(e)) {
         window.alert(`Ошибка авторизации: ${e.reason}`);
