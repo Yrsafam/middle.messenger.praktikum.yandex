@@ -28,6 +28,7 @@ import { NotFound } from "./pages/404";
 import { ServerError } from "./pages/500";
 import { authController } from "./controllers/AuthController.ts";
 import { Modal } from "./components/Modal";
+import { ForwardRef } from "./components/ForwardRef";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -45,6 +46,7 @@ registerComponent(AvatarProfile);
 registerComponent(InformationRow);
 registerComponent(Input);
 registerComponent(SidebarLayout);
+registerComponent(ForwardRef);
 registerComponent(Modal);
 
 document.addEventListener("DOMContentLoaded", async () => {
