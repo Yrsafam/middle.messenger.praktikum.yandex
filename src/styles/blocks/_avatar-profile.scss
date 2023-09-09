@@ -23,6 +23,13 @@
     left: -9999px;
   }
 
+  &__image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   &__description {
     position: absolute;
     left: 50%;
