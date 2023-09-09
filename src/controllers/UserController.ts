@@ -1,5 +1,5 @@
 import { isErrorValidation } from "../api/BaseAPI.ts";
-import { userApi, UserAPI } from "../api/UserAPI.ts";
+import { userApi, UserAPI, UserPassword } from "../api/UserAPI.ts";
 import { User } from "../shared-kernel/types.ts";
 import { Routes } from "../utils/renderDom.ts";
 import router from "../utils/Router.ts";
@@ -36,6 +36,18 @@ export class UserController {
         alert(`Произошла ошибка обновления аватара: ${e.reason}`);
       } else {
         alert("Произошла ошибка обновления аватара");
+      }
+    }
+  }
+
+  async changePassword(data: UserPassword) {
+    try {
+      await this.api.updatePassword(data);
+
+      router.go(Routes.Settings);
+    } catch (e) {
+      if (isErrorValidation(e)) {
+        alert(`Произошла ошибка обновления пароля: ${e.reason}`);
       }
     }
   }
