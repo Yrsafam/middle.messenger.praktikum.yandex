@@ -3,7 +3,7 @@
         <section class="profile__content">
             <div class="profile__header">
                 {{{AvatarProfile avatar=avatar canChange=false}}}
-                <h4 class="profile__title">Иван</h4>
+                <h4 class="profile__title">{{user.first_name}} {{user.second_name}}</h4>
             </div>
             <div class="profile__body">
                 {{{ InformationRow name="Почта" value=user.email}}}
