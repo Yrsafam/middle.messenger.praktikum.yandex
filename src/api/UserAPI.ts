@@ -1,7 +1,7 @@
 import { BaseAPI } from "./BaseAPI.ts";
 import { User } from "../shared-kernel/types.ts";
 
-type UserPassword = {
+export type UserPassword = {
   oldPassword: string;
   newPassword: string;
 };
