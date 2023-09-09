@@ -32,7 +32,7 @@ export class Store extends EventBus {
     try {
       set(this.state, path, newState);
 
-      this.emit(StoreEvents.Updated, this.getState);
+      this.emit(StoreEvents.Updated, this.getState());
     } catch (e) {
       /* На случай если подписки на событие не произошло */
     }
