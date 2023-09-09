@@ -29,6 +29,9 @@ class ProfileBlock extends Block<Props> {
   }
 }
 
-const withUser = withStore<StateUser>((state) => ({ user: { ...state.user } }));
+const withUser = withStore<StateUser>((state) => ({
+  user: { ...state.user },
+  avatar: state.user.avatar,
+}));
 
 export const Profile = withUser(ProfileBlock);
