@@ -20,6 +20,7 @@ const INITIAL_STATE: StoreState = {
     id: -1,
     second_name: "",
     first_name: "",
+    display_name: "",
   },
 };
 
