@@ -3,6 +3,8 @@ import { EventBus } from "./EventBus.ts";
 import { Block, BlockProps } from "./Block.ts";
 
 import { User } from "../shared-kernel/types.ts";
+import { Message } from "../controllers/MessagesController.ts";
+import { Chat } from "../api/ChatsAPI.ts";
 
 export enum StoreEvents {
   Updated = "updated",
@@ -10,6 +12,9 @@ export enum StoreEvents {
 
 export interface StoreState {
   user: User;
+  chats: Chat[];
+  messages: Record<number, Message[]>;
+  selectedChat?: number;
 }
 
 const INITIAL_STATE: StoreState = {
@@ -23,6 +28,8 @@ const INITIAL_STATE: StoreState = {
     first_name: "",
     display_name: "",
   },
+  messages: {},
+  chats: [],
 };
 
 export class Store extends EventBus {
