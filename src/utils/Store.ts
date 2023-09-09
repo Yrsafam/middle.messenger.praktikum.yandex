@@ -61,9 +61,7 @@ export function withStore<SP extends BlockProps>(
 
           previousState = stateProps;
 
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          this.setProps({ ...stateProps });
+          this.setProps({ ...stateProps } as any);
         });
       }
     };
