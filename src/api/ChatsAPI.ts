@@ -56,3 +56,5 @@ export class ChatsAPI extends BaseAPI {
 
   update = undefined;
 }
+
+export const chatsAPI = new ChatsAPI();
