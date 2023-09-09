@@ -3,6 +3,7 @@ import { store } from "../utils/Store.ts";
 import router from "../utils/Router.ts";
 import { Routes } from "../utils/renderDom.ts";
 import { getFormattedUser } from "../utils/services.ts";
+import { isErrorValidation } from "../api/BaseAPI.ts";
 
 export class AuthController {
   private api: AuthAPI;
@@ -28,7 +29,9 @@ export class AuthController {
 
       router.go(Routes.Settings);
     } catch (e) {
-      window.alert(`Ошибка регистрации: ${e}`);
+      if (isErrorValidation(e)) {
+        window.alert(`Ошибка регистрации: ${e.reason}`);
+      }
     }
   }
 
@@ -39,7 +42,9 @@ export class AuthController {
 
       router.go(Routes.Settings);
     } catch (e) {
-      window.alert(`Ошибка авторизации: ${e}`);
+      if (isErrorValidation(e)) {
+        window.alert(`Ошибка авторизации: ${e.reason}`);
+      }
     }
   }
 
