@@ -7,6 +7,9 @@ import {
   handleChangeField,
   handleValidateForm,
 } from "../../utils/handlersForm.ts";
+import { UserPassword } from "../../api/UserAPI.ts";
+import { userController } from "../../controllers/UserController.ts";
+import { withStore } from "../../utils/Store.ts";
 
 interface Props {
   errorsValidation: Record<string, string>;
@@ -14,9 +17,10 @@ interface Props {
   values: Record<string, string>;
   handlersChange: Record<string, (event: Event) => void>;
   handlersBlur: Record<string, (event: Event) => void>;
+  avatar: string;
 }
 
-export class ChangePassword extends Block<Props> {
+export class ChangePasswordBlock extends Block<Props> {
   static componentName = "ChangePassword";
 
   private validator: Validator;
@@ -24,7 +28,6 @@ export class ChangePassword extends Block<Props> {
   private rulesValidation = [
     ValidatorRules.Password,
     ValidatorRules.NewPassword,
-    ValidatorRules.RepeatPassword,
   ];
 
   constructor() {
@@ -32,7 +35,6 @@ export class ChangePassword extends Block<Props> {
       values: {
         [ValidatorRules.Password]: "",
         [ValidatorRules.NewPassword]: "",
-        [ValidatorRules.RepeatPassword]: "",
       },
       handlersChange: {
         [ValidatorRules.Password]: (event: Event) => {
@@ -40,9 +42,6 @@ export class ChangePassword extends Block<Props> {
         },
         [ValidatorRules.NewPassword]: (event: Event) => {
           this.onChangeNewPassword(event);
-        },
-        [ValidatorRules.RepeatPassword]: (event: Event) => {
-          this.onChangeRepeatPassword(event);
         },
       },
       handlersBlur: {
@@ -52,18 +51,15 @@ export class ChangePassword extends Block<Props> {
         [ValidatorRules.NewPassword]: (event: Event) => {
           this.onBlurNewPassword(event);
         },
-        [ValidatorRules.RepeatPassword]: (event: Event) => {
-          this.onBlurRepeatPassword(event);
-        },
       },
       errorsValidation: {
         [ValidatorRules.Password]: "",
         [ValidatorRules.NewPassword]: "",
-        [ValidatorRules.RepeatPassword]: "",
       },
       onClick: (event) => {
         this.onSubmit(event);
       },
+      avatar: "",
     });
 
     this.validator = new Validator(this.refs.form.element!);
@@ -90,10 +86,6 @@ export class ChangePassword extends Block<Props> {
     this.onBlur(event, ValidatorRules.NewPassword);
   }
 
-  private onBlurRepeatPassword(event: Event) {
-    this.onBlur(event, ValidatorRules.RepeatPassword);
-  }
-
   private onChangePassword(event: Event) {
     this.onChange(event, ValidatorRules.Password);
   }
@@ -102,17 +94,19 @@ export class ChangePassword extends Block<Props> {
     this.onChange(event, ValidatorRules.NewPassword);
   }
 
-  private onChangeRepeatPassword(event: Event) {
-    this.onChange(event, ValidatorRules.RepeatPassword);
-  }
-
-  private onSubmit(event: Event) {
+  private async onSubmit(event: Event) {
     event.preventDefault();
     const isValid = this.validateForm();
 
     if (isValid) {
       const parseForm = new ParseForm(this.refs.form.element!);
-      parseForm.printValues();
+      const dataForm = parseForm.getData();
+      const data: UserPassword = {
+        newPassword: dataForm.new_password as string,
+        oldPassword: dataForm.password as string,
+      };
+
+      await userController.changePassword(data);
     }
   }
 
@@ -120,3 +114,7 @@ export class ChangePassword extends Block<Props> {
     return this.compile(template, this.props);
   }
 }
+
+const withAvatar = withStore((state) => ({ avatar: state.user.avatar }));
+
+export const ChangePassword = withAvatar(ChangePasswordBlock);

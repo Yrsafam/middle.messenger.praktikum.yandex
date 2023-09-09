@@ -1,8 +1,8 @@
 <main class="profile-edit">
-    {{# SidebarLayout className="profile__sidebar" href="profile.html"}}
+    {{# SidebarLayout className="profile__sidebar" href="/settings"}}
         <section class="profile-edit__content">
             <div class="profile-edit__header">
-                {{{ AvatarProfile }}}
+                {{{ AvatarProfile canChange=false avatar=avatar }}}
             </div>
             {{# ForwardRefForm ref="form" className="profile-edit__body"}}
                 {{{ Input
@@ -26,17 +26,6 @@
                         value=values.new_password
                         onChange=handlersChange.new_password
                         onBlur=handlersBlur.new_password
-                }}}
-                {{{ Input
-                        name="repeat_password"
-                        ref="repeat_password"
-                        label="Повторите новый пароль"
-                        type="password"
-                        className="profile-edit__input"
-                        errorText=errorsValidation.repeat_password
-                        value=values.repeat_password
-                        onChange=handlersChange.repeat_password
-                        onBlur=handlersBlur.repeat_password
                 }}}
                 {{{ Button title="Сохранить" className="profile-edit__button" type="button" onClick=onClick}}}
             {{/ ForwardRefForm}}
