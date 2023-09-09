@@ -2,6 +2,7 @@ import { authApi, AuthAPI, SigninData, SignupData } from "../api/AuthAPI.ts";
 import { store } from "../utils/Store.ts";
 import router from "../utils/Router.ts";
 import { Routes } from "../utils/renderDom.ts";
+import { getFormattedUser } from "../utils/services.ts";
 
 export class AuthController {
   private api: AuthAPI;
@@ -13,7 +14,7 @@ export class AuthController {
   private async fetchUser() {
     const response = await this.api.read();
 
-    store.set("user", response);
+    store.set("user", getFormattedUser(response));
   }
 
   public async checkSignin() {
