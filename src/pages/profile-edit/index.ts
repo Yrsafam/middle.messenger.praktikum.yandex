@@ -8,10 +8,14 @@ import {
 } from "../../utils/handlersForm.ts";
 import { ParseForm } from "../../utils/ParseForm.ts";
 import { PropsForm } from "../../shared-kernel/types.ts";
+import { withStore } from "../../utils/Store.ts";
+import { AuthUser } from "../../api/AuthAPI.ts";
 
-interface Props extends PropsForm {}
+interface Props extends Omit<PropsForm, "values"> {
+  values: Omit<AuthUser, "avatar" | "id">;
+}
 
-export class ProfileEdit extends Block<Props> {
+class ProfileEditBlock extends Block<Props> {
   static componentName = "ProfileEdit";
 
   private validator: Validator;
@@ -154,6 +158,8 @@ export class ProfileEdit extends Block<Props> {
 
   private onSubmit(event: Event) {
     event.preventDefault();
+    this.validator = new Validator(this.refs.form.element!);
+
     const isValid = this.validateForm();
 
     if (isValid) {
@@ -166,3 +172,16 @@ export class ProfileEdit extends Block<Props> {
     return this.compile(template, this.props);
   }
 }
+
+const withValues = withStore((state) => ({
+  values: {
+    first_name: state.user.first_name,
+    second_name: state.user.second_name,
+    display_name: state.user.display_name,
+    phone: state.user.phone,
+    login: state.user.login,
+    email: state.user.email,
+  },
+}));
+
+export const ProfileEdit = withValues(ProfileEditBlock);
