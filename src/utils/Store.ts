@@ -1,7 +1,8 @@
 import { set } from "./set.ts";
 import { EventBus } from "./EventBus.ts";
 import { Block, BlockProps } from "./Block.ts";
-import { User } from "../api/AuthAPI.ts";
+
+import { User } from "../shared-kernel/types.ts";
 
 export enum StoreEvents {
   Updated = "updated",

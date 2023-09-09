@@ -1,4 +1,5 @@
 import { BaseAPI } from "./BaseAPI.ts";
+import { User } from "../shared-kernel/types.ts";
 
 export type SignupData = {
   first_name: string;
@@ -16,17 +17,6 @@ export type SignupResponse = {
 export type SigninData = {
   login: string;
   password: string;
-};
-
-export type User = {
-  id: number;
-  first_name: string;
-  second_name: string;
-  login: string;
-  email: string;
-  phone: string;
-  avatar: string;
-  display_name: string;
 };
 
 export class AuthAPI extends BaseAPI {

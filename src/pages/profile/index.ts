@@ -2,7 +2,8 @@ import { Block } from "../../utils/Block.ts";
 import template from "./template.hbs";
 import { authController } from "../../controllers/AuthController.ts";
 import { withStore } from "../../utils/Store.ts";
-import { User } from "../../api/AuthAPI.ts";
+
+import { User } from "../../shared-kernel/types.ts";
 
 type StateUser = {
   user?: User;

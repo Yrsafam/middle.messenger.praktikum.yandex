@@ -7,9 +7,8 @@ import {
   handleValidateForm,
 } from "../../utils/handlersForm.ts";
 import { ParseForm } from "../../utils/ParseForm.ts";
-import { PropsForm } from "../../shared-kernel/types.ts";
+import { PropsForm, User } from "../../shared-kernel/types.ts";
 import { withStore } from "../../utils/Store.ts";
-import { User } from "../../api/AuthAPI.ts";
 
 interface Props extends Omit<PropsForm, "values"> {
   values: Omit<User, "avatar" | "id">;
