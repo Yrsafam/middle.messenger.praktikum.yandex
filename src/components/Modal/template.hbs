@@ -1,17 +1,18 @@
-<div class="modal-add">
-    <div class="modal-add__overlay">
-        <h3>{{title}}</h3>
+<div class="modal {{#if visible}}modal--visible{{/if}}">
+    {{#ForwardRef className="modal__overlay" ref="overlay"}}
+        {{#ForwardRefForm ref="form" className="modal__form"}}
+            <h3 class="modal__title">{{title}}</h3>
+            {{{ Input
+                    name="name"
+                    ref="name"
+                    label=label
+                    type="text"
+                    className="modal__input"
+                    value=value
+                    onChange=onChange
+            }}}
 
-        {{{ Input
-                name="name"
-                ref="name"
-                label=label
-                type="text"
-                className="modal-add__input"
-                value=value
-                onChange=onChange
-        }}}
-
-        {{{ Button title=titleButton type="submit" className="modal-add__submit" onClick=onClick }}}
-    </div>
+            {{{ Button title=titleButton type="button" className="modal__submit" onClick=onClick }}}
+        {{/ForwardRefForm}}
+    {{/ForwardRef}}
 </div>

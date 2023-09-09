@@ -1,4 +1,4 @@
-import { Block } from "../../utils/Block.ts";
+import { Block, BlockEvents } from "../../utils/Block.ts";
 import template from "./template.hbs";
 
 interface Props {
@@ -8,12 +8,29 @@ interface Props {
   value: string;
   onClick(): void;
   label: string;
+  onClose(): void;
+  events?: BlockEvents;
 }
 
 export class Modal extends Block<Props> {
-  static componentName = "ModalAdd";
+  static componentName = "Modal";
 
-  protected render(): DocumentFragment | null {
+  constructor(props: Props) {
+    super({
+      ...props,
+      events: {
+        click: (event) => this.onClose(event),
+      },
+    });
+  }
+
+  private onClose(event: Event) {
+    if (event.target === this.refs.overlay.element) {
+      this.props.onClose();
+    }
+  }
+
+  protected render() {
     return this.compile(template, this.props);
   }
 }
