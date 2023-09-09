@@ -33,7 +33,9 @@ export class UserController {
       store.set("user", getFormattedUser(response));
     } catch (e) {
       if (isErrorValidation(e)) {
-        alert(`Произошла ошибка обновления аватара: ${e}`);
+        alert(`Произошла ошибка обновления аватара: ${e.reason}`);
+      } else {
+        alert("Произошла ошибка обновления аватара");
       }
     }
   }
