@@ -23,6 +23,7 @@ interface Props {
   value?: string;
   onChange?(event: Event): void;
   onAddChat?(): void;
+  onDeleteChat?(): void;
   onSelectChat(id: number): void;
   onAddUserChat(): void;
   onDeleteUserChat(): void;
@@ -47,6 +48,7 @@ class MainBlock extends Block<Props> {
       onHideModalDeleteUserChat: () => this.onHideModalDeleteUserChat(),
       onAddUserChat: () => this.onAddUserChat(),
       onDeleteUserChat: () => this.onDeleteUserChat(),
+      onDeleteChat: () => this.onDeleteChat(),
     });
   }
 
@@ -95,6 +97,13 @@ class MainBlock extends Block<Props> {
     this.onHideModalAddChat();
   }
 
+  private async onDeleteChat() {
+    if (this.props.selectedChatId) {
+      await chatsController.delete(this.props.selectedChatId);
+      alert("Чат успешно удалён!");
+    }
+  }
+
   private onSelectChat(id: number) {
     chatsController.selectChat(id);
   }
@@ -110,6 +119,7 @@ class MainBlock extends Block<Props> {
           this.props.selectedChatId,
           searchingUser[0].id,
         );
+        alert("Пользователь успешно добавлен!");
         this.onHideModalAddUserChat();
       } else {
         alert("Извините, пользователь не найден");

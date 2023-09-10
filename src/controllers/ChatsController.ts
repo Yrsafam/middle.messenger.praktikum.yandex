@@ -33,6 +33,17 @@ class ChatsController {
     this.fetchChats();
   }
 
+  public async delete(id: number) {
+    try {
+      await this.api.delete(id);
+
+      store.set("selectedChat", undefined);
+      this.fetchChats();
+    } catch (e) {
+      alert("Извините, произошла ошибка при удалении чата");
+    }
+  }
+
   public async addUserToChat(id: number, userId: number) {
     try {
       await this.api.addUser({ users: [userId], chatId: id });

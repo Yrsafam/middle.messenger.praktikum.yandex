@@ -4,6 +4,7 @@ import template from "./template.hbs";
 interface Props {
   onClickAddUserChat(): void;
   onClickDeleteUserChat(): void;
+  onClickDeleteChat(): void;
 }
 
 export class ContextMenu extends Block<Props> {

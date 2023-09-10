@@ -12,6 +12,7 @@ interface Props {
   messages: MessageView[];
   selectedChatId: number | undefined;
   onSubmitMessage(): void;
+  onDeleteChat(): void;
 }
 
 export class Messages extends Block<Props> {

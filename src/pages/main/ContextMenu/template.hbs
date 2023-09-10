@@ -7,8 +7,12 @@
             Добавить пользователя
         {{/ForwardRef}}
         {{#ForwardRef onClick=onClickDeleteUserChat className="context-menu__droplist-item" ref="delete"}}
-            <img src="/images/plus.svg" alt="Иконка добавления" class="context-menu__icon context-menu__icon_rotate">
+            <img src="/images/plus.svg" alt="Иконка удаления" class="context-menu__icon context-menu__icon_rotate">
             Удалить пользователя
+        {{/ForwardRef}}
+        {{#ForwardRef onClick=onClickDeleteChat className="context-menu__droplist-item" ref="deleteChat"}}
+            <img src="/images/plus.svg" alt="Иконка удаления" class="context-menu__icon context-menu__icon_rotate">
+            Удалить чат
         {{/ForwardRef}}
     </span>
 </button>
