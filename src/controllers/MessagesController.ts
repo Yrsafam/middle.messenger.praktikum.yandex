@@ -1,5 +1,6 @@
 import WSTransport, { WSTransportEvents } from "../utils/WSTransport";
 import { store } from "../utils/Store.ts";
+import { getFormattedMessages } from "../utils/services.ts";
 
 interface File {
   id: number;
@@ -82,9 +83,10 @@ class MessagesController {
 
     const currentMessages = (store.getState().messages || {})[id] || [];
 
-    messagesToAdd = [...currentMessages, ...messagesToAdd];
-
-    store.set(`messages.${id}`, messagesToAdd);
+    store.set(`messages.${id}`, [
+      ...currentMessages,
+      ...getFormattedMessages(messagesToAdd, store.getState().user.id),
+    ]);
   }
 
   private onClose(id: number) {

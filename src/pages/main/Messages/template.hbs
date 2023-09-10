@@ -9,11 +9,17 @@
         </div>
         <div class="chat-messages__body">
             <ul class="chat-messages__list">
-                {{#each messages}}
+                {{#if messages.length}}
+                    {{#each messages}}
+                        <li>
+                            {{{Message isMe=this.isMe photo=this.photo message=this.message time=this.time}}}
+                        </li>
+                    {{/each}}
+                {{else}}
                     <li>
-                        {{{Message isMe=this.isMe photo=this.photo message=this.message time=this.time}}}
+                        Сообщений нет
                     </li>
-                {{/each}}
+                {{/if}}
             </ul>
         </div>
         {{# ForwardRefForm className="chat-messages__footer" ref="form"}}

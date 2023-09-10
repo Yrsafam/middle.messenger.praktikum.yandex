@@ -3,10 +3,11 @@ import template from "./template.hbs";
 import { withStore } from "../../utils/Store.ts";
 import { chatsController } from "../../controllers/ChatsController.ts";
 import { User } from "../../shared-kernel/types.ts";
-import { ChatView } from "../../utils/services.ts";
+import { ChatView, MessageView } from "../../utils/services.ts";
 
 interface Props {
   chats: ChatView[];
+  messages: MessageView[];
   user: User;
   selectedChatId: number | undefined;
   visibleChatAdd?: boolean;
@@ -72,10 +73,24 @@ class MainBlock extends Block<Props> {
   }
 }
 
-const withChats = withStore((state) => ({
-  chats: state.chats,
-  user: state.user,
-  selectedChatId: state.selectedChat,
-}));
+const withChats = withStore((state) => {
+  const selectedChatId = state.selectedChat;
+
+  if (!selectedChatId) {
+    return {
+      chats: state.chats,
+      user: state.user,
+      selectedChatId: state.selectedChat,
+      messages: [],
+    };
+  }
+
+  return {
+    chats: state.chats,
+    user: state.user,
+    selectedChatId: state.selectedChat,
+    messages: state.messages[selectedChatId],
+  };
+});
 
 export const Main = withChats(MainBlock);

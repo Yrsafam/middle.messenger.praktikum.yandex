@@ -1,14 +1,14 @@
 import { Block } from "../../../utils/Block.ts";
-import { messages } from "../../../utils/mocks.ts";
 import template from "./template.hbs";
 import { handleChangeField } from "../../../utils/handlersForm.ts";
 import { Validator, ValidatorRules } from "../../../utils/Validator.ts";
+import { MessageView } from "../../../utils/services.ts";
 
 interface Props {
   value: string;
   onChange(event: Event): void;
   disabledSubmit: boolean;
-  messages: typeof messages;
+  messages: MessageView[];
   selectedChatId: number | undefined;
 }
 
@@ -18,7 +18,6 @@ export class Messages extends Block<Props> {
   constructor(props: Props) {
     super({
       ...props,
-      messages,
       disabledSubmit: true,
       value: "",
       onChange: (event) => {
