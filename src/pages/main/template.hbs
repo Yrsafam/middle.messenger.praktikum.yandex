@@ -1,6 +1,13 @@
 <main class="main">
-    {{{Sidebar chats=chats onClickAddChat=onShowModalAddChat }}}
-    {{{Messages}}}
+    {{{Sidebar
+            chats=chats
+            onClickAddChat=onShowModalAddChat
+            onSelectChat=onSelectChat
+            selectedChatId=selectedChatId
+    }}}
+    {{{Messages
+            selectedChatId=selectedChatId
+    }}}
 
     {{{Modal
             visible=visibleChatAdd

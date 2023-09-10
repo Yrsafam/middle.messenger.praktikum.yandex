@@ -11,6 +11,7 @@ export function getFormattedUser(user: User): User {
 
 export function getFormattedChats(chats: Chat[], userId: number) {
   return chats.map((chat) => ({
+    id: chat.id,
     name: chat.title,
     message: chat.last_message?.content ?? "",
     lastTime: chat.last_message?.time ?? "",

@@ -21,7 +21,16 @@
     <ul class="sidebar-chats__list">
         {{#if chats.length}}
             {{#each chats}}
-                {{{CardChat name=name message=message lastTime=lastTime count=count isMe=isMe }}}
+                {{{CardChat
+                        id=id
+                        selectedChatId=../selectedChatId
+                        name=name
+                        message=message
+                        lastTime=lastTime
+                        count=count
+                        isMe=isMe
+                        onSelectChat=../onSelectChat
+                }}}
             {{/each}}
         {{else}}
             <span class="sidebar-chats__empty-list">Список чатов пуст</span>

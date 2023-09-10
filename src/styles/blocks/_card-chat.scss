@@ -5,16 +5,7 @@
 .card-chat {
   $border: 1px solid $border-light-color;
 
-  list-style-type: none;
-  display: flex;
-  gap: 0 10px;
-  border-top: $border;
-  border-bottom: $border;
-  padding: 12px 0;
-  cursor: pointer;
-  position: relative;
-
-  &::before {
+  @mixin filled-card {
     $padding-outer: 20px;
     $padding-inner: 4px;
 
@@ -27,6 +18,20 @@
     top: math.div($padding-inner, 2);
     z-index: -1;
     transition: background-color $transition-animation;
+  }
+
+
+  list-style-type: none;
+  display: flex;
+  gap: 0 10px;
+  border-top: $border;
+  border-bottom: $border;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    @include filled-card
   }
 
   &:hover {
@@ -106,5 +111,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &--active {
+    &:before {
+      @include filled-card;
+      background-color: darken(#E4EDFD, 5%);
+    }
   }
 }

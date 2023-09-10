@@ -8,12 +8,14 @@ import { User } from "../../shared-kernel/types.ts";
 interface Props {
   chats: Chat[];
   user: User;
+  selectedChatId: number;
   visibleChatAdd?: boolean;
   onShowModalAddChat?(): void;
   onHideModalAddChat?(): void;
   value?: string;
   onChange?(event: Event): void;
   onAddChat?(): void;
+  onSelectChat(id: number): void;
 }
 
 class MainBlock extends Block<Props> {
@@ -28,6 +30,7 @@ class MainBlock extends Block<Props> {
       onHideModalAddChat: () => this.onHideModalAddChat(),
       onChange: (event) => this.onChange(event),
       onAddChat: () => this.onAddChat(),
+      onSelectChat: (id) => this.onSelectChat(id),
     });
   }
 
@@ -60,6 +63,10 @@ class MainBlock extends Block<Props> {
     this.onHideModalAddChat();
   }
 
+  private onSelectChat(id: number) {
+    chatsController.selectChat(id);
+  }
+
   render() {
     return this.compile(template, this.props);
   }
@@ -68,6 +75,7 @@ class MainBlock extends Block<Props> {
 const withChats = withStore((state) => ({
   chats: state.chats,
   user: state.user,
+  selectedChatId: state.selectedChat,
 }));
 
 export const Main = withChats(MainBlock);
