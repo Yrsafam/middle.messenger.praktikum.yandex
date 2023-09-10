@@ -38,6 +38,13 @@
 
   &__body {
     padding: 48px 0 30px;
+
+    &_empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
   }
 
   &__date-separator {

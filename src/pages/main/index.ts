@@ -8,7 +8,7 @@ import { User } from "../../shared-kernel/types.ts";
 interface Props {
   chats: Chat[];
   user: User;
-  selectedChatId: number;
+  selectedChatId: number | undefined;
   visibleChatAdd?: boolean;
   onShowModalAddChat?(): void;
   onHideModalAddChat?(): void;

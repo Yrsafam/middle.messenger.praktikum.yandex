@@ -9,12 +9,11 @@ interface Props {
   onChange(event: Event): void;
   disabledSubmit: boolean;
   messages: typeof messages;
+  selectedChatId: number | undefined;
 }
 
 export class Messages extends Block<Props> {
   static componentName = "Messages";
-
-  private validator: Validator;
 
   constructor(props: Props) {
     super({
@@ -26,19 +25,21 @@ export class Messages extends Block<Props> {
         this.onChange(event, ValidatorRules.Message);
       },
     });
-
-    this.validator = new Validator(this.refs.form.element!);
   }
 
   private onChange(event: Event, field: string) {
-    handleChangeField(event, field, this.refs);
+    if (this.props.selectedChatId) {
+      handleChangeField(event, field, this.refs);
 
-    const resultValidation = this.validator.checkField(field);
+      const validator = new Validator(this.refs.form.element!);
 
-    this.refs.submit.setProps({
-      ...this.refs.submit.props,
-      disabled: !resultValidation.result,
-    });
+      const resultValidation = validator.checkField(field);
+
+      this.refs.submit.setProps({
+        ...this.refs.submit.props,
+        disabled: !resultValidation.result,
+      });
+    }
   }
 
   protected render() {
