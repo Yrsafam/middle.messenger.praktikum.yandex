@@ -4,6 +4,7 @@
 
 .card-chat {
   $border: 1px solid $border-light-color;
+  $size-avatar: 47px;
 
   @mixin filled-card {
     $padding-outer: 20px;
@@ -43,13 +44,18 @@
   }
 
   &__avatar-circle {
-    $size: 47px;
-
-    width: $size;
-    min-width: $size;
-    height: $size;
+    width: $size-avatar;
+    min-width: $size-avatar;
+    height: $size-avatar;
     border-radius: 50%;
     background-color: $background-light-color;
+  }
+
+  &__avatar {
+    width: $size-avatar;
+    height: $size-avatar;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   &__content {

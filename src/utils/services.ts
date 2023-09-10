@@ -20,6 +20,7 @@ export type ChatView = {
   message: string;
   lastTime: string;
   count: number;
+  avatar: string;
   isMe: boolean;
 };
 
@@ -33,6 +34,7 @@ export function getFormattedChats(chats: Chat[], userId: number): ChatView[] {
       : "",
     count: chat.unread_count,
     isMe: chat.last_message?.user.id === userId,
+    avatar: chat.avatar?.length ? HTTPTransport.RESOURCE_URL + chat.avatar : "",
   }));
 }
 
