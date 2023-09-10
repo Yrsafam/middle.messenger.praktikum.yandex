@@ -8,6 +8,8 @@
     {{{Messages
             messages=messages
             selectedChatId=selectedChatId
+            onShowModalAddUserChat=onShowModalAddUserChat
+            onShowModalDeleteUserChat=onShowModalDeleteUserChat
     }}}
 
     {{{Modal
@@ -16,8 +18,28 @@
             title="Добавить чат"
             titleButton="Добавить"
             onClose=onHideModalAddChat
-            value=valueField
+            value=value
             onChange=onChange
             onClick=onAddChat
+    }}}
+    {{{Modal
+            visible=visibleAddUserChat
+            label="Логин"
+            title="Добавить пользователя"
+            titleButton="Добавить"
+            onClose=onHideModalAddUserChat
+            value=value
+            onChange=onChange
+            onClick=onAddUserChat
+    }}}
+    {{{Modal
+            visible=visibleDeleteUserChat
+            label="Логин"
+            title="Удалить пользователя"
+            titleButton="Удалить"
+            onClose=onHideModalDeleteUserChat
+            value=value
+            onChange=onChange
+            onClick=onDeleteUserChat
     }}}
 </main>

@@ -4,6 +4,7 @@ import { withStore } from "../../utils/Store.ts";
 import { chatsController } from "../../controllers/ChatsController.ts";
 import { User } from "../../shared-kernel/types.ts";
 import { ChatView, MessageView } from "../../utils/services.ts";
+import { userController } from "../../controllers/UserController.ts";
 
 interface Props {
   chats: ChatView[];
@@ -11,12 +12,20 @@ interface Props {
   user: User;
   selectedChatId: number | undefined;
   visibleChatAdd?: boolean;
+  visibleAddUserChat?: boolean;
+  visibleDeleteUserChat?: boolean;
   onShowModalAddChat?(): void;
   onHideModalAddChat?(): void;
+  onShowModalAddUserChat?(): void;
+  onHideModalAddUserChat?(): void;
+  onShowModalDeleteUserChat?(): void;
+  onHideModalDeleteUserChat?(): void;
   value?: string;
   onChange?(event: Event): void;
   onAddChat?(): void;
   onSelectChat(id: number): void;
+  onAddUserChat(): void;
+  onDeleteUserChat(): void;
 }
 
 class MainBlock extends Block<Props> {
@@ -32,6 +41,11 @@ class MainBlock extends Block<Props> {
       onChange: (event) => this.onChange(event),
       onAddChat: () => this.onAddChat(),
       onSelectChat: (id) => this.onSelectChat(id),
+      onShowModalAddUserChat: () => this.onShowModalAddUserChat(),
+      onHideModalAddUserChat: () => this.onHideModalAddUserChat(),
+      onShowModalDeleteUserChat: () => this.onShowModalDeleteUserChat(),
+      onHideModalDeleteUserChat: () => this.onHideModalDeleteUserChat(),
+      onAddUserChat: () => this.onAddUserChat(),
     });
   }
 
@@ -45,6 +59,22 @@ class MainBlock extends Block<Props> {
 
   private onHideModalAddChat() {
     this.setProps({ ...this.props, visibleChatAdd: false, value: "" });
+  }
+
+  private onShowModalAddUserChat() {
+    this.setProps({ ...this.props, visibleAddUserChat: true });
+  }
+
+  private onHideModalAddUserChat() {
+    this.setProps({ ...this.props, visibleAddUserChat: false, value: "" });
+  }
+
+  private onShowModalDeleteUserChat() {
+    this.setProps({ ...this.props, visibleDeleteUserChat: true });
+  }
+
+  private onHideModalDeleteUserChat() {
+    this.setProps({ ...this.props, visibleDeleteUserChat: false, value: "" });
   }
 
   private clearValue() {
@@ -66,6 +96,24 @@ class MainBlock extends Block<Props> {
 
   private onSelectChat(id: number) {
     chatsController.selectChat(id);
+  }
+
+  private async onAddUserChat() {
+    if (this.props.selectedChatId) {
+      const searchingUser = await userController.getUserByLogin(
+        this.props.value!,
+      );
+
+      if (searchingUser?.length) {
+        await chatsController.addUserToChat(
+          this.props.selectedChatId,
+          searchingUser[0].id,
+        );
+        this.onHideModalAddUserChat();
+      } else {
+        alert("Извините, пользователь не найден");
+      }
+    }
   }
 
   render() {

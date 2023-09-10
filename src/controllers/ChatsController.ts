@@ -33,8 +33,12 @@ class ChatsController {
     this.fetchChats();
   }
 
-  public addUserToChat(id: number, userId: number) {
-    this.api.addUser({ users: [userId], chatId: id });
+  public async addUserToChat(id: number, userId: number) {
+    try {
+      await this.api.addUser({ users: [userId], chatId: id });
+    } catch (e) {
+      alert("Произошла ошибка добавления пользователя");
+    }
   }
 
   public deleteUser(id: number, userId: number) {

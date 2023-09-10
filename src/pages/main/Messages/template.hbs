@@ -1,11 +1,11 @@
 <div class="chat-messages">
     {{#if selectedChatId}}
         <div class="chat-messages__head">
-            <div class="chat-messages__head-left">
-                <div class="chat-messages__avatar"></div>
-                <p class="chat-messages__name">Вадим</p>
-            </div>
-            {{{ContextMenu}}}
+            <div class="chat-messages__head-left"></div>
+            {{{ContextMenu
+                    onClickAddUserChat=onShowModalAddUserChat
+                    onClickDeleteUserChat=onShowModalDeleteUserChat
+            }}}
         </div>
         <div class="chat-messages__body">
             <ul class="chat-messages__list">
