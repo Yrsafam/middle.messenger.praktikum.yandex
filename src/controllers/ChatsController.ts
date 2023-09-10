@@ -41,8 +41,12 @@ class ChatsController {
     }
   }
 
-  public deleteUser(id: number, userId: number) {
-    this.api.deleteUser({ users: [userId], chatId: id });
+  public async deleteUser(id: number, userId: number) {
+    try {
+      await this.api.deleteUser({ users: [userId], chatId: id });
+    } catch (e) {
+      alert("Произошла ошибка удаления пользователя");
+    }
   }
 
   public selectChat(id: number) {

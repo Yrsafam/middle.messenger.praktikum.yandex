@@ -46,6 +46,7 @@ class MainBlock extends Block<Props> {
       onShowModalDeleteUserChat: () => this.onShowModalDeleteUserChat(),
       onHideModalDeleteUserChat: () => this.onHideModalDeleteUserChat(),
       onAddUserChat: () => this.onAddUserChat(),
+      onDeleteUserChat: () => this.onDeleteUserChat(),
     });
   }
 
@@ -106,6 +107,24 @@ class MainBlock extends Block<Props> {
 
       if (searchingUser?.length) {
         await chatsController.addUserToChat(
+          this.props.selectedChatId,
+          searchingUser[0].id,
+        );
+        this.onHideModalAddUserChat();
+      } else {
+        alert("Извините, пользователь не найден");
+      }
+    }
+  }
+
+  private async onDeleteUserChat() {
+    if (this.props.selectedChatId) {
+      const searchingUser = await userController.getUserByLogin(
+        this.props.value!,
+      );
+
+      if (searchingUser?.length) {
+        await chatsController.deleteUser(
           this.props.selectedChatId,
           searchingUser[0].id,
         );
