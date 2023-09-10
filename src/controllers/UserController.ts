@@ -53,7 +53,7 @@ export class UserController {
   }
 
   async getUserByLogin(login: string) {
-    let user: User | undefined;
+    let user: User[] | undefined;
 
     try {
       user = await this.api.searchByLogin(login);

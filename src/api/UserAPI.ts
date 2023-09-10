@@ -28,7 +28,7 @@ export class UserAPI extends BaseAPI {
   }
 
   searchByLogin(login: string) {
-    return this.httpClient.post<User>("/search", { data: { login } });
+    return this.httpClient.post<User[]>("/search", { data: { login } });
   }
 
   create = undefined;
