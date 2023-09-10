@@ -114,9 +114,11 @@
   }
 
   &--active {
-    &:before {
+    &::before {
       @include filled-card;
-      background-color: darken(#E4EDFD, 5%);
+
+      background-color: #E4EDFD;
+
     }
   }
 }
