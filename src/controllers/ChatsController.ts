@@ -1,6 +1,7 @@
 import { chatsAPI, ChatsAPI } from "../api/ChatsAPI.ts";
 import { messagesController } from "./MessagesController.ts";
 import { store } from "../utils/Store.ts";
+import { getFormattedChats } from "../utils/services.ts";
 
 class ChatsController {
   private api: ChatsAPI;
@@ -23,7 +24,7 @@ class ChatsController {
       await messagesController.connect(chat.id, token);
     }
 
-    store.set("chats", chats);
+    store.set("chats", getFormattedChats(chats, store.getState().user.id));
   }
 
   public async create(title: string) {
