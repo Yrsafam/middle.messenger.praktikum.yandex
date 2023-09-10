@@ -66,13 +66,18 @@ export default class WSTransport extends EventBus {
     });
 
     socket.addEventListener("message", (message) => {
-      const data = JSON.parse(message.data);
+      try {
+        const data = JSON.parse(message.data);
 
-      if (data.type && data.type === "pong") {
-        return;
+        if (data.type && data.type === "pong") {
+          return;
+        }
+
+        this.emit(WSTransportEvents.Message, data);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(`Ошибка JSON.parse: ${e}`);
       }
-
-      this.emit(WSTransportEvents.Message, data);
     });
   }
 }
