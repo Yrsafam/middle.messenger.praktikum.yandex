@@ -138,6 +138,7 @@ class MainBlock extends Block<Props> {
           this.props.selectedChatId,
           searchingUser[0].id,
         );
+        alert("Пользователь успешно удалён!");
         this.onHideModalAddUserChat();
       } else {
         alert("Извините, пользователь не найден");
