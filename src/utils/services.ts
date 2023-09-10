@@ -9,7 +9,16 @@ export function getFormattedUser(user: User): User {
   };
 }
 
-export function getFormattedChats(chats: Chat[], userId: number) {
+export type ChatView = {
+  id: number;
+  name: string;
+  message: string;
+  lastTime: string;
+  count: number;
+  isMe: boolean;
+};
+
+export function getFormattedChats(chats: Chat[], userId: number): ChatView[] {
   return chats.map((chat) => ({
     id: chat.id,
     name: chat.title,

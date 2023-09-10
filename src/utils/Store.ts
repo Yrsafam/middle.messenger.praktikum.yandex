@@ -4,7 +4,7 @@ import { Block, BlockProps } from "./Block.ts";
 
 import { User } from "../shared-kernel/types.ts";
 import { Message } from "../controllers/MessagesController.ts";
-import { Chat } from "../api/ChatsAPI.ts";
+import { ChatView } from "./services.ts";
 
 export enum StoreEvents {
   Updated = "updated",
@@ -12,7 +12,7 @@ export enum StoreEvents {
 
 export interface StoreState {
   user: User;
-  chats: Chat[];
+  chats: ChatView[];
   messages: Record<number, Message[]>;
   selectedChat?: number;
 }

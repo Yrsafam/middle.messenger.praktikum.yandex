@@ -1,12 +1,12 @@
 import { Block } from "../../utils/Block.ts";
 import template from "./template.hbs";
 import { withStore } from "../../utils/Store.ts";
-import { Chat } from "../../api/ChatsAPI.ts";
 import { chatsController } from "../../controllers/ChatsController.ts";
 import { User } from "../../shared-kernel/types.ts";
+import { ChatView } from "../../utils/services.ts";
 
 interface Props {
-  chats: Chat[];
+  chats: ChatView[];
   user: User;
   selectedChatId: number | undefined;
   visibleChatAdd?: boolean;
