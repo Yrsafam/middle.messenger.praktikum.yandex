@@ -11,6 +11,7 @@ interface Props {
   count: number;
   isActive: boolean;
   onSelectChat(id: number): void;
+  avatar: string;
   events?: BlockEvents;
 }
 
@@ -26,9 +27,11 @@ export class CardChat extends Block<Props> {
     isMe,
     message,
     lastTime,
+    avatar,
   }: Props) {
     super({
       id,
+      avatar,
       selectedChatId,
       name,
       onSelectChat,
