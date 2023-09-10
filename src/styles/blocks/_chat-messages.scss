@@ -38,6 +38,8 @@
 
   &__body {
     padding: 48px 0 30px;
+    overflow-y: auto;
+    max-height: calc(100% - 105px);
 
     &_empty {
       display: flex;
