@@ -51,6 +51,18 @@ export class UserController {
       }
     }
   }
+
+  async getUserByLogin(login: string) {
+    let user: User | undefined;
+
+    try {
+      user = await this.api.searchByLogin(login);
+    } catch (e) {
+      alert(`Не удалось найти пользователя с логином: ${login}`);
+    }
+
+    return user;
+  }
 }
 
 export const userController = new UserController();
