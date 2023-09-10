@@ -25,7 +25,7 @@
         {{# ForwardRefForm className="chat-messages__footer" ref="form"}}
             {{# HandleChat}}
                 {{{InputSubmit value=value onChange=onChange ref="message"}}}
-                {{{ButtonSubmit disabled=disabledSubmit ref="submit"}}}
+                {{{ButtonSubmit disabled=disabledSubmit ref="submit" onClick=onSubmitMessage}}}
             {{/HandleChat}}
         {{/ForwardRefForm}}
     {{else}}

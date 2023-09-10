@@ -3,6 +3,7 @@ import template from "./template.hbs";
 import { handleChangeField } from "../../../utils/handlersForm.ts";
 import { Validator, ValidatorRules } from "../../../utils/Validator.ts";
 import { MessageView } from "../../../utils/services.ts";
+import { messagesController } from "../../../controllers/MessagesController.ts";
 
 interface Props {
   value: string;
@@ -10,6 +11,7 @@ interface Props {
   disabledSubmit: boolean;
   messages: MessageView[];
   selectedChatId: number | undefined;
+  onSubmitMessage(): void;
 }
 
 export class Messages extends Block<Props> {
@@ -23,6 +25,7 @@ export class Messages extends Block<Props> {
       onChange: (event) => {
         this.onChange(event, ValidatorRules.Message);
       },
+      onSubmitMessage: () => this.onSubmitMessage(),
     });
   }
 
@@ -38,6 +41,16 @@ export class Messages extends Block<Props> {
         ...this.refs.submit.props,
         disabled: !resultValidation.result,
       });
+    }
+  }
+
+  private onSubmitMessage() {
+    if (this.props.selectedChatId) {
+      messagesController.sendMessage(
+        this.props.selectedChatId,
+        this.refs.message.props.value,
+      );
+      this.refs.message.setProps({ ...this.refs.message, value: "" });
     }
   }
 
