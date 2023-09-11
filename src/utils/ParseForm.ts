@@ -18,4 +18,15 @@ export class ParseForm {
       console.log("Form data:", `${key}: ${value}`);
     }
   }
+
+  public getData() {
+    const result: Record<string, FormDataEntryValue> = {};
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [key, value] of this.getValues()) {
+      result[key] = value;
+    }
+
+    return result;
+  }
 }

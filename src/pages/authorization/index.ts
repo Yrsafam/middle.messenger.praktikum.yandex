@@ -8,6 +8,8 @@ import {
   handleValidateForm,
 } from "../../utils/handlersForm.ts";
 import { ParseForm } from "../../utils/ParseForm.ts";
+import { authController } from "../../controllers/AuthController.ts";
+import { SigninData } from "../../api/AuthAPI.ts";
 
 interface Props extends PropsForm {}
 
@@ -87,8 +89,8 @@ export class Authorization extends Block<Props> {
 
     if (isValid) {
       const parseForm = new ParseForm(this.refs.form.element!);
-      parseForm.printValues();
-      window.location.assign("/");
+
+      authController.signin(parseForm.getData() as SigninData);
     }
   }
 

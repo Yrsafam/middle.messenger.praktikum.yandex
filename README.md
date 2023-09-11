@@ -58,10 +58,10 @@ npm run lint:styles
 
 ## Страницы
 
-- [Главная(Список чатов)](http://localhost:3000/)
-- [Авторизация](http://localhost:3000/authorization)
-- [Регистрация](http://localhost:3000/registration)
-- [Профиль](http://localhost:3000/profile)
+- [Список чатов](http://localhost:3000/messenger)
+- [Авторизация](http://localhost:3000/)
+- [Регистрация](http://localhost:3000/sign-up)
+- [Профиль](http://localhost:3000/settings)
 - [Редактирование профиля](http://localhost:3000/profile-edit)
 - [Изменение пароля](http://localhost:3000/change-password)
 - [404](http://localhost:3000/404)
@@ -71,10 +71,13 @@ npm run lint:styles
 
 - [Ссылка](https://bejewelled-mermaid-8640f0.netlify.app/)
 
-## Фичи версии 0.1.0
+## Фичи версии 0.2.0
 
 - Валидация форм
 - Типизация
 - Компонентный подход
 - HTTP клиент
 - Линтинг
+- Подключен REST API
+- Авторизация, регистрация, изменение профиля, чаты
+- Подключен Websocket

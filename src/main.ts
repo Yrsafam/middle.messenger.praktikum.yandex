@@ -1,5 +1,6 @@
 import { registerComponent } from "./utils/registerComponent.ts";
-import { renderDom } from "./utils/renderDom.ts";
+import { Routes } from "./utils/renderDom.ts";
+import Router from "./utils/Router.ts";
 
 import { Button } from "./components/Button";
 import { Main } from "./pages/main";
@@ -18,6 +19,17 @@ import { Input } from "./components/Input";
 import { ForwardRefForm } from "./components/ForwardRefForm";
 import { ButtonSubmit } from "./pages/main/ButtonSubmit";
 import { InputSubmit } from "./pages/main/InputSubmit";
+import { Authorization } from "./pages/authorization";
+import { Registration } from "./pages/registration";
+import { ChangePassword } from "./pages/change-password";
+import { Profile } from "./pages/profile";
+import { ProfileEdit } from "./pages/profile-edit";
+import { NotFound } from "./pages/404";
+import { ServerError } from "./pages/500";
+import { authController } from "./controllers/AuthController.ts";
+import { Modal } from "./components/Modal";
+import { ForwardRef } from "./components/ForwardRef";
+import { store } from "./utils/Store.ts";
 
 registerComponent(Button);
 registerComponent(ContextMenu);
@@ -35,35 +47,52 @@ registerComponent(AvatarProfile);
 registerComponent(InformationRow);
 registerComponent(Input);
 registerComponent(SidebarLayout);
-registerComponent(Main);
+registerComponent(ForwardRef);
+registerComponent(Modal);
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const { pathname } = window.location;
 
+  Router.use(Routes.Main, Authorization)
+    .use(Routes.Registration, Registration)
+    .use(Routes.ChangePassword, ChangePassword)
+    .use(Routes.Settings, Profile)
+    .use(Routes.ProfileEdit, ProfileEdit)
+    .use(Routes.NotFound, NotFound)
+    .use(Routes.ServerError, ServerError)
+    .use(Routes.Messenger, Main);
+
+  let isProtectedRoute;
+  const isNotFoundRoute = !Object.values(Routes).includes(pathname as Routes);
+
   switch (pathname) {
-    case "/":
-      renderDom("main");
-      break;
-    case "/registration":
-      renderDom("registration");
-      break;
-    case "/authorization":
-      renderDom("authorization");
-      break;
-    case "/profile":
-      renderDom("profile");
-      break;
-    case "/profile-edit":
-      renderDom("profile-edit");
-      break;
-    case "/change-password":
-      renderDom("change-password");
-      break;
-    case "/500":
-      renderDom("server-error");
+    case Routes.Main:
+    case Routes.Registration:
+    case Routes.NotFound:
+    case Routes.ServerError:
+      isProtectedRoute = false;
       break;
     default:
-      renderDom("not-found");
+      isProtectedRoute = true;
       break;
+  }
+
+  if (isNotFoundRoute) {
+    Router.go(Routes.NotFound);
+  }
+
+  Router.start();
+
+  try {
+    await authController.checkSignin();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Settings);
+      store.set("user", store.getState().user);
+    }
+  } catch (e) {
+    if (isProtectedRoute) {
+      Router.go(Routes.Main);
+    }
   }
 });

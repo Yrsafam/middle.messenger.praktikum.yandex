@@ -4,17 +4,9 @@
 
 .card-chat {
   $border: 1px solid $border-light-color;
+  $size-avatar: 47px;
 
-  list-style-type: none;
-  display: flex;
-  gap: 0 10px;
-  border-top: $border;
-  border-bottom: $border;
-  padding: 12px 0;
-  cursor: pointer;
-  position: relative;
-
-  &::before {
+  @mixin filled-card {
     $padding-outer: 20px;
     $padding-inner: 4px;
 
@@ -29,6 +21,20 @@
     transition: background-color $transition-animation;
   }
 
+
+  list-style-type: none;
+  display: flex;
+  gap: 0 10px;
+  border-top: $border;
+  border-bottom: $border;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    @include filled-card
+  }
+
   &:hover {
     &::before {
       $background-color: #E4EDFD;
@@ -38,13 +44,18 @@
   }
 
   &__avatar-circle {
-    $size: 47px;
-
-    width: $size;
-    min-width: $size;
-    height: $size;
+    width: $size-avatar;
+    min-width: $size-avatar;
+    height: $size-avatar;
     border-radius: 50%;
     background-color: $background-light-color;
+  }
+
+  &__avatar {
+    width: $size-avatar;
+    height: $size-avatar;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   &__content {
@@ -106,5 +117,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &--active {
+    &::before {
+      @include filled-card;
+
+      background-color: #E4EDFD;
+
+    }
   }
 }

@@ -1,4 +1,46 @@
 <main class="main">
-    {{{Sidebar}}}
-    {{{Messages}}}
+    {{{Sidebar
+            chats=chats
+            onClickAddChat=onShowModalAddChat
+            onSelectChat=onSelectChat
+            selectedChatId=selectedChatId
+    }}}
+    {{{Messages
+            messages=messages
+            selectedChatId=selectedChatId
+            onShowModalAddUserChat=onShowModalAddUserChat
+            onShowModalDeleteUserChat=onShowModalDeleteUserChat
+            onDeleteChat=onDeleteChat
+    }}}
+
+    {{{Modal
+            visible=visibleChatAdd
+            label="Название чата"
+            title="Добавить чат"
+            titleButton="Добавить"
+            onClose=onHideModalAddChat
+            value=value
+            onChange=onChange
+            onClick=onAddChat
+    }}}
+    {{{Modal
+            visible=visibleAddUserChat
+            label="Логин"
+            title="Добавить пользователя"
+            titleButton="Добавить"
+            onClose=onHideModalAddUserChat
+            value=value
+            onChange=onChange
+            onClick=onAddUserChat
+    }}}
+    {{{Modal
+            visible=visibleDeleteUserChat
+            label="Логин"
+            title="Удалить пользователя"
+            titleButton="Удалить"
+            onClose=onHideModalDeleteUserChat
+            value=value
+            onChange=onChange
+            onClick=onDeleteUserChat
+    }}}
 </main>

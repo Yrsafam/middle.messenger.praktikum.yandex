@@ -179,7 +179,7 @@ export class Validator {
   }
 
   private validateEmpty(value: string): ValidatorValidateResult {
-    const regexp = /^\w+$/;
+    const regexp = /^[a-zA-ZА-Яа-яёЁ ]+$/;
     const ERROR_MESSAGE: string = "Поле не должно быть пустым";
 
     return this.validate(value, regexp, ERROR_MESSAGE);

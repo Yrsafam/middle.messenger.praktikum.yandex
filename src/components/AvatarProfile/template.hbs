@@ -1,7 +1,13 @@
 <label class="avatar-profile">
-    <input type="file" name="avatar" class="avatar-profile__input">
-    <img src="/images/plug-avatar.svg" alt="Заглушка аватара" class="avatar-profile__icon">
-    <span class="avatar-profile__description">
+    <input type="file" name="avatar" class="avatar-profile__input" accept="image/png, image/jpeg" {{#unless canChange}}disabled{{/unless}}>
+    {{#if avatar}}
+        <img src="{{avatar}}" alt="Аватар" class="avatar-profile__image">
+    {{else}}
+        <img src="/images/plug-avatar.svg" alt="Заглушка аватара" class="avatar-profile__icon">
+    {{/if}}
+    {{#if canChange}}
+        <span class="avatar-profile__description">
         Поменять <br> аватар
     </span>
+    {{/if}}
 </label>

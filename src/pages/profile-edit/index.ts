@@ -7,11 +7,17 @@ import {
   handleValidateForm,
 } from "../../utils/handlersForm.ts";
 import { ParseForm } from "../../utils/ParseForm.ts";
-import { PropsForm } from "../../shared-kernel/types.ts";
+import { PropsForm, User } from "../../shared-kernel/types.ts";
+import { withStore } from "../../utils/Store.ts";
+import { userController } from "../../controllers/UserController.ts";
 
-interface Props extends PropsForm {}
+interface Props extends Omit<PropsForm, "values"> {
+  values: Omit<User, "avatar" | "id">;
+  avatar: string;
+  onChangeAvatar(event: Event): void;
+}
 
-export class ProfileEdit extends Block<Props> {
+class ProfileEditBlock extends Block<Props> {
   static componentName = "ProfileEdit";
 
   private validator: Validator;
@@ -86,6 +92,8 @@ export class ProfileEdit extends Block<Props> {
       onClick: (event) => {
         this.onSubmit(event);
       },
+      avatar: "",
+      onChangeAvatar: (event) => this.onChangeAvatar(event),
     });
 
     this.validator = new Validator(this.refs.form.element!);
@@ -152,13 +160,29 @@ export class ProfileEdit extends Block<Props> {
     this.onChange(event, ValidatorRules.DisplayName);
   }
 
-  private onSubmit(event: Event) {
+  private async onChangeAvatar(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files!;
+    const formData = new FormData();
+    const file = files[0];
+
+    formData.append("avatar", file);
+
+    await userController.updateAvatar(formData);
+  }
+
+  private async onSubmit(event: Event) {
     event.preventDefault();
+    this.validator = new Validator(this.refs.form.element!);
+
     const isValid = this.validateForm();
 
     if (isValid) {
       const parseForm = new ParseForm(this.refs.form.element!);
-      parseForm.printValues();
+
+      await userController.updateProfile(
+        parseForm.getData() as Omit<User, "id" | "avatar">,
+      );
     }
   }
 
@@ -166,3 +190,17 @@ export class ProfileEdit extends Block<Props> {
     return this.compile(template, this.props);
   }
 }
+
+const withValues = withStore((state) => ({
+  values: {
+    first_name: state.user.first_name,
+    second_name: state.user.second_name,
+    display_name: state.user.display_name,
+    phone: state.user.phone,
+    login: state.user.login,
+    email: state.user.email,
+  },
+  avatar: state.user.avatar,
+}));
+
+export const ProfileEdit = withValues(ProfileEditBlock);

@@ -1,44 +1,58 @@
 import { Block } from "../../../utils/Block.ts";
-import { messages } from "../../../utils/mocks.ts";
 import template from "./template.hbs";
 import { handleChangeField } from "../../../utils/handlersForm.ts";
 import { Validator, ValidatorRules } from "../../../utils/Validator.ts";
+import { MessageView } from "../../../utils/services.ts";
+import { messagesController } from "../../../controllers/MessagesController.ts";
 
 interface Props {
   value: string;
   onChange(event: Event): void;
   disabledSubmit: boolean;
-  messages: typeof messages;
+  messages: MessageView[];
+  selectedChatId: number | undefined;
+  onSubmitMessage(): void;
+  onDeleteChat(): void;
 }
 
 export class Messages extends Block<Props> {
   static componentName = "Messages";
 
-  private validator: Validator;
-
   constructor(props: Props) {
     super({
       ...props,
-      messages,
       disabledSubmit: true,
       value: "",
       onChange: (event) => {
         this.onChange(event, ValidatorRules.Message);
       },
+      onSubmitMessage: () => this.onSubmitMessage(),
     });
-
-    this.validator = new Validator(this.refs.form.element!);
   }
 
   private onChange(event: Event, field: string) {
-    handleChangeField(event, field, this.refs);
+    if (this.props.selectedChatId) {
+      handleChangeField(event, field, this.refs);
 
-    const resultValidation = this.validator.checkField(field);
+      const validator = new Validator(this.refs.form.element!);
 
-    this.refs.submit.setProps({
-      ...this.refs.submit.props,
-      disabled: !resultValidation.result,
-    });
+      const resultValidation = validator.checkField(field);
+
+      this.refs.submit.setProps({
+        ...this.refs.submit.props,
+        disabled: !resultValidation.result,
+      });
+    }
+  }
+
+  private onSubmitMessage() {
+    if (this.props.selectedChatId) {
+      messagesController.sendMessage(
+        this.props.selectedChatId,
+        this.refs.message.props.value,
+      );
+      this.refs.message.setProps({ ...this.refs.message, value: "" });
+    }
   }
 
   protected render() {
