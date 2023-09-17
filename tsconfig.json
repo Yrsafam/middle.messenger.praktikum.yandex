@@ -20,5 +20,6 @@
     "sourceMap": true,
     "strictNullChecks": true
   },
+  "exclude": ["node_modules"],
   "include": ["src", "vite-plugin-handlebars-precompile.ts"]
 }

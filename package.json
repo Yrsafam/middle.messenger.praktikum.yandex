@@ -9,7 +9,8 @@
     "start": "vite build && vite preview --port 3000",
     "server": "node server.cjs",
     "lint": "npx eslint \"src/**\" && tsc --noEmit",
-    "lint:styles": "npx stylelint \"**/*.scss\""
+    "lint:styles": "npx stylelint \"**/*.scss\"",
+    "test": "mocha"
   },
   "devDependencies": {
     "@types/chai": "4.3.6",
