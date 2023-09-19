@@ -10,7 +10,7 @@ import { HTTPTransport } from "./HTTPTransport.ts";
 describe("HTTPTransport", () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let http: HTTPTransport;
-  const requests: SinonFakeXMLHttpRequest[] = [];
+  let requests: SinonFakeXMLHttpRequest[] = [];
 
   beforeEach(() => {
     xhr = useFakeXMLHttpRequest();
@@ -28,6 +28,7 @@ describe("HTTPTransport", () => {
 
   afterEach(() => {
     xhr.restore();
+    requests = [];
   });
 
   it("should have correct url", () => {
