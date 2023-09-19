@@ -31,32 +31,36 @@ describe("HTTPTransport", () => {
     requests = [];
   });
 
-  it("should have correct url", () => {
-    http.get("/user");
+  describe("GET Requests", () => {
+    it("should have correct url", () => {
+      http.get("/user");
 
-    const [request] = requests;
+      const [request] = requests;
 
-    expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user`);
-  });
-
-  it("should have correct method", () => {
-    http.get("/user");
-
-    const [request] = requests;
-
-    expect(request.method).to.equal("GET");
-  });
-
-  it("should have queries parameters", () => {
-    http.get("/user", {
-      data: {
-        a: "1",
-        b: "2",
-      },
+      expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user`);
     });
 
-    const [request] = requests;
+    it("should have correct method", () => {
+      http.get("/user");
 
-    expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user?a=1&b=2`);
+      const [request] = requests;
+
+      expect(request.method).to.equal("GET");
+    });
+
+    it("should have query parameters", () => {
+      http.get("/user", {
+        data: {
+          a: "1",
+          b: "2",
+        },
+      });
+
+      const [request] = requests;
+
+      expect(request.url).to.equal(
+        `${HTTPTransport.BASE_URL}/auth/user?a=1&b=2`,
+      );
+    });
   });
 });
