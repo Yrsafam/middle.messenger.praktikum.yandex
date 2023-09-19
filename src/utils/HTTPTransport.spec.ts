@@ -62,5 +62,15 @@ describe("HTTPTransport", () => {
         `${HTTPTransport.BASE_URL}/auth/user?a=1&b=2`,
       );
     });
+
+    it("should have correct status code", () => {
+      http.get("/user");
+
+      const [request] = requests;
+
+      request.respond(200, {}, "");
+
+      expect(request.status).to.equal(200);
+    });
   });
 });
