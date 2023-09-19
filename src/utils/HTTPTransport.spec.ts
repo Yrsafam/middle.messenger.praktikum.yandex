@@ -45,4 +45,17 @@ describe("HTTPTransport", () => {
 
     expect(request.method).to.equal("GET");
   });
+
+  it("should have queries parameters", () => {
+    http.get("/user", {
+      data: {
+        a: "1",
+        b: "2",
+      },
+    });
+
+    const [request] = requests;
+
+    expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user?a=1&b=2`);
+  });
 });
