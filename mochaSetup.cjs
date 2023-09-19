@@ -19,6 +19,6 @@ require.extensions[".hbs"] = function extensions(module, filename) {
   // eslint-disable-next-line no-param-reassign
   module.exports = Handlebars.compile(contents);
 };
-require.extensions[".pcss"] = function extensions() {
+require.extensions[".scss"] = function extensions() {
   module.exports = () => ({});
 };
