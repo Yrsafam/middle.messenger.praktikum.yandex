@@ -37,4 +37,12 @@ describe("HTTPTransport", () => {
 
     expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user`);
   });
+
+  it("should have correct method", () => {
+    http.get("/user");
+
+    const [request] = requests;
+
+    expect(request.method).to.equal("GET");
+  });
 });
