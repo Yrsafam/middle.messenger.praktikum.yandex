@@ -4,6 +4,7 @@ import {
   SinonFakeXMLHttpRequestStatic,
   useFakeXMLHttpRequest,
 } from "sinon";
+import { expect } from "chai";
 import { HTTPTransport } from "./HTTPTransport.ts";
 
 describe("HTTPTransport", () => {
@@ -27,5 +28,13 @@ describe("HTTPTransport", () => {
 
   afterEach(() => {
     xhr.restore();
+  });
+
+  it("should have correct url", () => {
+    http.get("/user");
+
+    const [request] = requests;
+
+    expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/user`);
   });
 });
