@@ -72,5 +72,17 @@ describe("HTTPTransport", () => {
 
       expect(request.status).to.equal(200);
     });
+
+    it("should have correct headers", () => {
+      http.get("/user", {
+        headers: {
+          Authorization: "Bearer token",
+        },
+      });
+
+      const [request] = requests;
+
+      expect(request.requestHeaders.Authorization).to.equal("Bearer token");
+    });
   });
 });
