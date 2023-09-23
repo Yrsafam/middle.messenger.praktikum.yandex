@@ -138,26 +138,26 @@ describe("HTTPTransport", () => {
 
       expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/signin`);
     });
-  });
 
-  it("should called with correct parameters", () => {
-    const httpPostFake = spy(http, "post");
+    it("should called with correct parameters", () => {
+      const httpPostFake = spy(http, "post");
 
-    httpPostFake("/signin", {
-      data: {
-        a: "a",
-        b: "b",
-      },
-    });
-
-    // eslint-disable-next-line no-unused-expressions
-    expect(
-      httpPostFake.calledWith("/signin", {
+      httpPostFake("/signin", {
         data: {
           a: "a",
           b: "b",
         },
-      }),
-    ).to.be.true;
+      });
+
+      // eslint-disable-next-line no-unused-expressions
+      expect(
+        httpPostFake.calledWith("/signin", {
+          data: {
+            a: "a",
+            b: "b",
+          },
+        }),
+      ).to.be.true;
+    });
   });
 });
