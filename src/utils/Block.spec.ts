@@ -35,4 +35,13 @@ describe("Block", async () => {
     expect(component.props).to.deep.equal({ prop: "1", className: "block" });
   });
 
+  it("should have correct props after update", () => {
+    const component = new ComponentMock({
+      className: "default",
+    });
+
+    component.setProps({ className: "customClass" });
+
+    expect(component.props).to.deep.equal({ className: "customClass" });
+  });
 });
