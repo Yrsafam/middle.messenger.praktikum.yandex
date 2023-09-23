@@ -2,5 +2,5 @@
   "extension": ["ts"],
   "spec": "src/**/*.spec.ts",
   "require": ["ts-node/register", "./mochaSetup.cjs"],
-  "loader": "ts-node/esm"
+  "loader": ["ts-node/esm", "esmock"]
 }
