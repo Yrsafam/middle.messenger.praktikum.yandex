@@ -159,5 +159,13 @@ describe("HTTPTransport", () => {
         }),
       ).to.be.true;
     });
+
+    it("should have correct method", () => {
+      http.post("/signin");
+
+      const [request] = requests;
+
+      expect(request.method).to.equal("POST");
+    });
   });
 });
