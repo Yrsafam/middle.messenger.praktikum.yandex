@@ -168,4 +168,24 @@ describe("HTTPTransport", () => {
       expect(request.method).to.equal("POST");
     });
   });
+
+  describe("PUT Requests", () => {
+    it("should have correct method", () => {
+      http.put("/upload");
+
+      const [request] = requests;
+
+      expect(request.method).to.equal("PUT");
+    });
+  });
+
+  describe("DELETE Requests", () => {
+    it("should have correct method", () => {
+      http.delete("/delete");
+
+      const [request] = requests;
+
+      expect(request.method).to.equal("DELETE");
+    });
+  });
 });
