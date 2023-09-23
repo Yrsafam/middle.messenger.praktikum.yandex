@@ -28,4 +28,11 @@ describe("Block", async () => {
     // eslint-disable-next-line no-unused-expressions
     expect(EventBusMock.emit.calledWith("init")).to.be.true;
   });
+
+  it("should have correct props", () => {
+    const component = new ComponentMock({ prop: "1", className: "block" });
+
+    expect(component.props).to.deep.equal({ prop: "1", className: "block" });
+  });
+
 });
