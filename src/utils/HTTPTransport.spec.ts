@@ -1,10 +1,13 @@
-import { afterEach, beforeEach } from "mocha";
+import { afterEach, beforeEach, describe } from "mocha";
 import {
+  fake,
   SinonFakeXMLHttpRequest,
   SinonFakeXMLHttpRequestStatic,
+  SinonSpy,
   useFakeXMLHttpRequest,
 } from "sinon";
 import { expect } from "chai";
+import esmock from "esmock";
 import { HTTPTransport } from "./HTTPTransport.ts";
 
 describe("HTTPTransport", () => {
@@ -83,6 +86,56 @@ describe("HTTPTransport", () => {
       const [request] = requests;
 
       expect(request.requestHeaders.Authorization).to.equal("Bearer token");
+    });
+
+    describe("GET Requests with mock queryStringify", () => {
+      let httpWithMock: HTTPTransport;
+      let queryStringifyMock: SinonSpy;
+
+      beforeEach(async () => {
+        queryStringifyMock = fake.returns("?filter=1&sort=desc");
+        const { HTTPTransport: HTTPTransportMock } = (await esmock(
+          "./HTTPTransport",
+          {
+            "./queryStringify": {
+              queryStringify: queryStringifyMock,
+            },
+          },
+        )) as { HTTPTransport: typeof HTTPTransport };
+        httpWithMock = new HTTPTransportMock("/auth");
+      });
+
+      it("should called queryStringify", () => {
+        httpWithMock.get("/user", {
+          data: {
+            filter: 1,
+          },
+        });
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(queryStringifyMock.called).to.be.true;
+      });
+
+      it("should called with parameters", () => {
+        httpWithMock.get("/user", {
+          data: {
+            filter: 1,
+            sort: "desc",
+          },
+        });
+
+        expect(queryStringifyMock()).to.equal("?filter=1&sort=desc");
+      });
+    });
+  });
+
+  describe("POST Requests", () => {
+    it("should have correct url", () => {
+      http.post("/signin");
+
+      const [request] = requests;
+
+      expect(request.url).to.equal(`${HTTPTransport.BASE_URL}/auth/signin`);
     });
   });
 });
