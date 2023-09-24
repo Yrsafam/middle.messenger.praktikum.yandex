@@ -49,8 +49,8 @@
     "uuid": "9.0.0"
   },
   "lint-staged": {
-    "*.ts": ["npm run lint", "npm run lint:styles"],
-    "*.spec.ts": ["npm run test"]
+    "*.ts": ["npm run lint", "npm run test"],
+    "*.scss": ["npm run lint:styles"]
   },
   "husky": {
     "hooks": {
