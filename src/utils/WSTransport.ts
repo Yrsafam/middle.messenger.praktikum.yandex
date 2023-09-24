@@ -11,7 +11,7 @@ const TIMEOUT_PING = 5000;
 export default class WSTransport extends EventBus {
   private socket: WebSocket | null = null;
 
-  private pingInterval: number = 0;
+  private pingInterval: number | NodeJS.Timeout = 0;
 
   constructor(private url: string) {
     super();
