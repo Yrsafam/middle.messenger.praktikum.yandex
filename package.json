@@ -50,10 +50,6 @@
     "path": "0.12.7",
     "uuid": "9.0.0"
   },
-  "lint-staged": {
-    "*.ts": ["npm run lint", "npm run test"],
-    "*.scss": ["npm run lint:styles"]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
