@@ -57,4 +57,17 @@ describe("Block", async () => {
 
     expect(component.getContent()?.outerHTML).to.equal("<div>Test</div>");
   });
+
+  it("should render correct text", () => {
+    class Component extends Block {
+      public override render() {
+        return this.compile(() => "<div>Test text</div>", this.props);
+      }
+    }
+    const component = new Component({});
+
+    component.render();
+
+    expect(component.getContent()?.textContent).to.equal("Test text");
+  });
 });
