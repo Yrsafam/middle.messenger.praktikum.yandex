@@ -26,7 +26,7 @@ describe("Block", async () => {
     // eslint-disable-next-line no-new
     new ComponentMock({});
     // eslint-disable-next-line no-unused-expressions
-    expect(EventBusMock.emit.calledWith("init")).to.be.true;
+    expect(EventBusMock.emit.calledWith(Block.EVENTS.INIT)).to.be.true;
   });
 
   it("should have correct props", () => {
@@ -43,5 +43,18 @@ describe("Block", async () => {
     component.setProps({ className: "customClass" });
 
     expect(component.props).to.deep.equal({ className: "customClass" });
+  });
+
+  it("should render html", () => {
+    class Component extends Block {
+      public override render() {
+        return this.compile(() => "<div>Test</div>", this.props);
+      }
+    }
+    const component = new Component({ className: "class" });
+
+    component.render();
+
+    expect(component.getContent()?.outerHTML).to.equal("<div>Test</div>");
   });
 });
