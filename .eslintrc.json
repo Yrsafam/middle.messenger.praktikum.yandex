@@ -19,5 +19,7 @@
     "max-classes-per-file": "off",
     "no-alert": "off"
   },
-  "parserOptions": { "project": ["./tsconfig.json"] }
+  "parserOptions": {
+    "ecmaVersion": 2020
+  }
 }
