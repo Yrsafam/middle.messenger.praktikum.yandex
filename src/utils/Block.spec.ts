@@ -29,6 +29,15 @@ describe("Block", async () => {
     expect(EventBusMock.emit.calledWith(Block.EVENTS.INIT)).to.be.true;
   });
 
+  it("should emit event on setProps method", () => {
+    const component = new ComponentMock({ testProps: "test" });
+
+    component.setProps({ testProps: "customTest" });
+
+    // eslint-disable-next-line no-unused-expressions
+    expect(EventBusMock.emit.calledWith(Block.EVENTS.FLOW_CDU)).to.be.true;
+  });
+
   it("should have correct props", () => {
     const component = new ComponentMock({ prop: "1", className: "block" });
 
