@@ -2,7 +2,7 @@ import { BlockConstructable, Route } from "./Route.ts";
 
 class Router {
   // eslint-disable-next-line no-use-before-define
-  private static __instance: Router;
+  private static __instance?: Router;
 
   private routes: Route[] = [];
 
@@ -70,6 +70,13 @@ class Router {
 
   private getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
+  }
+
+  public reset() {
+    delete Router.__instance;
+
+    // eslint-disable-next-line no-new
+    new Router(this.rootQuery);
   }
 }
 
