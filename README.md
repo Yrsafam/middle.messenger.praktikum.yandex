@@ -47,13 +47,31 @@ npm run server
 Запуск `eslint` для проверки кода проекта:
 
 ```shell
-npm run lint
+npm run lint:eslint
 ```
 
 Запуск `stylelint` для проверки стилей проекта:
 
 ```shell
 npm run lint:styles
+```
+
+Запуск `tsc` для проверки типов проекта:
+
+```shell
+npm run lint:typescript
+```
+
+Запуск всех линтеров одной командой:
+
+```shell
+npm run lint
+```
+
+Запуск тестов:
+
+```shell
+npm run test
 ```
 
 ## Страницы
@@ -71,7 +89,7 @@ npm run lint:styles
 
 - [Ссылка](https://bejewelled-mermaid-8640f0.netlify.app/)
 
-## Фичи версии 0.2.0
+## Фичи версии 0.3.0
 
 - Валидация форм
 - Типизация
@@ -81,3 +99,5 @@ npm run lint:styles
 - Подключен REST API
 - Авторизация, регистрация, изменение профиля, чаты
 - Подключен Websocket
+- Запуск тестов, линтеров на pre-commit
+- Покрыты базовые модули проекта unit тестами с помощью Mocha, Chai, Sinon

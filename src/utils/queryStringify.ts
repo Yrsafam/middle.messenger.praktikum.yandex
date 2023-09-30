@@ -35,7 +35,7 @@ function queryStringify(data: StringIndexed): string | never {
     }
 
     return `${result}${key}=${value}${endLine}`;
-  }, "");
+  }, "?");
 }
 
 export { queryStringify };

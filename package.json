@@ -1,28 +1,43 @@
 {
   "name": "middle.messenger.praktikum.yandex",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "start": "vite build && vite preview --port 3000",
     "server": "node server.cjs",
-    "lint": "npx eslint \"src/**\" && tsc --noEmit",
-    "lint:styles": "npx stylelint \"**/*.scss\""
+    "lint:eslint": "npx eslint \"src/**\"",
+    "lint:typescript": "tsc --noEmit",
+    "lint:styles": "npx stylelint \"**/*.scss\"",
+    "lint": "npm run lint:eslint && npm run lint:typescript && npm run lint:styles",
+    "test": "mocha",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/chai": "4.3.6",
+    "@types/mocha": "10.0.1",
+    "@types/sinon": "10.0.16",
     "@types/uuid": "9.0.2",
     "@typescript-eslint/eslint-plugin": "6.2.1",
     "@typescript-eslint/parser": "6.2.1",
+    "chai": "4.3.8",
     "eslint": "8.46.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "9.0.0",
+    "esmock": "2.5.1",
     "express": "4.18.2",
+    "husky": "8.0.0",
+    "jsdom": "22.1.0",
+    "lint-staged": "14.0.1",
+    "mocha": "10.2.0",
     "prettier": "3.0.1",
     "sass": "1.64.1",
+    "sinon": "16.0.0",
     "stylelint": "15.10.2",
     "stylelint-config-standard-scss": "10.0.0",
+    "ts-node": "10.9.1",
     "typescript": "5.1.6",
     "vite": "4.4.5",
     "vite-plugin-handlebars": "1.6.0"
@@ -34,5 +49,10 @@
     "handlebars": "4.7.7",
     "path": "0.12.7",
     "uuid": "9.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

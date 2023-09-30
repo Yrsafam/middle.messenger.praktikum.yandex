@@ -1,10 +1,10 @@
 <aside class="sidebar-chats">
     <div class="sidebar-chats__head">
         <div class="sidebar-chats__head-left">
-            <a href="/settings" class="sidebar-chats__link-profile">
+            {{#Link href="/settings" className="sidebar-chats__link-profile"}}
                 Профиль
                 <img src="/images/arrow-profile.svg" alt="Иконка перехода в профиль">
-            </a>
+            {{/Link}}
             {{{Button title="Добавить чат" onClick=onClickAddChat ref="buttonAdd"}}}
         </div>
         <label class="sidebar-chats__input">

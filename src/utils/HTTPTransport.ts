@@ -12,7 +12,7 @@ type HTTPTransportOptions<D> = {
   data: D;
   method: HTTPTransportMethods;
   timeout?: number;
-  headers?: Headers;
+  headers?: Record<string, string>;
   withCredentials?: boolean;
 };
 
