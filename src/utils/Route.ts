@@ -1,5 +1,6 @@
 import { Block } from "./Block.ts";
 import { renderDom } from "./renderDom.ts";
+import { store } from "./Store.ts";
 
 export interface BlockConstructable<P extends object = any> {
   new (props: P): Block<P>;
@@ -38,6 +39,7 @@ export class Route {
       this.block = new this.blockClass({});
 
       renderDom(this.query, this.block);
+      store.emitUpdated();
     }
   }
 }
