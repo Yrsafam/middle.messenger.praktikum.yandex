@@ -96,9 +96,9 @@ describe("HTTPTransport", () => {
       beforeEach(async () => {
         queryStringifyMock = fake.returns("?filter=1&sort=desc");
         const { HTTPTransport: HTTPTransportMock } = (await esmock(
-          "./HTTPTransport",
+          "./HTTPTransport.ts",
           {
-            "./queryStringify": {
+            "./queryStringify.ts": {
               queryStringify: queryStringifyMock,
             },
           },

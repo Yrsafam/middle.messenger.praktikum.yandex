@@ -9,8 +9,8 @@ const EventBusMock = {
   emit: fake(),
 };
 
-const { Block: BlockProxy } = (await esmock("./Block", {
-  "./EventBus": {
+const { Block: BlockProxy } = (await esmock("./Block.ts", {
+  "./EventBus.ts": {
     EventBus: class {
       on = EventBusMock.on;
 
