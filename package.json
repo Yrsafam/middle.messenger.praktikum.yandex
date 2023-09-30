@@ -10,8 +10,8 @@
     "server": "node server.cjs",
     "lint:eslint": "npx eslint \"src/**\"",
     "lint:typescript": "tsc --noEmit",
-    "lint": "npm run lint:eslint && npm run lint:typescript",
     "lint:styles": "npx stylelint \"**/*.scss\"",
+    "lint": "npm run lint:eslint && npm run lint:typescript && npm run lint:styles",
     "test": "mocha",
     "prepare": "husky install"
   },
