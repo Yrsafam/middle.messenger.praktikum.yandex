@@ -31,4 +31,28 @@ describe("Router", () => {
 
     expect(instance).to.equal(router);
   });
+
+  it("should called method .back", () => {
+    router.use("/", BlockMock).start();
+
+    router.back();
+
+    expect(getContentFake.callCount).to.equal(1);
+  });
+
+  it("should called method .forward", () => {
+    router.use("/", BlockMock).start();
+
+    router.forward();
+
+    expect(getContentFake.callCount).to.equal(1);
+  });
+
+  it("should called method .go", () => {
+    router.use("/sign-in", BlockMock).start();
+
+    router.go("/sign-in");
+
+    expect(getContentFake.callCount).to.equal(2);
+  });
 });
