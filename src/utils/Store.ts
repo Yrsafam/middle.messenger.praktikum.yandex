@@ -47,6 +47,10 @@ export class Store extends EventBus {
   public getState() {
     return this.state;
   }
+
+  public emitUpdated() {
+    this.set(StoreEvents.Updated, {});
+  }
 }
 
 export const store = new Store();
