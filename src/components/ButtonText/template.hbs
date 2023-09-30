@@ -1,5 +1,5 @@
 {{#if href}}
-    <a href="{{href}}" class="button-text {{className}}">{{title}}</a>
+    {{#Link href=href title=title className=className}}{{/Link}}
 {{else}}
     <button type="button" class="button-text {{className}}">{{title}}</button>
 {{/if}}

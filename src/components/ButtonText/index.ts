@@ -16,7 +16,7 @@ export class ButtonText extends Block<Props> {
     super({
       href,
       title,
-      className,
+      className: href ? `button-text ${className}` : className,
       events: {
         click: onClick,
       },
