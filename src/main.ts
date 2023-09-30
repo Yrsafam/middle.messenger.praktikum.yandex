@@ -30,8 +30,10 @@ import { authController } from "./controllers/AuthController.ts";
 import { Modal } from "./components/Modal";
 import { ForwardRef } from "./components/ForwardRef";
 import { store } from "./utils/Store.ts";
+import { Link } from "./components/Link";
 
 registerComponent(Button);
+registerComponent(Link);
 registerComponent(ContextMenu);
 registerComponent(ForwardRefForm);
 registerComponent(ButtonSubmit);
